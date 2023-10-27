@@ -1,4 +1,5 @@
-import { useEffect, useState } from "react"
+import { useEffect, useState } from "react";
+import { v4 as uuidv4 } from 'uuid';
 
 export default function VideoUpload ({}) {
     const [file, setFile] = useState();
@@ -15,9 +16,9 @@ export default function VideoUpload ({}) {
         setPreviewVideo(e.target.file[0])
         setFile(e.target.file[0]);
     }
-    
+
     return (
-        <div>
+        <div className="w-full my-5 ">
             <input onChange={(e) => uploadImage(e)} type="file" />
         </div>
     )

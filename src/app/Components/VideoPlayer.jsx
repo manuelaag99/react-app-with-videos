@@ -18,6 +18,7 @@ export default function VideoPlayer ({ additionalClassNames, videoSource, videoW
         fetchVideo();
     }, [])
 
+    console.log(videoToPlay)
     if (!videoToPlay) {
         return null;
     } else {

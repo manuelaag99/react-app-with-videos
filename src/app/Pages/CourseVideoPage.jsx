@@ -8,8 +8,10 @@ export default function CourseVideoPage ({}) {
     return (
         <div className="flex flex-col justify-center w-4/10 ">
             <TopNavigationBar />
-            <VideoUpload />
-            <VideoPlayer additionalClassNames="" videoSource={selectedVideo} videoHeight="450" videoWidth="800" />
+            <div className="flex flex-col w-full mt-12">
+                <VideoUpload />
+                <VideoPlayer additionalClassNames="" videoSource={selectedVideo} videoHeight="450" videoWidth="800" />
+            </div>
         </div>
     )
 }

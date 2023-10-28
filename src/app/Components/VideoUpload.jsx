@@ -18,7 +18,7 @@ export default function VideoUpload ({}) {
     }
 
     return (
-        <div className="w-full my-5 ">
+        <div className="flex justify-center w-full my-5 ">
             <input onChange={(e) => uploadImage(e)} type="file" />
         </div>
     )

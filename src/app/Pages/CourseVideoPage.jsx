@@ -5,9 +5,9 @@ import VideoUpload from "../Components/VideoUpload";
 export default function CourseVideoPage ({}) {
     let selectedVideo = ""
     return (
-        <div className="w-full ">
+        <div className="flex flex-col justify-center w-4/10 ">
             <VideoUpload />
-            <VideoPlayer additionalClassNames="h-96" videoSource={selectedVideo} videoWidth="400" />
+            <VideoPlayer additionalClassNames="" videoSource={selectedVideo} videoHeight="450" videoWidth="800" />
         </div>
     )
 }

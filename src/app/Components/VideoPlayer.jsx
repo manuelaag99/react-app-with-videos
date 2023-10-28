@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { supabase } from "../supabase/client";
 
-export default function VideoPlayer ({ additionalClassNames, videoSource, videoWidth }) {
+export default function VideoPlayer ({ additionalClassNames, videoSource, videoHeight, videoWidth }) {
     const [videoToPlay, setVideoToPlay] = useState();
 
     async function fetchVideo () {
@@ -13,18 +13,16 @@ export default function VideoPlayer ({ additionalClassNames, videoSource, videoW
             console.log(err);
         }
     }
-
     useEffect(() => {
         fetchVideo();
     }, [])
 
-    console.log(videoToPlay)
     if (!videoToPlay) {
         return null;
     } else {
         return (
-            <div className={"w-full my-5" + additionalClassNames}>
-                <video controls width={videoWidth} >
+            <div className={"flex w-3/10 mx-auto my-5 " + additionalClassNames}>
+                <video className="object-cover " controls height={videoHeight} width={videoWidth} >
                     <source src={videoToPlay} type="video/mp4" />
                     Your browser does not support this video tag.
                 </video>

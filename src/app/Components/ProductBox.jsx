@@ -8,7 +8,7 @@ export default function ProductBox ({ productDescription, productId, productName
     async function fetchProductInfo () {
         try {
             const { data, error } = await supabase.from("cai-products").select().eq("product_id", productId);
-            setProductInfo(data[0]);
+            setProductInfo (data[0]);
         } catch (err) {
             console.log (err)
         }
@@ -21,14 +21,14 @@ export default function ProductBox ({ productDescription, productId, productName
         try {
             const { data, error } = await supabase.storage.from("cai-images").getPublicUrl("productPics/" + productInfo.product_photo_path);
             if (error) console.log (error);
-            setProductPhotoPath(data.publicUrl);
+            setProductPhotoPath (data.publicUrl);
         } catch (err) {
             console.log (err)
         }
     }
     useEffect(() => {
         if (productInfo) {
-            fetchProductPhoto();
+            fetchProductPhoto ();
         }
     }, [])
     

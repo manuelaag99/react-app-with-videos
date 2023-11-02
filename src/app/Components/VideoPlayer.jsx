@@ -6,7 +6,7 @@ export default function VideoPlayer ({ additionalClassNames, videoSource, videoH
 
     async function fetchVideo () {
         try {
-            const { data, error } = await supabase.storage.from("cai-videos").getPublicUrl("Videos para curso/" + "samplevideo");
+            const { data, error } = await supabase.storage.from("cai-videos").getPublicUrl("Videos para curso/" + "samplevideo.mp4");
             if (error) console.log(error);
             setVideoToPlay(data.publicUrl);
         } catch (err) {
@@ -21,8 +21,9 @@ export default function VideoPlayer ({ additionalClassNames, videoSource, videoH
         return null;
     } else {
         return (
-            <div className={"flex w-3/10 mx-auto my-5 " + additionalClassNames}>
-                <video className="object-cover " controls height={videoHeight} width={videoWidth} >
+            <div className={"flex w-full mx-auto my-5 " + additionalClassNames}>
+                {/* <video className="object-cover " controls height={videoHeight} width={videoWidth} > */}
+                <video className="object-cover w-full " controls >
                     <source src={videoToPlay} type="video/mp4" />
                     Your browser does not support this video tag.
                 </video>

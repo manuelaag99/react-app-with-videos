@@ -20,7 +20,7 @@ export default function CourseVideoPage ({}) {
                     <div className="flex w-full py-2">{courseVideoDescription}</div>
                 </div>
                 <div className="flex flex-col w-9/10 mx-auto mb-10 ">
-                    <VideoPlayer additionalClassNames="" videoSource={selectedVideo} videoHeight="450" videoWidth="800" />
+                    <VideoPlayer additionalClassNames="" videoSource={selectedVideo} videoHeight="1080" videoWidth="1920" />
                 </div>
                 <div className="flex flex-col w-full px-5 py-3 h-fit mb-7">
                     <div className="flex w-full py-2">

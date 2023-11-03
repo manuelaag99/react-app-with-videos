@@ -22,8 +22,7 @@ export default function VideoPlayer ({ additionalClassNames, videoSource, videoH
     } else {
         return (
             <div className={"flex w-full mx-auto my-5 " + additionalClassNames}>
-                {/* <video className="object-cover " controls height={videoHeight} width={videoWidth} > */}
-                <video className="object-cover w-full " controls >
+                <video className="object-cover w-full rounded-md " controls >
                     <source src={videoToPlay} type="video/mp4" />
                     Your browser does not support this video tag.
                 </video>

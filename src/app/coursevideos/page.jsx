@@ -2,7 +2,6 @@
 import { useState } from "react";
 import TopNavigationBar from "../Components/TopNavigationBar";
 import VideoPlayer from "../Components/VideoPlayer";
-import VideoUpload from "../Components/VideoUpload";
 
 export default function CourseVideoPage ({}) {
     let selectedVideo = ""
@@ -14,7 +13,7 @@ export default function CourseVideoPage ({}) {
     return (
         <div className="flex flex-col justify-center w-full ">
             <TopNavigationBar />
-            <div className="flex flex-col justify-center w-9/10 mx-auto bg-white rounded-md my-16 shadow-lg ">
+            <div className="flex flex-col justify-center w-9/10 mx-auto bg-white rounded-md my-24 shadow-lg ">
                 <div className="flex flex-col w-full px-5 py-7">
                     <div className="flex w-full py-2 font-bold">{courseVideoTitle}</div>
                     <div className="flex w-full py-2">{courseVideoDescription}</div>

@@ -1,4 +1,4 @@
-import CourseVideoPage from './Pages/CourseVideoPage';
+import CourseVideoPage from '../coursevideos/page';
 
 export default function Home() {
   return (

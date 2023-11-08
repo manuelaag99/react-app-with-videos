@@ -1,9 +1,8 @@
 import { supabase } from "@supabase/auth-ui-shared";
-import { useState } from "react"
+import { useEffect, useState } from "react"
 
 export default function ModuleBox ({ moduleId }) {
     const [moduleInfo, setModuleInfo] = useState();
-
     async function fetchModuleInfo () {
         try {
             const { data, error } = await supabase.from("cai-modules").select().eq("module_id", moduleId);
@@ -13,6 +12,9 @@ export default function ModuleBox ({ moduleId }) {
             console.log (err);
         }
     }
+    useEffect(() => {
+        fetchModuleInfo();
+    }, [])
 
     if (!moduleInfo) {
         return null;

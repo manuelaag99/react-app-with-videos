@@ -20,8 +20,8 @@ export default function Thumbnail ({ thumbnailImageId }) {
         return null;
     } else {
         return (
-            <div>
-                <img src={imageForThumbnail} alt="" />
+            <div className="">
+                {imageForThumbnail && <img className="h-full w-full object-cover" src={imageForThumbnail} alt="" />}
             </div>
         )
     }

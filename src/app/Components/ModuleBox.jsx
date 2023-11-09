@@ -1,5 +1,6 @@
 import { supabase } from "@supabase/auth-ui-shared";
 import { useEffect, useState } from "react"
+import Thumbnail from "./Thumbnail";
 
 export default function ModuleBox ({ moduleId }) {
     const [moduleInfo, setModuleInfo] = useState();
@@ -22,7 +23,7 @@ export default function ModuleBox ({ moduleId }) {
         return (
             <div className="flex flex-row justify-center w-full py-3" key={index}>
                 <div className="flex justify-center items-center w-2/10 h-12">
-                    <img className='' src="" alt="" />
+                    <Thumbnail thumbnailImageId={module.module_thumbnail_id} />
                 </div>
                 <div className="flex flex-col justify-start items-start w-7/10">
                     <div className="flex w-full">

@@ -2,10 +2,24 @@
 import AccessTimeIcon from '@mui/icons-material/AccessTime';
 import MoreHorizIcon from '@mui/icons-material/MoreHoriz';
 import TopNavigationBar from '../Components/TopNavigationBar';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
+import ModuleBox from '../Components/ModuleBox';
+import { supabase } from '@supabase/auth-ui-shared';
 
 export default function CoursePage ({}) {
     const [courseModules, setCourseModules] = useState();
+    async function fetchModuleIds () {
+        try {
+            const { data, error } = await supabase.from("jk-modules").select("module_id").eq("course_id", courseId);
+            if (error) console.log (error);
+            setCourseModules(data);
+        } catch (err) {
+            console.log (err);
+        }
+    }
+    useEffect(() => {
+        fetchModuleIds();
+    }, [])
 
     return (
         <div className="flex flex-col justify-center w-full">
@@ -33,28 +47,7 @@ export default function CoursePage ({}) {
                 {courseModules && <div className="flex flex-col justify-center w-full">
                     {courseModules.map((index, module) => {
                         return (
-                            <div className="flex flex-row justify-center w-full py-3" key={index}>
-                                <div className="flex justify-center items-center w-2/10 h-12">
-                                    <img className='' src="" alt="" />
-                                </div>
-                                <div className="flex flex-col justify-start items-start w-7/10">
-                                    <div className="flex w-full">
-                                        <p className="text-left font-bold">
-                                            Módulo 1: {module.module_name}
-                                        </p>
-                                    </div>
-                                    <div className="flex w-full">
-                                        <p className="text-left">
-                                            {module.module_description}
-                                        </p>
-                                    </div>
-                                </div>
-                                <div className="flex justify-end items-center w-1/10 ">
-                                    <button>
-                                        <MoreHorizIcon />
-                                    </button>
-                                </div>
-                            </div>
+                            <ModuleBox key={index} moduleId={module.module_id} />
                         )
                     })}
                 </div>}

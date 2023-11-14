@@ -1,7 +1,7 @@
 "use client"
 import { useState } from "react";
-import TopNavigationBar from "../Components/TopNavigationBar";
-import VideoPlayer from "../Components/VideoPlayer";
+import TopNavigationBar from "../../../Components/TopNavigationBar";
+import VideoPlayer from "../../../Components/VideoPlayer";
 
 export default function CourseVideoPage ({}) {
     let selectedVideo = ""

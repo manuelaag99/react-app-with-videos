@@ -2,7 +2,7 @@ import { supabase } from "@supabase/auth-ui-shared";
 import { useEffect, useState } from "react"
 import Thumbnail from "./Thumbnail";
 
-export default function ModuleBox ({ moduleId }) {
+export default function ModuleBox ({ key, moduleId }) {
     const [moduleInfo, setModuleInfo] = useState();
     async function fetchModuleInfo () {
         try {
@@ -23,12 +23,12 @@ export default function ModuleBox ({ moduleId }) {
         return (
             <div className="flex flex-row justify-center w-full py-3" key={index}>
                 <div className="flex justify-center items-center w-2/10 h-12">
-                    <Thumbnail thumbnailImageId={module.module_thumbnail_id} />
+                    <Thumbnail thumbnailImageId={module.module_image_path} />
                 </div>
                 <div className="flex flex-col justify-start items-start w-7/10">
                     <div className="flex w-full">
                         <p className="text-left font-bold">
-                            Módulo 1: {module.module_name}
+                            Módulo {key}: {module.module_title}
                         </p>
                     </div>
                     <div className="flex w-full">

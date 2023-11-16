@@ -1,6 +1,7 @@
 import { supabase } from "@supabase/auth-ui-shared";
 import { useEffect, useState } from "react"
 import Thumbnail from "./Thumbnail";
+import Link from "next/link";
 
 export default function ModuleBox ({ key, moduleId }) {
     const [moduleInfo, setModuleInfo] = useState();
@@ -21,7 +22,7 @@ export default function ModuleBox ({ key, moduleId }) {
         return null;
     } else {
         return (
-            <div className="flex flex-row justify-center w-full py-3" key={index}>
+            <Link className="flex flex-row justify-center w-full py-3" href={"/courses/modules/" + module.module_id} key={index}>
                 <div className="flex justify-center items-center w-2/10 h-12">
                     <Thumbnail thumbnailImageId={module.module_image_path} />
                 </div>
@@ -42,7 +43,7 @@ export default function ModuleBox ({ key, moduleId }) {
                         <MoreHorizIcon />
                     </button>
                 </div>
-            </div>
+            </Link>
         )
     }
 }

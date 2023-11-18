@@ -8,9 +8,7 @@ export default function CoursePage () {
     const [courseIds, setCourseIds] = useState();
     async function fetchCourses () {
         try {
-            const { data, error } = await supabase.from("cai-courses").select();
-            if (error) console.log(error);
-            console.log(data)
+            const { data } = await supabase.from("cai-courses").select("course_id");
             setCourseIds(data);
         } catch (err) {
             console.log(err);
@@ -20,7 +18,6 @@ export default function CoursePage () {
         fetchCourses();
     }, [])
 
-    console.log(courseIds)
     if (!courseIds) {
         return null;
     } else {
@@ -30,10 +27,11 @@ export default function CoursePage () {
                 <div className="flex justify-center mt-20 w-full">
                     Cursos
                 </div>
-                
-                {courseIds && courseIds.map((courseId, index) => {
-                    return <CourseBox courseId={courseId} key={index} />
-                })}
+                <div className="flex justify-center w-full mt-8">
+                    {courseIds && courseIds.map((courseId, index) => {
+                        return <CourseBox courseId={courseId.course_id} index={index} key={index} />
+                    })}
+                </div>
             </div>
         )
     }

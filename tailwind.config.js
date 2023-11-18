@@ -29,7 +29,16 @@ module.exports = {
         "7/10": "70%",
         "8/10": "80%",
         "9/10": "90%",
+        "85percent": "85%",
         "95percent": "95%"
+      },
+      colors: {
+        "var-1": "#DFACCD",
+        "var-2": "#E09609",
+        "var-3": "#0966E0",
+        "var-1-hovered": "#D05AA6",
+        "var-2-hovered": "#FFA700",
+        "var-3-hovered": "#0C3F81"
       }
     },
   },

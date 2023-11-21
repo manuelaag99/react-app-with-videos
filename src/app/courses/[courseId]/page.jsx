@@ -41,12 +41,12 @@ export default function CoursePage ({ params }) {
                 <TopNavigationBar />
                 <div className="flex flex-col w-85percent mx-auto justify-center bg-white rounded-md mt-28 mb-28 pb-24">
                     
-                    <div className="flex flex-row w-full p-6">
-                        <div className="flex flex-col w-1/2 items-center mb-14">
+                    <div className="flex sm:flex-row flex-col-reverse sm:justify-between justify-center w-full p-6">
+                        <div className="flex flex-col sm:w-46percent w-full items-center mb-14">
                             <div className="flex flex-col w-full justify-start mb-10">
                                 <div className="flex w-full mb-6">
                                     <p className="font-bold text-left pr-6">
-                                        {courseInfo.course_title} title title title title title title title title title title 
+                                        {courseInfo.course_title}
                                     </p>
                                 </div>
                                 <div className="flex w-full mb-6">
@@ -64,7 +64,7 @@ export default function CoursePage ({ params }) {
                             </div>
                         </div>
     
-                        <div className="flex flex-col w-1/2 pl-6">
+                        <div className="flex flex-col sm:w-46percent w-full">
                             <img src="" alt="" />
                         </div>
                     </div>

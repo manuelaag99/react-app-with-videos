@@ -16,12 +16,15 @@ export default function Thumbnail ({ thumbnailImageId }) {
         fetchImageForThumbnail();
     }, [])
 
+    console.log(imageForThumbnail)
+
     if (!imageForThumbnail) {
         return null;
     } else {
         return (
-            <div className="">
+            <div className="flex w-full h-full">
                 {imageForThumbnail && <img className="h-full w-full object-cover" src={imageForThumbnail} alt="" />}
+                {!imageForThumbnail && <div className="flex bg-gray-400 w-full h-full"></div>}
             </div>
         )
     }

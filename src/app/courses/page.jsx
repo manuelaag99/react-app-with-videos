@@ -27,7 +27,7 @@ export default function CoursePage () {
                 <div className="flex justify-center mt-20 w-full">
                     Cursos
                 </div>
-                <div className="flex justify-center w-full mt-8">
+                <div className="flex justify-center w-full mt-8 mb-24">
                     {courseIds && courseIds.map((courseId, index) => {
                         return <CourseBox courseId={courseId.course_id} index={index} key={index} />
                     })}

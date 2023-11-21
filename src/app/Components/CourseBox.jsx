@@ -31,7 +31,7 @@ export default function CourseBox ({ courseId, index }) {
         return null;
     } else {
         return (
-            <div className="flex flex-col h-fit px-6 py-6 my-4 bg-white w-85percent rounded-lg">
+            <div className="flex flex-col h-fit px-6 py-6 my-4 bg-white w-85percent shadow-lg rounded-lg">
                 <div className="flex flex-row justify-between w-full">
                     <div className="flex flex-row justify-start items-center w-8/10">
                         <div className="flex justify-center items-center w-2/10">
@@ -44,7 +44,7 @@ export default function CourseBox ({ courseId, index }) {
                                 </p>
                             </div>
                             <div className="flex flex-row my-2">
-                                <Button additionalClassNamesForButton=" rounded-md bg-var-3 text-white mr-6" contentForButton="Ver detalles" onClickButtonAction={() => router.push("/courses/" + courseId)}  />
+                                <Button additionalClassNamesForButton=" rounded-md bg-var-3 hover:bg-var-3-hovered duration-300 text-white mr-6" contentForButton="Ver detalles" onClickButtonAction={() => router.push("/courses/" + courseId)}  />
                                 <Button additionalClassNamesForButton=" rounded-md bg-var-2 text-white" contentForButton="Agregar a canasta" />
                             </div>
                         </div>

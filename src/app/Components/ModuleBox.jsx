@@ -26,11 +26,11 @@ export default function ModuleBox ({ index, moduleId }) {
         return null;
     } else {
         return (
-            <Link className="flex flex-row justify-center w-full py-5 px-6 hover:bg-gray-300 duration-300" href={"/courses/modules/" + module.module_id} key={index}>
-                <div className="flex justify-center items-center w-2/10 h-12">
+            <Link className="flex flex-row justify-center w-full py-5 px-6 hover:bg-gray-300 shadow-lg duration-300" href={"/courses/modules/" + module.module_id} key={index}>
+                <div className="flex justify-center items-center w-2/10 h-24">
                     <Thumbnail thumbnailImageId={module.module_image_path} />
                 </div>
-                <div className="flex flex-col justify-start items-start w-7/10">
+                <div className="flex flex-col justify-start items-start w-7/10 pl-6">
                     <div className="flex w-full">
                         <p className="text-left font-bold">
                             Módulo {index}: {module.module_title}

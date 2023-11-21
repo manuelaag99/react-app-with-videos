@@ -39,7 +39,7 @@ export default function CoursePage ({ params }) {
         return (
             <div className="flex flex-col justify-center w-full">
                 <TopNavigationBar />
-                <div className="flex flex-col w-85percent mx-auto justify-center bg-white rounded-md mt-28 mb-28 pb-10">
+                <div className="flex flex-col w-85percent mx-auto justify-center bg-white rounded-md mt-28 mb-28 pb-24">
                     
                     <div className="flex flex-row w-full p-6">
                         <div className="flex flex-col w-1/2 items-center mb-14">

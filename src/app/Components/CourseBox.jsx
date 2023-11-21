@@ -39,7 +39,7 @@ export default function CourseBox ({ courseId, index }) {
                         </div>
                         <div className="flex flex-col justify-start w-fit pl-6">
                             <div className="w-fit float-left my-2">
-                                <p className="text-left">
+                                <p className="font-bold text-left">
                                     {courseInfo.course_title}
                                 </p>
                             </div>

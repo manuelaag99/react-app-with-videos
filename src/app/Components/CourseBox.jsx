@@ -32,12 +32,19 @@ export default function CourseBox ({ courseId, index }) {
     } else {
         return (
             <div className="flex flex-col h-fit px-6 py-6 my-4 bg-white w-85percent shadow-lg rounded-lg">
-                <div className="flex flex-row justify-between w-full">
-                    <div className="flex flex-row justify-start items-center w-8/10">
-                        <div className="flex justify-center items-center w-2/10">
+                <div className="flex sm:flex-row flex-col sm:justify-between justify-center w-full">
+
+                    <div className="sm:hidden flex w-full justify-center">
+                        {courseInfo.course_image_path && <Image imageSource={courseInfo.course_image_path} />}
+                    </div>
+
+                    <div className="flex flex-row justify-start items-center sm:w-8/10 w-full">
+                        
+                        <div className="sm:flex hidden justify-center items-center sm:w-2/10 sm:mr-6">
                             {courseInfo.course_image_path && <Image imageSource={courseInfo.course_image_path} />}
                         </div>
-                        <div className="flex flex-col justify-start w-fit pl-6">
+                        
+                        <div className="flex flex-col justify-start sm:w-fit w-8/10">
                             <div className="w-fit float-left my-2">
                                 <p className="font-bold text-left">
                                     {courseInfo.course_title}
@@ -48,9 +55,21 @@ export default function CourseBox ({ courseId, index }) {
                                 <Button additionalClassNamesForButton=" rounded-md bg-var-2 text-white" contentForButton="Agregar a canasta" />
                             </div>
                         </div>
+
+                        <div className="sm:hidden flex flex-row items-start justify-between h-fit mx-2 w-2/10">
+                            <div className="w-fit h-fit">
+                                <p><AccessTimeIcon color="#ddd" fontSize="medium"/></p>
+                            </div>
+                            <div className="w-fit h-fit">
+                                {courseInfo.course_length && <p>{courseInfo.course_length}</p>}
+                            </div>
+                            <div className="w-fit h-fit">
+                                <MoreVertIcon className="ml-2 mt-1" fontSize="medium" />
+                            </div>
+                        </div>
                     </div>
                     
-                    <div className="flex flex-row justify-end h-fit w-2/10">
+                    <div className="hidden sm:flex flex-row justify-end h-fit w-2/10">
                         <div className="flex flex-row items-start justify-between h-fit mx-2">
                             <div className="w-fit h-fit">
                                 <p><AccessTimeIcon color="#ddd" fontSize="medium"/></p>
@@ -58,9 +77,12 @@ export default function CourseBox ({ courseId, index }) {
                             <div className="w-fit h-fit">
                                 {courseInfo.course_length && <p>{courseInfo.course_length}</p>}
                             </div>
+                            <div className="w-fit h-fit">
+                                <MoreVertIcon className="ml-2 mt-1" fontSize="medium" />
+                            </div>
                         </div>
-                        <MoreVertIcon fontSize="medium" />
                     </div>
+
                 </div>
             </div>
         )

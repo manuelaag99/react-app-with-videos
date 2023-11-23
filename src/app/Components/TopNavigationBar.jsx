@@ -37,11 +37,11 @@ export default function TopNavigationBar ({}) {
                             Hacer un pedido
                         </p>
                     </button>
-                    <button className="p-3 ">
-                        <p className="text-white hover:text-var-1-hovered duration-200 whitespace-nowrap">
+                    <Link className="p-3 " href="/courses/">
+                        <p className="text-white hover:text-var-1-hovered duration-200 whitespace-nowrap mt-1">
                             Cursos
                         </p>
-                    </button>
+                    </Link>
                     <button className="p-3 ">
                         <p className="text-white hover:text-var-1-hovered duration-200 whitespace-nowrap">
                             Registrarse

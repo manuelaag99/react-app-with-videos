@@ -51,7 +51,7 @@ export default function CourseBox ({ courseId, index }) {
                                 </p>
                             </div>
                             <div className="flex flex-row my-2">
-                                <Button additionalClassNamesForButton=" rounded-md bg-var-3 hover:bg-var-3-hovered duration-300 text-white mr-6" contentForButton="Ver detalles" onClickButtonAction={() => router.push("/courses/" + courseId)}  />
+                                <Button additionalClassNamesForButton=" rounded-md bg-var-3 hover:bg-var-3-hovered duration-300 text-white mr-2 sm:mr-6" contentForButton="Ver detalles" onClickButtonAction={() => router.push("/courses/" + courseId)}  />
                                 <Button additionalClassNamesForButton=" rounded-md bg-var-2 text-white" contentForButton="Agregar a canasta" />
                             </div>
                         </div>
@@ -64,7 +64,7 @@ export default function CourseBox ({ courseId, index }) {
                                 {courseInfo.course_length && <p>{courseInfo.course_length}</p>}
                             </div>
                             <div className="w-fit h-fit">
-                                <MoreVertIcon className="ml-2 mt-1" fontSize="medium" />
+                                <MoreVertIcon className="ml-2" fontSize="medium" />
                             </div>
                         </div>
                     </div>
@@ -78,7 +78,7 @@ export default function CourseBox ({ courseId, index }) {
                                 {courseInfo.course_length && <p>{courseInfo.course_length}</p>}
                             </div>
                             <div className="w-fit h-fit">
-                                <MoreVertIcon className="ml-2 mt-1" fontSize="medium" />
+                                <MoreVertIcon className="ml-2" fontSize="medium" />
                             </div>
                         </div>
                     </div>

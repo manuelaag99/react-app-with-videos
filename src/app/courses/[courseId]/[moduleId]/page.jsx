@@ -32,7 +32,7 @@ export default function CourseVideoPage ({ params }) {
         return (
             <div className="flex flex-col justify-center w-full ">
                 <TopNavigationBar />
-                <div className="flex flex-col justify-center sm:w-85percent w-95percent mx-auto bg-white rounded-md my-40 shadow-lg ">
+                <div className="flex flex-col justify-center sm:w-85percent w-95percent mx-auto bg-white rounded-md sm:mt-40 mt-20 mb-28 shadow-lg ">
                     <div className="flex flex-col w-full px-6 py-7">
                         <div className="flex w-full py-2 font-bold font-amatic text-black text-page-title-desktop -mt-6">{moduleInfo.module_title}</div>
                         <div className="flex w-full py-2 font-medium font-rubik text-gray-400">{moduleInfo.module_description}</div>

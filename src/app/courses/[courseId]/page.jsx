@@ -42,7 +42,7 @@ export default function CoursePage ({ params }) {
                         <div className="flex flex-col w-full justify-start mb-10">
                             <div className="flex w-full mb-6">
                                 {!courseInfo && <div className="rounded-2xl bg-gray-700 w-4/10 h-7 mt-1"></div>}
-                                {courseInfo && <p className="font-bold text-left pr-6">{courseInfo.course_title}</p>}
+                                {courseInfo && <p className="font-bold text-left pr-6 font-amatic">{courseInfo.course_title}</p>}
                             </div>
                             <div className="flex w-full mb-6">
                                 {!courseInfo && <div className="rounded-lg bg-gray-400 w-7/10 h-5 mt-1"></div>}

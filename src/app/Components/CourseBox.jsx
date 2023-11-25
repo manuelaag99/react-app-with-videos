@@ -47,8 +47,8 @@ export default function CourseBox ({ courseId, index }) {
                             {courseInfo && !courseInfo.course_title && <div className="bg-gray-700 rounded-2xl w-9/10 h-9 my-2"></div>}
                         </div>
                         <div className="flex flex-row">
-                            <Button additionalClassNamesForText="mx-4" additionalClassNamesForButton=" font-amatic text-button-desktop font-bold rounded-md bg-var-3 hover:bg-var-3-hovered duration-300 text-white mr-2 sm:mr-6" contentForButton="Ver detalles" onClickButtonAction={() => router.push("/courses/" + courseId)}  />
-                            <Button additionalClassNamesForText="mx-4" additionalClassNamesForButton=" font-amatic text-button-desktop font-bold rounded-md bg-var-2 text-white" contentForButton="Agregar a canasta" />
+                            <Button additionalClassNamesForText="mx-4 -mt-1.5 -mb-1.5" additionalClassNamesForButton=" font-amatic text-button-desktop font-bold rounded-md bg-var-2 hover:bg-var-2-hovered duration-300 text-white mr-2 sm:mr-6" contentForButton="Ver detalles" onClickButtonAction={() => router.push("/courses/" + courseId)}  />
+                            <Button additionalClassNamesForText="mx-4 -mt-1.5 -mb-1.5" additionalClassNamesForButton=" font-amatic text-button-desktop font-bold rounded-md bg-var-3 hover:bg-var-3-hovered duration-300 text-white" contentForButton="Agregar a canasta" />
                         </div>
                     </div>
 

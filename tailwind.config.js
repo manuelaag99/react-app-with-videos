@@ -24,9 +24,11 @@ module.exports = {
       },
       backgroundColor: {
         "var-1": "#DFACCD",
-        "var-2": "#0966E0",
-        "var-3": "#E09609",
-        "var-1-hovered": "#AC799A"
+        "var-2": "#E09609",
+        "var-3": "#0966E0",
+        "var-1-hovered": "#D05AA6",
+        "var-2-hovered": "#FFC933",
+        "var-3-hovered": "#0B2E70"
       },
       width: {
         "5percent": "5%",
@@ -48,8 +50,8 @@ module.exports = {
         "var-2": "#E09609",
         "var-3": "#0966E0",
         "var-1-hovered": "#D05AA6",
-        "var-2-hovered": "#FFA700",
-        "var-3-hovered": "#0C3F81"
+        "var-2-hovered": "#FFC933",
+        "var-3-hovered": "#0B2E70"
       }
     },
   },

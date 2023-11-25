@@ -38,15 +38,15 @@ export default function CoursePage ({ params }) {
             <div className="flex flex-col w-85percent mx-auto justify-center bg-white rounded-md mt-40 mb-28 pb-16 shadow-2xl">
                 
                 <div className="flex sm:flex-row flex-col-reverse sm:justify-between justify-center w-full p-6">
-                    <div className="flex flex-col sm:w-46percent w-full items-center mb-14">
+                    <div className="flex flex-col sm:w-1/2 w-full items-center mb-14">
                         <div className="flex flex-col w-full justify-start mb-10">
                             <div className="flex w-full mb-6">
-                                {!courseInfo && <div className="rounded-2xl bg-gray-700 w-4/10 h-7 mt-1"></div>}
-                                {courseInfo && <p className="font-bold text-left pr-6 font-amatic">{courseInfo.course_title}</p>}
+                                {!courseInfo && <div className="rounded-2xl bg-gray-700 w-4/10 h-14 mt-1"></div>}
+                                {courseInfo && <p className="font-bold text-left pr-6 text-black font-amatic text-course-title-desktop my-0 py-0">{courseInfo.course_title}</p>}
                             </div>
                             <div className="flex w-full mb-6">
-                                {!courseInfo && <div className="rounded-lg bg-gray-400 w-7/10 h-5 mt-1"></div>}
-                                {courseInfo && <p className="text-left pr-6">{courseInfo.course_description}</p>}
+                                {!courseInfo && <div className="rounded-lg bg-gray-400 w-full h-5 mt-3"></div>}
+                                {courseInfo && <p className="font-medium text-left pr-6 text-gray-400 font-rubik">{courseInfo.course_description}</p>}
                             </div>
                         </div>
                         <div className="flex w-full justify-start">
@@ -57,7 +57,7 @@ export default function CoursePage ({ params }) {
                         </div>
                     </div>
 
-                    <div className="flex flex-col sm:w-46percent w-full">
+                    <div className="flex flex-col sm:w-46percent w-full mb-5">
                         <img src="" alt="" />
                     </div>
                 </div>

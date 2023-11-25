@@ -8,7 +8,11 @@ module.exports = {
   theme: {
     extend: {
       fontFamily: {
-        "amatic": ["Amatic SC"]
+        "amatic": ["Amatic SC"],
+        "rubik": ["Rubik"]
+      },
+      fontSize: {
+        "course-title-desktop": "3rem"
       },
       backgroundImage: {
         'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',

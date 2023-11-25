@@ -32,12 +32,12 @@ export default function ModuleBox ({ index, moduleId }) {
             <div className="flex flex-row sm:flex-col justify-center w-full sm:w-7/10 sm:pl-6">
                 
                 <div className="flex flex-col w-9/10 pr-6 ">
-                    <div className="flex w-full">
-                        {moduleInfo && <p className="text-left font-bold">Módulo {index + 1}: {moduleInfo.module_title}</p>}
+                    <div className="flex w-full mb-1">
+                        {moduleInfo && <p className="text-left text-black text-module-box-title-desktop font-bold font-amatic">Módulo {index + 1}: {moduleInfo.module_title}</p>}
                         {!moduleInfo && <div className="bg-gray-800 w-5/10 h-5 rounded-2xl mt-1"></div>}
                     </div>
-                    <div className="flex w-full">
-                        {moduleInfo && <p className="text-left opacity-70">{moduleInfo.module_description.slice(0,80)}...</p>}
+                    <div className="flex w-full mt-1">
+                        {moduleInfo && <p className="text-left text-gray-400 font-rubik">{moduleInfo.module_description.slice(0,80)}...</p>}
                         {!moduleInfo && <div className="bg-gray-400 w-9/10 h-5 rounded-2xl mt-1"></div>}
                     </div>
                 </div>

@@ -35,14 +35,14 @@ export default function CoursePage ({ params }) {
     return (
         <div className="flex flex-col justify-center w-full">
             <TopNavigationBar />
-            <div className="flex flex-col w-85percent mx-auto justify-center bg-white rounded-md mt-40 mb-28 pb-16 shadow-2xl">
+            <div className="flex flex-col sm:w-85percent w-95percent mx-auto justify-center bg-white rounded-md mt-40 mb-28 pb-16 shadow-2xl">
                 
                 <div className="flex sm:flex-row flex-col-reverse sm:justify-between justify-center w-full p-6">
                     <div className="flex flex-col sm:w-1/2 w-full items-center mb-14">
                         <div className="flex flex-col w-full justify-start mb-10">
                             <div className="flex w-full mb-6">
                                 {!courseInfo && <div className="rounded-2xl bg-gray-700 w-4/10 h-14 mt-1"></div>}
-                                {courseInfo && <p className="font-bold text-left pr-6 text-black font-amatic text-course-title-desktop my-0 py-0">{courseInfo.course_title}</p>}
+                                {courseInfo && <div className="font-bold text-left pr-6 text-black font-amatic text-page-title-desktop -mt-3">{courseInfo.course_title}</div>}
                             </div>
                             <div className="flex w-full mb-6">
                                 {!courseInfo && <div className="rounded-lg bg-gray-400 w-full h-5 mt-3"></div>}

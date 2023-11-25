@@ -12,7 +12,7 @@ module.exports = {
         "rubik": ["Rubik"]
       },
       fontSize: {
-        "course-title-desktop": "3rem",
+        "page-title-desktop": "3rem",
         "module-box-title-desktop": "1.5rem"
       },
       backgroundImage: {

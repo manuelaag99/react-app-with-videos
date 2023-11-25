@@ -13,7 +13,9 @@ module.exports = {
       },
       fontSize: {
         "page-title-desktop": "3rem",
-        "module-box-title-desktop": "1.5rem"
+        "course-box-title-desktop": "2.2rem",
+        "module-box-title-desktop": "1.5rem",
+        "button-desktop": "1.2rem"
       },
       backgroundImage: {
         'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',

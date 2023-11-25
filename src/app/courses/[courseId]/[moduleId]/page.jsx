@@ -37,7 +37,7 @@ export default function CourseVideoPage ({ params }) {
                         <div className="flex w-full py-2 font-bold font-amatic text-black text-page-title-desktop -mt-6">{moduleInfo.module_title}</div>
                         <div className="flex w-full py-2 font-medium font-rubik text-gray-400">{moduleInfo.module_description}</div>
                     </div>
-                    <div className="flex flex-col w-9/10 mx-auto mb-10 ">
+                    <div className="flex flex-col w-95percent mx-auto mb-10 ">
                         <VideoPlayer additionalClassNames="" videoSource={moduleInfo.module_video_path} videoHeight="1080" videoWidth="1920" />
                     </div>
                     <div className="flex flex-col w-full px-6 py-3 h-fit mb-7">

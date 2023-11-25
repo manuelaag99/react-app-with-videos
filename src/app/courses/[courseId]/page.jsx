@@ -1,6 +1,5 @@
 "use client"
 import AccessTimeIcon from '@mui/icons-material/AccessTime';
-import MoreHorizIcon from '@mui/icons-material/MoreHoriz';
 import TopNavigationBar from '@/app/Components/TopNavigationBar';
 import { useEffect, useState } from 'react';
 import ModuleBox from '@/app/Components/ModuleBox';
@@ -36,7 +35,7 @@ export default function CoursePage ({ params }) {
     return (
         <div className="flex flex-col justify-center w-full">
             <TopNavigationBar />
-            <div className="flex flex-col w-85percent mx-auto justify-center bg-white rounded-md mt-28 mb-28 pb-24">
+            <div className="flex flex-col w-85percent mx-auto justify-center bg-white rounded-md mt-40 mb-28 pb-16 shadow-2xl">
                 
                 <div className="flex sm:flex-row flex-col-reverse sm:justify-between justify-center w-full p-6">
                     <div className="flex flex-col sm:w-46percent w-full items-center mb-14">

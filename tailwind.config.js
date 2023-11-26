@@ -12,10 +12,12 @@ module.exports = {
         "rubik": ["Rubik"]
       },
       fontSize: {
+        "section-title-desktop": "5.5rem",
         "page-title-desktop": "3rem",
         "course-box-title-desktop": "2.2rem",
         "module-box-title-desktop": "1.5rem",
-        "button-desktop": "1.2rem"
+        "button-desktop": "1.2rem",
+        "navbar-desktop": "1.8rem"
       },
       backgroundImage: {
         'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',

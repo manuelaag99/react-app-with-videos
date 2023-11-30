@@ -19,6 +19,8 @@ export default function TopNavigationBar ({}) {
         fetchLogo();
     }, [])
 
+    const [isMobileMenuOpen, setIsMobileMenuOpen] = useState();
+
     return (
         <div className="flex flex-col w-full h-fit px-3 py-2 bg-var-1 fixed top-0 shadow-xl z-20">
             <div className="flex flex-row justify-between w-full h-fit">
@@ -26,7 +28,7 @@ export default function TopNavigationBar ({}) {
                     {caiLogo && <img className='h-14' src={caiLogo} alt="cai-logo" />}
                 </Link>
                 <div className="flex justify-start items-center w-fit sm:hidden ">
-                    <button className="text-white hover:text-var-1-hovered duration-200 cursor-pointer">
+                    <button className="text-white hover:text-var-1-hovered duration-200 cursor-pointer" onClick={() => setIsMobileMenuOpen(true)}>
                         <MenuIcon color="#fff" fontSize='large' />
                     </button>
                 </div>
@@ -53,7 +55,7 @@ export default function TopNavigationBar ({}) {
                     </Link>
                 </div>
             </div>
-            <MobileMenu open={true} />
+            <MobileMenu onClose={() => setIsMobileMenuOpen(false)} open={isMobileMenuOpen} />
         </div>
     )
 }

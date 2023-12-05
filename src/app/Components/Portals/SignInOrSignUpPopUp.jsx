@@ -15,7 +15,7 @@ export default function SignInOrSignUpPopUp ({ onClose, open, openSignUp }) {
     const signInOrSignUpPopUp = (
         <div>
             <div className="bg-black opacity-50 fixed top-0 bottom-0 w-screen h-screen z-30" onClick={onClose}></div>
-            <div className={"flex flex-col justify-center fixed w-6/10 h-6/10 bg-white rounded-md shadow-2xl left-[20%] z-40 p-9 " + (isSignUp ? " top-[10%] " : " top-[30%] ")}>
+            <div className={"flex flex-col justify-center fixed w-9/10 sm:w-6/10 h-6/10 bg-white rounded-md shadow-2xl left-[5%] sm:left-[20%] z-40 p-4 sm:p-9 " + (isSignUp ? " top-[10%] " : " top-[18%] ")}>
                 <div className="flex justify-center w-95percent mb-3 mx-auto">
                     <p className="text-center text-black font-amatic font-bold text-sign-in-or-sign-up-title-desktop">
                         {isSignUp && "Registrarse"}
@@ -35,10 +35,12 @@ export default function SignInOrSignUpPopUp ({ onClose, open, openSignUp }) {
                         {isSignUp && "Registrarse"}
                         {!isSignUp && "Iniciar sesión"}
                     </button>
-                    <p className="text-black hover:text-var-2 duration-200 text-center w-full cursor-pointer">
-                        {isSignUp && "o iniciar sesión"}
-                        {!isSignUp && "o regístrate"}
-                    </p>
+                    {isSignUp && <p className="text-black hover:text-var-2 duration-200 text-center w-full cursor-pointer mb-3 sm:mt-0 mt-2" onClick={() => setIsSignUp(false)}>
+                        o iniciar sesión
+                    </p>}
+                    {!isSignUp && <p className="text-black hover:text-var-2 duration-200 text-center w-full cursor-pointer mb-3 sm:mt-0 mt-2" onClick={() => setIsSignUp(true)}>
+                        o regístrate
+                    </p>}
                 </div>
             </div>
         </div>

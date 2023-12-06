@@ -7,10 +7,12 @@ export default function SignInOrSignUpPopUp ({ onClose, open, openSignUp }) {
     useEffect(() => {
         if (openSignUp) {
             setIsSignUp(true);
-        } else {
+        } else if (!openSignUp) {
             setIsSignUp(false);
         }
-    }, [])
+    }, [openSignUp])
+
+    console.log(openSignUp)
 
     const signInOrSignUpPopUp = (
         <div>
@@ -35,16 +37,17 @@ export default function SignInOrSignUpPopUp ({ onClose, open, openSignUp }) {
                         {isSignUp && "Registrarse"}
                         {!isSignUp && "Iniciar sesión"}
                     </button>
-                    {isSignUp && <p className="text-black hover:text-var-2 duration-200 text-center w-full cursor-pointer mb-3 sm:mt-0 mt-2" onClick={() => setIsSignUp(false)}>
+                    {isSignUp && <p className="text-black hover:text-var-2 duration-200 text-center w-full cursor-pointer mb-3 sm:mb-0 mt-2" onClick={() => setIsSignUp(false)}>
                         o iniciar sesión
                     </p>}
-                    {!isSignUp && <p className="text-black hover:text-var-2 duration-200 text-center w-full cursor-pointer mb-3 sm:mt-0 mt-2" onClick={() => setIsSignUp(true)}>
+                    {!isSignUp && <p className="text-black hover:text-var-2 duration-200 text-center w-full cursor-pointer mb-3 sm:mb-0 mt-2" onClick={() => setIsSignUp(true)}>
                         o regístrate
                     </p>}
                 </div>
             </div>
         </div>
     )
+    
     if (open) {
         return createPortal(signInOrSignUpPopUp, document.body);
     } else {

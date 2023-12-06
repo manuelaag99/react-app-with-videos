@@ -26,11 +26,11 @@ export default function TopNavigationBar ({}) {
     const [isItSignUp, setIsItSignUp] = useState();
 
     function openSignUpWindow () {
-        setIsItSignUpOrSignIn(true);
+        setIsItSignUp(true);
         setOpenSignInOrSignUpWindow(true);
     }
     function openSignInWindow () {
-        setIsItSignUpOrSignIn(false);
+        setIsItSignUp(false);
         setOpenSignInOrSignUpWindow(true);
     }
 
@@ -46,30 +46,30 @@ export default function TopNavigationBar ({}) {
                     </button>
                 </div>
                 <div className="sm:flex flex-row w-fit hidden font-amatic text-navbar-desktop">
-                    <Link className="px-3 " href="">
+                    <Link className="px-3 cursor-pointer " href="">
                         <p className="text-white hover:text-var-1-hovered duration-200 whitespace-nowrap mt-1">
                             Hacer un pedido
                         </p>
                     </Link>
-                    <Link className="px-3 " href="/courses/">
+                    <Link className="px-3 cursor-pointer " href="/courses/">
                         <p className="text-white hover:text-var-1-hovered duration-200 whitespace-nowrap mt-1">
                             Cursos
                         </p>
                     </Link>
-                    <Link className="px-3 " href="">
+                    <div className="px-3 cursor-pointer " onClick={openSignUpWindow}>
                         <p className="text-white hover:text-var-1-hovered duration-200 whitespace-nowrap mt-1">
                             Registrarse
                         </p>
-                    </Link>
-                    <Link className="px-3 " href="">
+                    </div>
+                    <div className="px-3 cursor-pointer " onClick={openSignInWindow}>
                         <p className="text-white hover:text-var-1-hovered duration-200 whitespace-nowrap mt-1">
                             Iniciar sesión
                         </p>
-                    </Link>
+                    </div>
                 </div>
             </div>
             <MobileMenu onClose={() => setIsMobileMenuOpen(false)} open={isMobileMenuOpen} />
-            <SignInOrSignUpPopUp onClose={() => setOpenSignInOrSignUpWindow(false)} open={true} openSignUp={true} />
+            <SignInOrSignUpPopUp onClose={() => setOpenSignInOrSignUpWindow(false)} open={openSignInOrSignUpWindow} openSignUp={isItSignUp} />
         </div>
     )
 }

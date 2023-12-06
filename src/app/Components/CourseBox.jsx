@@ -59,9 +59,7 @@ export default function CourseBox ({ courseId, index }) {
                         <div className="w-fit h-fit">
                             {courseInfo && courseInfo.course_length && <p className="font-amatic font-bold text-gray-500">{courseInfo.course_length}</p>}
                         </div>
-                        <div className="w-fit h-fit">
-                            <MoreVertIcon className="ml-2" fontSize="medium" />
-                        </div>
+                        <button className="w-fit h-fit text-black hover:text-gray-100 duration-300 ml-2"><MoreVertIcon /></button>
                     </div>
                 </div>
                 
@@ -73,9 +71,7 @@ export default function CourseBox ({ courseId, index }) {
                         <div className="w-fit h-fit">
                             {courseInfo && courseInfo.course_length && <p>{courseInfo.course_length}</p>}
                         </div>
-                        <div className="w-fit h-fit">
-                            <MoreVertIcon className="ml-2" fontSize="medium" />
-                        </div>
+                        <button className="w-fit h-fit text-black hover:text-gray-100 duration-300 ml-2"><MoreVertIcon /></button>
                     </div>
                 </div>
 

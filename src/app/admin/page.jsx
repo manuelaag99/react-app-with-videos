@@ -1,6 +1,7 @@
 "use client"
 import { useState } from "react";
 import Button from "../Components/Button";
+import CreateContentPopUp from "../Components/Portals/CreateContentPopUp";
 import TopNavigationBar from "../Components/TopNavigationBar";
 
 export default function AdminPage () {
@@ -22,6 +23,7 @@ export default function AdminPage () {
                 </div>
 
             </div>
+            <CreateContentPopUp content="module" open={true} />
         </div>
     )
 }

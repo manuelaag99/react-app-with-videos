@@ -11,7 +11,7 @@ export default function AdminPage () {
             <TopNavigationBar />
             <div className="flex flex-col sm:w-85percent w-95percent mx-auto justify-center bg-white rounded-md sm:mt-40 mt-20 mb-28 pb-16 pt-7 px-7 shadow-2xl">
 
-                <div className="flex justify-center w-9/10 mx-auto -mt-6">
+                <div className="flex justify-center w-9/10 mx-auto ">
                     <p className="text-center text-black font-bold font-amatic text-page-title-desktop">
                         Cursos
                     </p>

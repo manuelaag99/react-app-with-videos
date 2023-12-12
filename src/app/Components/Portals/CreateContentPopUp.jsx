@@ -1,8 +1,40 @@
 import { createPortal } from "react-dom";
 import Button from "../Button";
 import VideoUpload from "../VideoUpload";
+import { supabase } from "@/app/supabase/client";
+import { useState } from "react";
 
 export default function CreateContentPopUp ({ content, onClose, open }) {
+    const [newContent, setNewContent] = useState({ title: "", description: "", thumbnail: "", video: "" });
+
+    function inputChangeHandle (e) {
+        console.log(e.target.name);
+        let field = e.target.name;
+        let value = e.target.value;
+        setNewContent({ ...newContent, [field]: value })
+    }
+
+    console.log(newContent)
+    let newCourseId;
+    async function createCourse () {
+        try {
+            const { error } = await supabase.from("cai-courses").insert({ course_id: newCourseId, course_title: newContent.title, course_description: newContent.description, course_image_path: newContent.thumbnail, course_preview_path: newContent.video });
+            if (error) console.log (err)
+        } catch (err) {
+            console.log (err);
+        }
+    }
+
+    let newModuleId;
+    async function createModule () {
+        try {
+            const { error } = await supabase.from("cai-modules").insert({ course_id: newModuleId, course_title: newContent.title, course_description: newContent.description, course_image_path: newContent.thumbnail, course_preview_path: newContent.video  });
+            if (error) console.log (err)
+        } catch (err) {
+            console.log (err);
+        }
+    }
+
     const createContentPopUp = (
         <div className="h-full">
             <div className="bg-black opacity-50 fixed top-0 bottom-0 w-screen h-screen z-30" onClick={onClose}></div>
@@ -16,13 +48,13 @@ export default function CreateContentPopUp ({ content, onClose, open }) {
 
                 <div className="flex flex-col mx-auto w-95percent my-3">
                     {(content === "course") && <label className="text-sign-in-or-sign-up-labels-desktop font-bold" htmlFor="">Nombre del curso</label>}
-                    {(content === "course") && <input className="w-full py-3 px-2 mb-3 bg-gray-200 rounded-sm" placeholder="Nombre del curso..." type="text" />}
+                    {(content === "course") && <input className="w-full py-3 px-2 mb-3 bg-gray-200 rounded-sm" name="title" onChange={inputChangeHandle} placeholder="Nombre del curso..." type="text" />}
                     {(content === "course") && <label className="text-sign-in-or-sign-up-labels-desktop font-bold" htmlFor="">Descripción del curso</label>}
-                    {(content === "course") && <input className="w-full py-3 px-2 mb-3 bg-gray-200 rounded-sm" placeholder="Descripción del curso..." type="text" />}
+                    {(content === "course") && <input className="w-full py-3 px-2 mb-3 bg-gray-200 rounded-sm" name="description" onChange={inputChangeHandle} placeholder="Descripción del curso..." type="text" />}
                     {(content === "module") && <label className="text-sign-in-or-sign-up-labels-desktop font-bold" htmlFor="">Nombre del módulo</label>}
-                    {(content === "module") && <input className="w-full py-3 px-2 mb-3 bg-gray-200 rounded-sm" placeholder="Nombre del módulo..." type="text" />}
+                    {(content === "module") && <input className="w-full py-3 px-2 mb-3 bg-gray-200 rounded-sm" name="title" onChange={inputChangeHandle} placeholder="Nombre del módulo..." type="text" />}
                     {(content === "module") && <label className="text-sign-in-or-sign-up-labels-desktop font-bold" htmlFor="">Descripción del módulo</label>}
-                    {(content === "module") && <input className="w-full py-3 px-2 mb-3 bg-gray-200 rounded-sm" placeholder="Descripción del módulo..." type="text" />}
+                    {(content === "module") && <input className="w-full py-3 px-2 mb-3 bg-gray-200 rounded-sm" name="description" onChange={inputChangeHandle} placeholder="Descripción del módulo..." type="text" />}
 
                 </div>
 

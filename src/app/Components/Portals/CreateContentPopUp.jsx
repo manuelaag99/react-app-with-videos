@@ -35,6 +35,14 @@ export default function CreateContentPopUp ({ content, onClose, open }) {
         }
     }
 
+    function createButtonAction () {
+        if (content === "module") {
+            createModule();
+        } else if (content === "course") {
+            createCourse();
+        }
+    }
+
     const createContentPopUp = (
         <div className="h-full">
             <div className="bg-black opacity-50 fixed top-0 bottom-0 w-screen h-screen z-30" onClick={onClose}></div>

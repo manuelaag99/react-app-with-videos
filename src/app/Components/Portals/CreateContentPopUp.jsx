@@ -3,6 +3,7 @@ import Button from "../Button";
 import VideoUpload from "../VideoUpload";
 import { supabase } from "@/app/supabase/client";
 import { useState } from "react";
+import { v4 as uuidv4 } from "uuid";
 
 export default function CreateContentPopUp ({ content, onClose, open }) {
     const [newContent, setNewContent] = useState({ title: "", description: "", thumbnail: "", video: "" });
@@ -17,6 +18,7 @@ export default function CreateContentPopUp ({ content, onClose, open }) {
     console.log(newContent)
     let newCourseId;
     async function createCourse () {
+        newCourseId = uuidv4();
         try {
             const { error } = await supabase.from("cai-courses").insert({ course_id: newCourseId, course_title: newContent.title, course_description: newContent.description, course_image_path: newContent.thumbnail, course_preview_path: newContent.video });
             if (error) console.log (err)
@@ -27,6 +29,7 @@ export default function CreateContentPopUp ({ content, onClose, open }) {
 
     let newModuleId;
     async function createModule () {
+        newModuleId = uuidv4();
         try {
             const { error } = await supabase.from("cai-modules").insert({ course_id: newModuleId, course_title: newContent.title, course_description: newContent.description, course_image_path: newContent.thumbnail, course_preview_path: newContent.video  });
             if (error) console.log (err)
@@ -43,10 +46,12 @@ export default function CreateContentPopUp ({ content, onClose, open }) {
         }
     }
 
+    console.log(uuidv4())
+
     const createContentPopUp = (
         <div className="h-full">
             <div className="bg-black opacity-50 fixed top-0 bottom-0 w-screen h-screen z-30" onClick={onClose}></div>
-            <div className="flex flex-col justify-center fixed w-9/10 sm:w-6/10 h-fit bg-white rounded-md shadow-2xl left-[5%] sm:left-[20%] top-[10%] z-40 p-4 sm:p-9 ">
+            <div className="flex flex-col justify-center fixed w-9/10 sm:w-6/10 h-fit bg-white rounded-md shadow-2xl left-[5%] sm:left-[20%] top-[8%] z-40 p-4 sm:p-9 ">
                 <div className="flex justify-center mx-auto w-95percent ">
                     <p className="font-amatic font-bold text-sign-in-or-sign-up-title-desktop">
                         {(content === "course") && "Crear curso"}
@@ -85,7 +90,7 @@ export default function CreateContentPopUp ({ content, onClose, open }) {
                     </div>
                 </div>
 
-                <Button additionalClassNamesForButton=" w-95percent py-3 bg-var-2 hover:bg-var-2-hovered duration-200 mx-auto rounded-sm my-3" additionalClassNamesForText=" text-white text-button-desktop font-amatic font-bold" contentForButton="Crear" onClickButtonAction={() => console.log("click")} />
+                <Button additionalClassNamesForButton=" w-95percent py-3 bg-var-2 hover:bg-var-2-hovered duration-200 mx-auto rounded-sm my-3" additionalClassNamesForText=" text-white text-button-desktop font-amatic font-bold" contentForButton="Crear" onClickButtonAction={createButtonAction} />
             </div>
         </div>
     );

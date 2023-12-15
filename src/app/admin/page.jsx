@@ -34,7 +34,7 @@ export default function AdminPage () {
                 </div>
 
             </div>
-            <CreateContentPopUp content="module" onClose={() => setOpenCreatePortal(false)} open={openCreatePortal} />
+            <CreateContentPopUp content={contentToCreate} onClose={() => setOpenCreatePortal(false)} open={openCreatePortal} />
         </div>
     )
 }

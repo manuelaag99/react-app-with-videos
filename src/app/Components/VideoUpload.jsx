@@ -4,7 +4,7 @@ import InsertPhotoIcon from '@mui/icons-material/InsertPhoto';
 import VideocamIcon from '@mui/icons-material/Videocam';
 import Videocam from "@mui/icons-material/Videocam";
 
-export default function VideoUpload ({ additionalClassnames, instructionForUpload, typeOfFile }) {
+export default function VideoUpload ({ additionalClassnames, instructionForUpload, sendFile, typeOfFile }) {
     const imageSelectorRef = useRef();
     const [file, setFile] = useState();
     const [preview, setPreview] = useState();
@@ -14,6 +14,7 @@ export default function VideoUpload ({ additionalClassnames, instructionForUploa
         const fileReader = new FileReader();
         fileReader.onload = () => setPreview(fileReader.result);
         fileReader.readAsDataURL(file);
+        sendFile(file);
     }, [file])
 
     function cancelImageUpload () {

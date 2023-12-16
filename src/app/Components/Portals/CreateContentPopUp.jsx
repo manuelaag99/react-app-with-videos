@@ -76,16 +76,16 @@ export default function CreateContentPopUp ({ content, onClose, open }) {
                     {(content === "module") && <label className="text-sign-in-or-sign-up-labels-desktop font-bold w-full text-left" htmlFor="">Si vas a crear un módulo, tienes que subir a continuación el video corespondiente, así como una miniatura del mismo, de dimensiones 16:9.</label>}
                     <div className="flex flex-row justify-between w-full mx-auto h-28 mb-3">
                         {(content === "course") && <div className="flex w-46percent h-full">
-                            <VideoUpload additionalClassnames=" h-full" instructionForUpload="Miniatura para el curso" typeOfFile="image" />
+                            <VideoUpload additionalClassnames=" h-full" instructionForUpload="Miniatura para el curso" sendFile={(file) => setNewContent({...newContent, image: file})} typeOfFile="image" />
                         </div>}
                         {(content === "course") && <div className="flex w-46percent">
-                            <VideoUpload additionalClassnames=" h-full" instructionForUpload="Video de fragmento del curso" typeOfFile="video" />
+                            <VideoUpload additionalClassnames=" h-full" instructionForUpload="Video de fragmento del curso" sendFile={(file) => setNewContent({...newContent, video: file})} typeOfFile="video" />
                         </div>}
                         {(content === "module") && <div className="flex w-46percent">
-                            <VideoUpload additionalClassnames=" h-full" instructionForUpload="Miniatura para el módulo" typeOfFile="image" />
+                            <VideoUpload additionalClassnames=" h-full" instructionForUpload="Miniatura para el módulo" sendFile={(file) => setNewContent({...newContent, image: file})} typeOfFile="image" />
                         </div>}
                         {(content === "module") && <div className="flex w-46percent">
-                            <VideoUpload additionalClassnames=" h-full" instructionForUpload="Video correspondiente al módulo" typeOfFile="video" />
+                            <VideoUpload additionalClassnames=" h-full" instructionForUpload="Video correspondiente al módulo" sendFile={(file) => setNewContent({...newContent, video: file})} typeOfFile="video" />
                         </div>}
                     </div>
                 </div>

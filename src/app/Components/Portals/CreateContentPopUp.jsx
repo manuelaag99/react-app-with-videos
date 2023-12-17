@@ -15,15 +15,20 @@ export default function CreateContentPopUp ({ content, onClose, open }) {
         setNewContent({ ...newContent, [field]: value })
     }
 
-    console.log(newContent)
     let newCourseId;
     async function createCourse () {
         newCourseId = uuidv4();
         try {
-            const { error } = await supabase.from("cai-courses").insert({ course_id: newCourseId, course_title: newContent.title, course_description: newContent.description, course_image_path: newContent.thumbnail, course_preview_path: newContent.video });
+            const { error } = await supabase.from("cai-courses").insert({ course_id: newCourseId, course_title: newContent.title, course_description: newContent.description, course_image_path: "cai-images/courseThumbnails/" + newContent.thumbnail.name, course_preview_path: newContent.video });
             if (error) console.log (err)
         } catch (err) {
             console.log (err);
+        }
+        try {
+            const { data, error } = await supabase.storage.from("cai-images").upload("courseThumbnails/" + newContent.thumbnail.name, newContent.thumbnail);
+            if (error) console.log(error);
+        } catch (err) {
+            console.log(err);
         }
     }
 
@@ -31,10 +36,16 @@ export default function CreateContentPopUp ({ content, onClose, open }) {
     async function createModule () {
         newModuleId = uuidv4();
         try {
-            const { error } = await supabase.from("cai-modules").insert({ course_id: newModuleId, course_title: newContent.title, course_description: newContent.description, course_image_path: newContent.thumbnail, course_preview_path: newContent.video  });
+            const { error } = await supabase.from("cai-modules").insert({ module_id: newModuleId, module_title: newContent.title, module_description: newContent.description, module_image_path: "cai-images/moduleThumbnails/" + newContent.thumbnail.name, module_preview_path: newContent.video  });
             if (error) console.log (err)
         } catch (err) {
             console.log (err);
+        }
+        try {
+            const { data, error } = await supabase.storage.from("cai-images").upload("moduleThumbnails/" + newContent.thumbnail.name, newContent.thumbnail);
+            if (error) console.log(error);
+        } catch (err) {
+            console.log(err);
         }
     }
 
@@ -76,13 +87,13 @@ export default function CreateContentPopUp ({ content, onClose, open }) {
                     {(content === "module") && <label className="text-sign-in-or-sign-up-labels-desktop font-bold w-full text-left" htmlFor="">Si vas a crear un módulo, tienes que subir a continuación el video corespondiente, así como una miniatura del mismo, de dimensiones 16:9.</label>}
                     <div className="flex flex-row justify-between w-full mx-auto h-28 mb-3">
                         {(content === "course") && <div className="flex w-46percent h-full">
-                            <VideoUpload additionalClassnames=" h-full" instructionForUpload="Miniatura para el curso" sendFile={(file) => setNewContent({...newContent, image: file})} typeOfFile="image" />
+                            <VideoUpload additionalClassnames=" h-full" instructionForUpload="Miniatura para el curso" sendFile={(file) => setNewContent({...newContent, thumbnail: file})} typeOfFile="image" />
                         </div>}
                         {(content === "course") && <div className="flex w-46percent">
                             <VideoUpload additionalClassnames=" h-full" instructionForUpload="Video de fragmento del curso" sendFile={(file) => setNewContent({...newContent, video: file})} typeOfFile="video" />
                         </div>}
                         {(content === "module") && <div className="flex w-46percent">
-                            <VideoUpload additionalClassnames=" h-full" instructionForUpload="Miniatura para el módulo" sendFile={(file) => setNewContent({...newContent, image: file})} typeOfFile="image" />
+                            <VideoUpload additionalClassnames=" h-full" instructionForUpload="Miniatura para el módulo" sendFile={(file) => setNewContent({...newContent, thumbnail: file})} typeOfFile="image" />
                         </div>}
                         {(content === "module") && <div className="flex w-46percent">
                             <VideoUpload additionalClassnames=" h-full" instructionForUpload="Video correspondiente al módulo" sendFile={(file) => setNewContent({...newContent, video: file})} typeOfFile="video" />

@@ -27,14 +27,16 @@ export default function VideoUpload ({ additionalClassnames, instructionForUploa
     }
 
     function uploadImage (e) {
-        setPreview(e.target.file[0])
-        setFile(e.target.file[0]);
+        console.log(e.target.files)
+        setPreview(e.target.files[0])
+        setFile(e.target.files[0]);
     }
 
     function selectFileHandler (e) {
         imageSelectorRef.current.click(e);
     }
 
+    console.log(file)
 
 
     return (

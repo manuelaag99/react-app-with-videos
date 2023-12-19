@@ -3,6 +3,7 @@ import { v4 as uuidv4 } from 'uuid';
 import InsertPhotoIcon from '@mui/icons-material/InsertPhoto';
 import VideocamIcon from '@mui/icons-material/Videocam';
 import Videocam from "@mui/icons-material/Videocam";
+import VideoPlayer from "./VideoPlayer";
 
 export default function VideoUpload ({ additionalClassnames, instructionForUpload, sendFile, typeOfFile }) {
     const imageSelectorRef = useRef();
@@ -58,7 +59,8 @@ export default function VideoUpload ({ additionalClassnames, instructionForUploa
                         <Videocam />  {instructionForUpload}
                     </p>}
                 </button>}
-                {preview && <img alt="image" className="object-contain aspect-square w-full z-10 cursor-pointer  " src={preview}  />}
+                {preview && (typeOfFile === "image") && <img alt="image" className="object-contain aspect-square w-full z-10 cursor-pointer  " src={preview}  />}
+                {preview && (typeOfFile === "video") && <VideoPlayer videoSource={preview} />}
                 <input className="w-9/10 text-center hidden" onChange={(e) => uploadImage(e)} ref={imageSelectorRef} type="file" />
             </div>
         </div>

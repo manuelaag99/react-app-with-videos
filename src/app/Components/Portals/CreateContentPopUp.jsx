@@ -30,6 +30,12 @@ export default function CreateContentPopUp ({ content, onClose, open }) {
         } catch (err) {
             console.log(err);
         }
+        try {
+            const { data, error } = await supabase.storage.from("cai-videos").upload("coursePreviewVideos/" + newContent.video.name, newContent.video);
+            if (error) console.log(error);
+        } catch (err) {
+            console.log(err);
+        }
     }
 
     let newModuleId;
@@ -43,6 +49,12 @@ export default function CreateContentPopUp ({ content, onClose, open }) {
         }
         try {
             const { data, error } = await supabase.storage.from("cai-images").upload("moduleThumbnails/" + newContent.thumbnail.name, newContent.thumbnail);
+            if (error) console.log(error);
+        } catch (err) {
+            console.log(err);
+        }
+        try {
+            const { data, error } = await supabase.storage.from("cai-videos").upload("moduleVideos/" + newContent.video.name, newContent.video);
             if (error) console.log(error);
         } catch (err) {
             console.log(err);

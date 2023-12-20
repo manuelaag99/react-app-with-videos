@@ -1,5 +1,4 @@
 import { useEffect, useRef, useState } from "react";
-import { v4 as uuidv4 } from 'uuid';
 import InsertPhotoIcon from '@mui/icons-material/InsertPhoto';
 import VideocamIcon from '@mui/icons-material/Videocam';
 import Videocam from "@mui/icons-material/Videocam";
@@ -36,9 +35,6 @@ export default function VideoUpload ({ additionalClassnames, instructionForUploa
     function selectFileHandler (e) {
         imageSelectorRef.current.click(e);
     }
-
-    console.log(file)
-
 
     return (
         <div className={"flex justify-center w-full " + additionalClassnames}>

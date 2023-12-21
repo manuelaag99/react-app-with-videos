@@ -19,8 +19,8 @@ export default function CreateContentPopUp ({ content, onClose, open }) {
     async function createCourse () {
         newCourseId = uuidv4();
         try {
-            const { error } = await supabase.from("cai-courses").insert({ course_id: newCourseId, course_title: newContent.title, course_description: newContent.description, course_image_path: "cai-images/courseThumbnails/" + newContent.thumbnail.name, course_preview_path: newContent.video });
-            if (error) console.log (err)
+            const { error } = await supabase.from("cai-courses").insert({ course_id: newCourseId, course_title: newContent.title, course_description: newContent.description, course_image_path: "cai-images/courseThumbnails/" + newContent.thumbnail.name, course_video_path: "coursePreviewVideos/" + newContent.video.name });
+            if (error) console.log (error)
         } catch (err) {
             console.log (err);
         }
@@ -42,10 +42,10 @@ export default function CreateContentPopUp ({ content, onClose, open }) {
     async function createModule () {
         newModuleId = uuidv4();
         try {
-            const { error } = await supabase.from("cai-modules").insert({ module_id: newModuleId, module_title: newContent.title, module_description: newContent.description, module_image_path: "cai-images/moduleThumbnails/" + newContent.thumbnail.name, module_preview_path: newContent.video  });
-            if (error) console.log (err)
+            const { error } = await supabase.from("cai-modules").insert({ module_id: newModuleId, module_title: newContent.title, module_description: newContent.description, module_image_path: "cai-images/moduleThumbnails/" + newContent.thumbnail.name, module_video_path: "moduleVideos/" + newContent.video.name  });
+            if (error) console.log (error)
         } catch (err) {
-            console.log (err);
+            console.log(err);
         }
         try {
             const { data, error } = await supabase.storage.from("cai-images").upload("moduleThumbnails/" + newContent.thumbnail.name, newContent.thumbnail);
@@ -69,7 +69,9 @@ export default function CreateContentPopUp ({ content, onClose, open }) {
         }
     }
 
-    console.log(uuidv4())
+    console.log(newContent)
+    console.log(newContent.thumbnail.name)
+    console.log(newContent.video.name)
 
     const createContentPopUp = (
         <div className="h-full">

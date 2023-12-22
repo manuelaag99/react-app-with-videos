@@ -2,7 +2,7 @@ import { createPortal } from "react-dom";
 import Button from "../Button";
 import VideoUpload from "../VideoUpload";
 import { supabase } from "@/app/supabase/client";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { v4 as uuidv4 } from "uuid";
 
 export default function CreateContentPopUp ({ content, onClose, open }) {
@@ -69,14 +69,29 @@ export default function CreateContentPopUp ({ content, onClose, open }) {
         }
     }
 
-    console.log(newContent)
     console.log(newContent.thumbnail.name)
     console.log(newContent.video.name)
+
+    const [courses, setCourses] = useState();
+    async function fetchCourses () {
+        try {
+            const { data, error } = await supabase.from("cai-courses").select();
+            if (error) console.log(error);
+            setCourses(data);
+        } catch (err) {
+            console.log(err);
+        }
+    }
+    useEffect(() => {
+        fetchCourses();
+    }, [])
+
+    console.log(courses)
 
     const createContentPopUp = (
         <div className="h-full">
             <div className="bg-black opacity-50 fixed top-0 bottom-0 w-screen h-screen z-30" onClick={onClose}></div>
-            <div className="flex flex-col justify-center fixed w-9/10 sm:w-6/10 h-fit bg-white rounded-md shadow-2xl left-[5%] sm:left-[20%] top-[8%] z-40 p-4 sm:p-9 ">
+            <div className="flex flex-col justify-center fixed w-9/10 sm:w-6/10 h-fit bg-white rounded-md shadow-2xl left-[5%] sm:left-[20%] top-[6%] z-40 p-4 sm:p-9 ">
                 <div className="flex justify-center mx-auto w-95percent ">
                     <p className="font-amatic font-bold text-sign-in-or-sign-up-title-desktop">
                         {(content === "course") && "Crear curso"}
@@ -89,10 +104,20 @@ export default function CreateContentPopUp ({ content, onClose, open }) {
                     {(content === "course") && <input className="w-full py-3 px-2 mb-3 bg-gray-200 rounded-sm" name="title" onChange={inputChangeHandle} placeholder="Nombre del curso..." type="text" />}
                     {(content === "course") && <label className="text-sign-in-or-sign-up-labels-desktop font-bold" htmlFor="">Descripción del curso</label>}
                     {(content === "course") && <input className="w-full py-3 px-2 mb-3 bg-gray-200 rounded-sm" name="description" onChange={inputChangeHandle} placeholder="Descripción del curso..." type="text" />}
+                    
+                                        
                     {(content === "module") && <label className="text-sign-in-or-sign-up-labels-desktop font-bold" htmlFor="">Nombre del módulo</label>}
                     {(content === "module") && <input className="w-full py-3 px-2 mb-3 bg-gray-200 rounded-sm" name="title" onChange={inputChangeHandle} placeholder="Nombre del módulo..." type="text" />}
                     {(content === "module") && <label className="text-sign-in-or-sign-up-labels-desktop font-bold" htmlFor="">Descripción del módulo</label>}
                     {(content === "module") && <input className="w-full py-3 px-2 mb-3 bg-gray-200 rounded-sm" name="description" onChange={inputChangeHandle} placeholder="Descripción del módulo..." type="text" />}
+
+                    {(content === "module") && <label className="text-sign-in-or-sign-up-labels-desktop font-bold" htmlFor="">Curso al que pertenece</label>}
+                    {(content === "module") && <select className="w-full py-4 px-2 mb-3 bg-gray-200 rounded-sm" name="course" onChange={inputChangeHandle} placeholder="Nombre del curso..." >
+                        {courses && courses.length > 0 && courses.map((course, index) => {
+                            return (<option className="w-full bg-gray-200 " key={index} value={course.course_id}>{course.course_title}</option>)
+                        })}
+                    </select>}
+
 
                 </div>
 

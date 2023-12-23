@@ -25,13 +25,13 @@ export default function CreateContentPopUp ({ content, onClose, open }) {
             console.log (err);
         }
         try {
-            const { data, error } = await supabase.storage.from("cai-images").upload("courseThumbnails/" + newContent.thumbnail.name, newContent.thumbnail);
+            const { error } = await supabase.storage.from("cai-images").upload("courseThumbnails/" + newContent.thumbnail.name, newContent.thumbnail);
             if (error) console.log(error);
         } catch (err) {
             console.log(err);
         }
         try {
-            const { data, error } = await supabase.storage.from("cai-videos").upload("coursePreviewVideos/" + newContent.video.name, newContent.video);
+            const { error } = await supabase.storage.from("cai-videos").upload("coursePreviewVideos/" + newContent.video.name, newContent.video);
             if (error) console.log(error);
         } catch (err) {
             console.log(err);
@@ -42,19 +42,19 @@ export default function CreateContentPopUp ({ content, onClose, open }) {
     async function createModule () {
         newModuleId = uuidv4();
         try {
-            const { error } = await supabase.from("cai-modules").insert({ module_id: newModuleId, module_title: newContent.title, module_description: newContent.description, module_image_path: "cai-images/moduleThumbnails/" + newContent.thumbnail.name, module_video_path: "moduleVideos/" + newContent.video.name  });
+            const { error } = await supabase.from("cai-modules").insert({ course_id: newContent.course, module_id: newModuleId, module_title: newContent.title, module_description: newContent.description, module_image_path: "cai-images/moduleThumbnails/" + newContent.thumbnail.name, module_video_path: "moduleVideos/" + newContent.video.name  });
             if (error) console.log (error)
         } catch (err) {
             console.log(err);
         }
         try {
-            const { data, error } = await supabase.storage.from("cai-images").upload("moduleThumbnails/" + newContent.thumbnail.name, newContent.thumbnail);
+            const { error } = await supabase.storage.from("cai-images").upload("moduleThumbnails/" + newContent.thumbnail.name, newContent.thumbnail);
             if (error) console.log(error);
         } catch (err) {
             console.log(err);
         }
         try {
-            const { data, error } = await supabase.storage.from("cai-videos").upload("moduleVideos/" + newContent.video.name, newContent.video);
+            const { error } = await supabase.storage.from("cai-videos").upload("moduleVideos/" + newContent.video.name, newContent.video);
             if (error) console.log(error);
         } catch (err) {
             console.log(err);
@@ -70,7 +70,7 @@ export default function CreateContentPopUp ({ content, onClose, open }) {
     }
 
     console.log(newContent.thumbnail.name)
-    console.log(newContent.video.name)
+    console.log(newContent)
 
     const [courses, setCourses] = useState();
     async function fetchCourses () {
@@ -85,8 +85,6 @@ export default function CreateContentPopUp ({ content, onClose, open }) {
     useEffect(() => {
         fetchCourses();
     }, [])
-
-    console.log(courses)
 
     const createContentPopUp = (
         <div className="h-full">
@@ -112,7 +110,8 @@ export default function CreateContentPopUp ({ content, onClose, open }) {
                     {(content === "module") && <input className="w-full py-3 px-2 mb-3 bg-gray-200 rounded-sm" name="description" onChange={inputChangeHandle} placeholder="Descripción del módulo..." type="text" />}
 
                     {(content === "module") && <label className="text-sign-in-or-sign-up-labels-desktop font-bold" htmlFor="">Curso al que pertenece</label>}
-                    {(content === "module") && <select className="w-full py-4 px-2 mb-3 bg-gray-200 rounded-sm" name="course" onChange={inputChangeHandle} placeholder="Nombre del curso..." >
+                    {(content === "module") && <select className="w-full py-4 px-2 mb-3 bg-gray-200 rounded-sm" defaultValue="" name="course" onChange={inputChangeHandle} onSelect={inputChangeHandle} placeholder="Nombre del curso..." >
+                        <option className="w-full bg-gray-200 " value="select">--Selecciona un curso--</option>
                         {courses && courses.length > 0 && courses.map((course, index) => {
                             return (<option className="w-full bg-gray-200 " key={index} value={course.course_id}>{course.course_title}</option>)
                         })}

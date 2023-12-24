@@ -86,6 +86,8 @@ export default function CreateContentPopUp ({ content, onClose, open }) {
         fetchCourses();
     }, [])
 
+    const [isButtonDisabled, setIsButtonDisabled] = useState(true);
+
     const createContentPopUp = (
         <div className="h-full">
             <div className="bg-black opacity-50 fixed top-0 bottom-0 w-screen h-screen z-30" onClick={onClose}></div>
@@ -139,7 +141,7 @@ export default function CreateContentPopUp ({ content, onClose, open }) {
                     </div>
                 </div>
 
-                <Button additionalClassNamesForButton=" w-95percent py-3 bg-var-2 hover:bg-var-2-hovered duration-200 mx-auto rounded-sm my-3" additionalClassNamesForText=" text-white text-button-desktop font-amatic font-bold" contentForButton="Crear" onClickButtonAction={createButtonAction} />
+                <Button additionalClassNamesForButton=" w-95percent py-3 bg-var-2 hover:bg-var-2-hovered duration-200 mx-auto rounded-sm my-3" additionalClassNamesForText=" text-white text-button-desktop font-amatic font-bold" contentForButton="Crear" isDisabled={isButtonDisabled} onClickButtonAction={createButtonAction} />
             </div>
         </div>
     );

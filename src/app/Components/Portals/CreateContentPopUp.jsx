@@ -4,8 +4,13 @@ import VideoUpload from "../VideoUpload";
 import { supabase } from "@/app/supabase/client";
 import { useEffect, useState } from "react";
 import { v4 as uuidv4 } from "uuid";
+import GeneralPopUp from "./GeneralPopUp";
 
 export default function CreateContentPopUp ({ content, onClose, open }) {
+    const [error, setError] = useState();
+    const [openGeneralPopUp, setOpenGeneralPopUp] = useState(false);
+    const [messageForGeneralPopUp, setMessageForGeneralPopUp] = useState("");
+
     const [newContent, setNewContent] = useState({ title: "", description: "", thumbnail: "", video: "" });
 
     function inputChangeHandle (e) {
@@ -90,8 +95,8 @@ export default function CreateContentPopUp ({ content, onClose, open }) {
 
     const createContentPopUp = (
         <div className="h-full">
-            <div className="bg-black opacity-50 fixed top-0 bottom-0 w-screen h-screen z-30" onClick={onClose}></div>
-            <div className="flex flex-col justify-center fixed w-9/10 sm:w-6/10 h-fit bg-white rounded-md shadow-2xl left-[5%] sm:left-[20%] top-[6%] z-40 p-4 sm:p-9 ">
+            <div className="bg-black opacity-50 fixed top-0 bottom-0 w-screen h-screen z-20" onClick={onClose}></div>
+            <div className="flex flex-col justify-center fixed w-9/10 sm:w-6/10 h-fit bg-white rounded-md shadow-2xl left-[5%] sm:left-[20%] top-[6%] z-30 p-4 sm:p-9 ">
                 <div className="flex justify-center mx-auto w-95percent ">
                     <p className="font-amatic font-bold text-sign-in-or-sign-up-title-desktop">
                         {(content === "course") && "Crear curso"}
@@ -143,6 +148,7 @@ export default function CreateContentPopUp ({ content, onClose, open }) {
 
                 <Button additionalClassNamesForButton=" w-95percent py-3 bg-var-2 hover:bg-var-2-hovered duration-200 mx-auto rounded-sm my-3" additionalClassNamesForText=" text-white text-button-desktop font-amatic font-bold" contentForButton="Crear" isDisabled={isButtonDisabled} onClickButtonAction={createButtonAction} />
             </div>
+            <GeneralPopUp onClose={() => setOpenGeneralPopUp(false)} open={true} textForPopUp={messageForGeneralPopUp} />
         </div>
     );
 

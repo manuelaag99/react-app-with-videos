@@ -11,13 +11,13 @@ export default function CreateContentPopUp ({ content, onClose, open }) {
     const [openGeneralPopUp, setOpenGeneralPopUp] = useState(false);
     const [messageForGeneralPopUp, setMessageForGeneralPopUp] = useState("");
 
-    const [newContent, setNewContent] = useState({ title: "", description: "", thumbnail: "", video: "" });
+    const [newContent, setNewContent] = useState({ title: '', description: '', thumbnail: '', video: '' });
 
     function inputChangeHandle (e) {
         console.log(e.target.name);
         let field = e.target.name;
         let value = e.target.value;
-        setNewContent({ ...newContent, [field]: value })
+        setNewContent({ ...newContent, [field]: value });
     }
 
     let newCourseId;
@@ -25,21 +25,28 @@ export default function CreateContentPopUp ({ content, onClose, open }) {
         newCourseId = uuidv4();
         try {
             const { error } = await supabase.from("cai-courses").insert({ course_id: newCourseId, course_title: newContent.title, course_description: newContent.description, course_image_path: "cai-images/courseThumbnails/" + newContent.thumbnail.name, course_video_path: "coursePreviewVideos/" + newContent.video.name });
-            if (error) console.log (error)
+            if (error) setError(error);
         } catch (err) {
-            console.log (err);
+            setError(err);
         }
         try {
             const { error } = await supabase.storage.from("cai-images").upload("courseThumbnails/" + newContent.thumbnail.name, newContent.thumbnail);
-            if (error) console.log(error);
+            if (error) setError(error);
         } catch (err) {
-            console.log(err);
+            setError(err);
         }
         try {
             const { error } = await supabase.storage.from("cai-videos").upload("coursePreviewVideos/" + newContent.video.name, newContent.video);
-            if (error) console.log(error);
+            if (error) setError(error);
         } catch (err) {
-            console.log(err);
+            setError(err);
+        }
+        if (error) {
+            setMessageForGeneralPopUp("There was an error, please try again.")
+            setOpenGeneralPopUp(true);
+        } else if (!error) {
+            setMessageForGeneralPopUp("Successfully created new content!")
+            setOpenGeneralPopUp(true);
         }
     }
 
@@ -48,21 +55,28 @@ export default function CreateContentPopUp ({ content, onClose, open }) {
         newModuleId = uuidv4();
         try {
             const { error } = await supabase.from("cai-modules").insert({ course_id: newContent.course, module_id: newModuleId, module_title: newContent.title, module_description: newContent.description, module_image_path: "cai-images/moduleThumbnails/" + newContent.thumbnail.name, module_video_path: "moduleVideos/" + newContent.video.name  });
-            if (error) console.log (error)
+            if (error) setError(error);
         } catch (err) {
-            console.log(err);
+            setError(err);
         }
         try {
             const { error } = await supabase.storage.from("cai-images").upload("moduleThumbnails/" + newContent.thumbnail.name, newContent.thumbnail);
-            if (error) console.log(error);
+            if (error) setError(error);
         } catch (err) {
-            console.log(err);
+            setError(err);
         }
         try {
             const { error } = await supabase.storage.from("cai-videos").upload("moduleVideos/" + newContent.video.name, newContent.video);
-            if (error) console.log(error);
+            if (error) setError(error);
         } catch (err) {
-            console.log(err);
+            setError(err);
+        }
+        if (error) {
+            setMessageForGeneralPopUp("There was an error, please try again.")
+            setOpenGeneralPopUp(true);
+        } else if (!error) {
+            setMessageForGeneralPopUp("Successfully created new content!")
+            setOpenGeneralPopUp(true);
         }
     }
 
@@ -92,6 +106,23 @@ export default function CreateContentPopUp ({ content, onClose, open }) {
     }, [])
 
     const [isButtonDisabled, setIsButtonDisabled] = useState(true);
+    useEffect(() => {
+        if (content === "module") {
+            if ((newContent.title !== '') && (newContent.description !== '') && (newContent.course !== '') && (newContent.thumbnail !== '') && (newContent.video !== '')) {
+                setIsButtonDisabled(false)
+            } else {
+                setIsButtonDisabled(true)
+            }s
+        } else if (content === "course") {
+            if ((newContent.title !== '') && (newContent.description !== '') && (newContent.thumbnail !== '') && (newContent.video !== '')) {
+                setIsButtonDisabled(false)
+            } else {
+                setIsButtonDisabled(true)
+            }
+        }
+    }, [newContent])
+
+    console.log(isButtonDisabled)
 
     const createContentPopUp = (
         <div className="h-full">
@@ -146,9 +177,9 @@ export default function CreateContentPopUp ({ content, onClose, open }) {
                     </div>
                 </div>
 
-                <Button additionalClassNamesForButton=" w-95percent py-3 bg-var-2 hover:bg-var-2-hovered duration-200 mx-auto rounded-sm my-3" additionalClassNamesForText=" text-white text-button-desktop font-amatic font-bold" contentForButton="Crear" isDisabled={isButtonDisabled} onClickButtonAction={createButtonAction} />
+                <Button additionalClassNamesForButton=" w-95percent py-3 bg-var-2 hover:bg-var-2-hovered duration-200 mx-auto rounded-sm my-3 disabled:bg-slate-500 " additionalClassNamesForText=" text-white text-button-desktop font-amatic font-bold" contentForButton="Crear" isDisabled={isButtonDisabled} onClickButtonAction={createButtonAction} />
             </div>
-            <GeneralPopUp onClose={() => setOpenGeneralPopUp(false)} open={true} textForPopUp={messageForGeneralPopUp} />
+            <GeneralPopUp onClose={() => setOpenGeneralPopUp(false)} open={openGeneralPopUp} textForPopUp={messageForGeneralPopUp} />
         </div>
     );
 

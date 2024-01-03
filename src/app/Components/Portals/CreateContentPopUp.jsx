@@ -108,16 +108,20 @@ export default function CreateContentPopUp ({ content, onClose, open }) {
     const [isButtonDisabled, setIsButtonDisabled] = useState(true);
     useEffect(() => {
         if (content === "module") {
-            if ((newContent.title !== '') && (newContent.description !== '') && (newContent.course !== '') && (newContent.thumbnail !== '') && (newContent.video !== '')) {
-                setIsButtonDisabled(false)
+            if (!newContent.course) {
+                setIsButtonDisabled(true);
+            } else if (newContent.course === 'select') {
+                setIsButtonDisabled(true);
+            } else if ((newContent.title !== '') && (newContent.description !== '') && (newContent.course !== '') && (newContent.thumbnail !== '') && (newContent.video !== '')) {
+                setIsButtonDisabled(false);
             } else {
-                setIsButtonDisabled(true)
-            }s
+                setIsButtonDisabled(true);
+            }
         } else if (content === "course") {
             if ((newContent.title !== '') && (newContent.description !== '') && (newContent.thumbnail !== '') && (newContent.video !== '')) {
-                setIsButtonDisabled(false)
+                setIsButtonDisabled(false);
             } else {
-                setIsButtonDisabled(true)
+                setIsButtonDisabled(true);
             }
         }
     }, [newContent])

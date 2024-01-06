@@ -27,6 +27,11 @@ export default function MobileMenu ({ onClose, open }) {
                             Iniciar sesión
                         </p>
                     </Link>
+                    <Link className="flex justify-center py-6 px-3 text-white hover:text-var-1-hovered hover:bg-white duration-200 " href="/admin/">
+                        <p className="text-left w-8/10 whitespace-nowrap">
+                            Administrar
+                        </p>
+                    </Link>
                     <button className="flex justify-center py-6 px-3 text-white hover:text-var-1-hovered hover:bg-white duration-200 " onClick={onClose}>
                         <p className="text-left w-8/10 whitespace-nowrap">
                             Cerrar menú

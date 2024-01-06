@@ -17,7 +17,7 @@ module.exports = {
         "course-box-title-desktop": "2.2rem",
         "module-box-title-desktop": "1.5rem",
         "button-desktop": "1.2rem",
-        "navbar-desktop": "1.8rem",
+        "navbar-desktop": "1.5rem",
         "sign-in-or-sign-up-title-desktop": "2rem",
         "sign-in-or-sign-up-button-desktop": "1.6rem",
         "sign-in-or-sign-up-labels-desktop": "0.85rem"

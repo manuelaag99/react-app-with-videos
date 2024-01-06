@@ -46,26 +46,31 @@ export default function TopNavigationBar ({}) {
                     </button>
                 </div>
                 <div className="sm:flex flex-row w-fit hidden font-amatic text-navbar-desktop">
-                    <Link className="px-3 cursor-pointer " href="">
+                    <Link className="px-3 cursor-pointer pt-2" href="">
                         <p className="text-white hover:text-var-1-hovered duration-200 whitespace-nowrap mt-1">
                             Hacer un pedido
                         </p>
                     </Link>
-                    <Link className="px-3 cursor-pointer " href="/courses/">
+                    <Link className="px-3 cursor-pointer pt-2" href="/courses/">
                         <p className="text-white hover:text-var-1-hovered duration-200 whitespace-nowrap mt-1">
                             Cursos
                         </p>
                     </Link>
-                    <div className="px-3 cursor-pointer " onClick={openSignUpWindow}>
+                    <div className="px-3 cursor-pointer pt-2" onClick={openSignUpWindow}>
                         <p className="text-white hover:text-var-1-hovered duration-200 whitespace-nowrap mt-1">
                             Registrarse
                         </p>
                     </div>
-                    <div className="px-3 cursor-pointer " onClick={openSignInWindow}>
+                    <div className="px-3 cursor-pointer pt-2" onClick={openSignInWindow}>
                         <p className="text-white hover:text-var-1-hovered duration-200 whitespace-nowrap mt-1">
                             Iniciar sesión
                         </p>
                     </div>
+                    <Link className="px-3 cursor-pointer pt-2" href="/admin/">
+                        <p className="text-white hover:text-var-1-hovered duration-200 whitespace-nowrap mt-1">
+                            Administrar
+                        </p>
+                    </Link>
                 </div>
             </div>
             <MobileMenu onClose={() => setIsMobileMenuOpen(false)} open={isMobileMenuOpen} />

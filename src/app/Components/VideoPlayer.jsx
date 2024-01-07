@@ -6,7 +6,7 @@ export default function VideoPlayer ({ additionalClassNames, videoSource, videoH
 
     async function fetchVideo () {
         try {
-            const { data, error } = await supabase.storage.from("cai-videos").getPublicUrl("Videos para curso/" + videoSource);
+            const { data, error } = await supabase.storage.from("cai-videos").getPublicUrl(videoSource);
             if (error) console.log(error);
             setVideoToPlay(data.publicUrl);
         } catch (err) {

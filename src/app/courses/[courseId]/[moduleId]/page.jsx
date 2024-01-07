@@ -26,6 +26,8 @@ export default function CourseVideoPage ({ params }) {
         fetchModuleInfo();
     }, [])
 
+    console.log(moduleInfo)
+
     if (!moduleInfo) {
         return null;
     } else {

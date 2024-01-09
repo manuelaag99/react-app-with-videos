@@ -24,7 +24,7 @@ export default function CreateContentPopUp ({ content, onClose, open }) {
     async function createCourse () {
         newCourseId = uuidv4();
         try {
-            const { error } = await supabase.from("cai-courses").insert({ course_id: newCourseId, course_title: newContent.title, course_description: newContent.description, course_image_path: "cai-images/courseThumbnails/" + newContent.thumbnail.name, course_video_path: "coursePreviewVideos/" + newContent.video.name });
+            const { error } = await supabase.from("cai-courses").insert({ course_id: newCourseId, course_title: newContent.title, course_description: newContent.description, course_image_path: "courseThumbnails/" + newContent.thumbnail.name, course_video_path: "coursePreviewVideos/" + newContent.video.name });
             if (error) setError(error);
         } catch (err) {
             setError(err);
@@ -54,7 +54,7 @@ export default function CreateContentPopUp ({ content, onClose, open }) {
     async function createModule () {
         newModuleId = uuidv4();
         try {
-            const { error } = await supabase.from("cai-modules").insert({ course_id: newContent.course, module_id: newModuleId, module_title: newContent.title, module_description: newContent.description, module_image_path: "cai-images/moduleThumbnails/" + newContent.thumbnail.name, module_video_path: "moduleVideos/" + newContent.video.name  });
+            const { error } = await supabase.from("cai-modules").insert({ course_id: newContent.course, module_id: newModuleId, module_title: newContent.title, module_description: newContent.description, module_image_path: "moduleThumbnails/" + newContent.thumbnail.name, module_video_path: "moduleVideos/" + newContent.video.name  });
             if (error) setError(error);
         } catch (err) {
             setError(err);

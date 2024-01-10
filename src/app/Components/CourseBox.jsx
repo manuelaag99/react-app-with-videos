@@ -31,7 +31,7 @@ export default function CourseBox ({ courseId, index }) {
         <div className="flex flex-col h-fit px-6 py-6 my-4 bg-white hover:bg-gray-300 duration-300 w-85percent shadow-lg rounded-lg cursor-pointer">
             <div className="flex sm:flex-row flex-col sm:justify-between justify-center w-full">
 
-                <div className="sm:hidden flex w-full justify-center">
+                <div className="sm:hidden flex w-full justify-center mb-6">
                     {courseInfo && courseInfo.course_image_path && <Image imageSource={courseInfo.course_image_path} />}
                 </div>
 

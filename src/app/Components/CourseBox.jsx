@@ -34,12 +34,12 @@ export default function CourseBox ({ courseId, index }) {
                 {courseInfo && courseInfo.course_image_path && <Image additionalClassNames="w-full" imageSource={courseInfo.course_image_path} />}
             </div>
 
-            <div className="flex flex-col w-full sm:w-8/10">
+            <div className="flex flex-col justify-between w-full sm:w-8/10">
 
                 <div className="flex w-full justify-between">
 
                     <div className="flex sm:w-fit w-full float-left mr-4">
-                        {courseInfo && courseInfo.course_title && <p className="font-bold sm:text-left font-amatic text-course-box-title-desktop text-black sm:pl-5 -mt-1 sm:mt-0">{courseInfo.course_title}</p>}
+                        {courseInfo && courseInfo.course_title && <p className="font-bold sm:text-left font-amatic text-course-box-title-desktop text-black sm:pl-5 -mt-1 ">{courseInfo.course_title}</p>}
                         {courseInfo && !courseInfo.course_title && <div className="bg-gray-700 rounded-2xl w-9/10 h-9 my-2 sm:pl-5"></div>}
                     </div>
 

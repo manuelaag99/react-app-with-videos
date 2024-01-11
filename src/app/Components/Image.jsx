@@ -18,7 +18,7 @@ export default function Image ({ additionalClassNames, imageAlt, imageSource }) 
     
     return (
         <div className={"" + additionalClassNames}>
-            {image && <img className="h-full w-full object-cover cursor-pointer hover:opacity-40 duration-200 rounded-sm " src={image} alt={imageAlt || null} />}
+            {image && <img className="h-full w-full object-cover cursor-pointer hover:opacity-40 duration-200 rounded-md " src={image} alt={imageAlt || null} />}
             {!image && <div className="h-full w-full bg-gray-400 cursor-pointer"></div>}
         </div>
     )

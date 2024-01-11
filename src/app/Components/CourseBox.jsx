@@ -28,10 +28,10 @@ export default function CourseBox ({ courseId, index }) {
     console.log(courseInfo)
 
     return (
-        <div className="flex flex-col sm:flex-row h-fit px-6 py-6 my-4 bg-white hover:bg-gray-300 duration-300 w-85percent shadow-lg rounded-lg cursor-pointer">
+        <div className="flex flex-col sm:flex-row h-fit px-6 py-6 my-4 bg-white  hover:bg-gray-300 duration-300 w-85percent shadow-lg rounded-lg cursor-pointer">
 
             <div className="flex w-full sm:w-2/10 justify-center sm:mb-0 mb-5">
-                {courseInfo && courseInfo.course_image_path && <Image imageSource={courseInfo.course_image_path} />}
+                {courseInfo && courseInfo.course_image_path && <Image additionalClassNames="w-full" imageSource={courseInfo.course_image_path} />}
             </div>
 
             <div className="flex flex-col w-full sm:w-8/10">
@@ -39,7 +39,7 @@ export default function CourseBox ({ courseId, index }) {
                 <div className="flex w-full justify-between">
 
                     <div className="flex sm:w-fit w-full float-left mr-4">
-                        {courseInfo && courseInfo.course_title && <p className="font-bold sm:text-left font-amatic text-course-box-title-desktop text-black sm:pl-5 -mt-0.5 sm:mt-0">{courseInfo.course_title}</p>}
+                        {courseInfo && courseInfo.course_title && <p className="font-bold sm:text-left font-amatic text-course-box-title-desktop text-black sm:pl-5 -mt-1 sm:mt-0">{courseInfo.course_title}</p>}
                         {courseInfo && !courseInfo.course_title && <div className="bg-gray-700 rounded-2xl w-9/10 h-9 my-2 sm:pl-5"></div>}
                     </div>
 

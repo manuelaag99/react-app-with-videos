@@ -37,8 +37,8 @@ export default function TopNavigationBar ({}) {
     return (
         <div className="flex flex-col w-full h-fit px-3 py-2 bg-var-1 fixed top-0 shadow-xl z-20">
             <div className="flex flex-row justify-between w-full h-fit">
-                <Link className="flex justify-start w-4/10 sm:w-6/10 sm:ml-3 h-fit" href="/">
-                    {caiLogo && <img className='h-14' src={caiLogo} alt="cai-logo" />}
+                <Link className="flex justify-start w-fit sm:w-6/10 sm:ml-3 h-fit" href="/">
+                    {caiLogo && <img className='h-14 w-full' src={caiLogo} alt="cai-logo" />}
                 </Link>
                 <div className="flex justify-start items-center w-fit sm:hidden ">
                     <button className="text-white hover:text-var-1-hovered duration-200 cursor-pointer" onClick={() => setIsMobileMenuOpen(true)}>

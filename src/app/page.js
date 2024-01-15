@@ -35,7 +35,7 @@ export default function Home() {
 
 		<div className="flex sm:flex-row flex-col w-full bg-white px-6 py-9">
 			<div className="flex flex-col sm:w-6/10 w-full">
-				<div></div>
+				<div>Cursos de repostería</div>
 				<div></div>
 				<div>
 					<Button contentForButton="Iniciar Sesión" />
@@ -47,6 +47,25 @@ export default function Home() {
 			</div>
 
 		</div>
+
+
+		<div className="flex sm:flex-row flex-col w-full bg-white px-6 py-9">
+			
+			<div className="flex sm:w-4/10 w-full">
+				<img src="" alt="" />
+			</div>
+
+			<div className="flex flex-col sm:w-6/10 w-full">
+				<div>Cursos de repostería</div>
+				<div></div>
+				<div>
+					<Button contentForButton="Iniciar Sesión" />
+					<Button contentForButton="Registrarse" />
+				</div>
+			</div>
+
+		</div>
+
 		</div>
 	)
 }

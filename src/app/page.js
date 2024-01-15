@@ -50,7 +50,7 @@ export default function Home() {
 		</div>
 
 
-		<div className="flex sm:flex-row flex-col w-full bg-white">
+		<div className="flex sm:flex-row flex-col w-full bg-var-4">
 			
 			<div className="flex sm:w-4/10 w-full">
 				<Image additionalClassNames="flex justify-center items-center w-full mx-auto" imageAlt="" imageSource="https://scontent.fntr5-1.fna.fbcdn.net/v/t39.30808-6/385872138_706349364849248_1363954291548222754_n.jpg?_nc_cat=100&ccb=1-7&_nc_sid=3635dc&_nc_eui2=AeGSJ76EEgn0QI_H248vPkzzRCbmkLFax5lEJuaQsVrHmZXVcyWHWQ0LcUoetBof3lA&_nc_ohc=RHAlsn_V58MAX_3jZm_&_nc_oc=AQkO7RBlGhf0ARH1ZiRNDQDfzQ-R80RGhqCg7EyKMWPfPmx392a07EiDoEAucBBuhu03--EJWUJ5wMVSCBvzQo8E&_nc_ht=scontent.fntr5-1.fna&oh=00_AfCnmUVNplXlVCILP3hFDsGU_6uLdJkH8UHTN7jWm_zofw&oe=65AA8F3B" />

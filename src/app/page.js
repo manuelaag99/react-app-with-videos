@@ -26,7 +26,7 @@ export default function Home() {
 	  const [caiLogo, setCaiLogo] = useState();
 	  async function fetchLogo () {
 		  try {
-			  const { data, error } = await supabase.storage.from("cai-images").getPublicUrl("generalPics/cai bakery logo.png");
+			  const { data, error } = await supabase.storage.from("cai-images").getPublicUrl("generalPics/cai bakery logo with shadows.png");
 			  if (error) console.log (error);
 			  setCaiLogo(data.publicUrl);
 		  } catch (err) {
@@ -47,10 +47,10 @@ export default function Home() {
 		
 
 
-		<div className="flex w-full h-60 relative">
+		<div className="flex w-full h-64 relative">
 			{homePhoto && <img className="w-full object-cover" src={homePhoto} alt="home-photo" />}
 			<div className="absolute flex w-full mx-auto justify-center items-center">
-				{caiLogo && <img className="shadow-2xl sm:w-4/10 mt-6" src={caiLogo} alt="cai-logo" />}
+				{caiLogo && <img className="sm:w-5/10 mt-10" src={caiLogo} alt="cai-logo" />}
 			</div>
 			
 		</div>

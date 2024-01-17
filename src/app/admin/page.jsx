@@ -32,14 +32,14 @@ export default function AdminPage () {
                         </p>
                     </div>
                     <div className="flex flex-col sm:flex-row justify-center w-full mb-4 mx-auto mt-4">
-                        <Button contentForButton="Crear un curso" additionalClassNamesForButton=" w-3/10 bg-var-2 hover:bg-var-2-hovered duration-200 mx-auto my-3 shadow-md rounded-md " additionalClassNamesForText=" text-button-desktop text-white font-amatic font-bold" onClickButtonAction={createNewCourse}  />
-                        <Button contentForButton="Crear un módulo" additionalClassNamesForButton=" w-3/10 bg-var-2 hover:bg-var-2-hovered duration-200 mx-auto my-3 shadow-md rounded-md " additionalClassNamesForText=" text-button-desktop text-white font-amatic font-bold" onClickButtonAction={createNewModule}  />
+                        <Button contentForButton="Crear un curso" additionalClassNamesForButton=" w-fit bg-var-2 hover:bg-var-2-hovered duration-200 mx-auto my-3 shadow-md rounded-md " additionalClassNamesForText=" text-button-desktop text-white font-amatic font-bold" onClickButtonAction={createNewCourse}  />
+                        <Button contentForButton="Crear un módulo" additionalClassNamesForButton=" w-fit bg-var-2 hover:bg-var-2-hovered duration-200 mx-auto my-3 shadow-md rounded-md " additionalClassNamesForText=" text-button-desktop text-white font-amatic font-bold" onClickButtonAction={createNewModule}  />
                     </div>
 
                     <div className="flex w-full mt-2 mb-1 justify-center items-center">
-                        <p className="text-center font-bold">Lista de cursos</p>
+                        <p className="text-center font-bold font-rubik">Lista de cursos</p>
                     </div>
-                    <div className="flex justify-center w-9/10 overflow-y-scroll my-2 mx-auto">
+                    <div className="flex justify-center w-9/10 overflow-y-scroll my-2 mx-auto font-rubik">
                         <div className="flex flex-col sm:flex-row w-full py-3 px-2 hover:bg-gray-300 duration-200 cursor-pointer">
                             <div className="flex w-full sm:w-8/10">
                                 Nombre de artículo
@@ -64,13 +64,13 @@ export default function AdminPage () {
                         </p>
                     </div>
                     <div className="flex flex-col sm:flex-row justify-center w-full mb-4 mx-auto mt-4">
-                        <Button contentForButton="Crear un producto" additionalClassNamesForButton=" w-3/10 bg-var-2 hover:bg-var-2-hovered duration-200 mx-auto my-3 shadow-md rounded-md " additionalClassNamesForText=" text-button-desktop text-white font-amatic font-bold" onClickButtonAction={createNewCourse}  />
+                        <Button contentForButton="Crear un producto" additionalClassNamesForButton=" w-fit bg-var-2 hover:bg-var-2-hovered duration-200 mx-auto my-3 shadow-md rounded-md " additionalClassNamesForText=" text-button-desktop text-white font-amatic font-bold" onClickButtonAction={createNewCourse}  />
                     </div>
 
                     <div className="flex w-full mt-2 mb-1 justify-center items-center">
-                        <p className="text-center font-bold">Lista de cursos</p>
+                        <p className="text-center font-bold font-rubik">Lista de productos</p>
                     </div>
-                    <div className="flex justify-center w-9/10 overflow-y-scroll my-2 mx-auto">
+                    <div className="flex justify-center w-9/10 overflow-y-scroll my-2 mx-auto font-rubik">
                         <div className="flex flex-col sm:flex-row w-full py-3 px-2 hover:bg-gray-300 duration-200 cursor-pointer">
                             <div className="flex w-full sm:w-8/10">
                                 Nombre de artículo

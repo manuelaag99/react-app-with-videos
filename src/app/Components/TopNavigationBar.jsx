@@ -71,6 +71,11 @@ export default function TopNavigationBar ({}) {
                             Administrar
                         </p>
                     </Link>
+                    <div className="px-3 cursor-pointer pt-2">
+                        <p className="text-white hover:text-var-1-hovered duration-200 whitespace-nowrap mt-1">
+                            Cerrar sesión
+                        </p>
+                    </div>
                 </div>
             </div>
             <MobileMenu onClose={() => setIsMobileMenuOpen(false)} open={isMobileMenuOpen} />

@@ -1,5 +1,4 @@
-import DeleteIcon from '@mui/icons-material/Delete';
-import EditIcon from '@mui/icons-material/Edit';
+import ListElement from "./ListElement";
 
 export default function ItemList ({ listCategory, listTitle }) {
     return (
@@ -9,44 +8,14 @@ export default function ItemList ({ listCategory, listTitle }) {
             </div>
             <div className="flex flex-col justify-center w-9/10 overflow-y-scroll my-2 mx-auto font-rubik max-h-64">
                 <div className="flex flex-col w-full h-fit">
-                    <div className="flex flex-col sm:flex-row w-full py-3 px-2 hover:bg-gray-300 duration-200 cursor-pointer">
-                        <div className="flex w-full sm:w-8/10 py-1">
-                            Nombre de artículo
-                        </div>
-                        <div className="flex flex-row w-full sm:w-2/10">
-                            <button className="w-1/2 justify-center text-center text-black hover:text-white duration-200 cursor-pointer">
-                                <EditIcon color="black" />
-                            </button>
-                            <button className="w-1/2 justify-center text-center text-black hover:text-white duration-200 cursor-pointer">
-                                <DeleteIcon color="black" />
-                            </button>
-                        </div>
-                    </div>
-
+                    <ListElement elementClassNames="" elementId="" elementName="Nombre de artículo" />
                     {listCategory === "courses" && <div className="flex flex-col w-full">
                         <div className="flex flex-col w-full">
-                            
-                            <div className='flex flex-col sm:flex-row w-full py-3 pl-8 pr-2 hover:bg-gray-300 duration-200 cursor-pointer'>
-                                <div className="flex w-full sm:w-8/10 py-1">
-                                    Nombre de artículo
-                                </div>
-                                <div className="flex flex-row w-full sm:w-2/10">
-                                    <button className="w-1/2 justify-center text-center text-black hover:text-white duration-200 cursor-pointer">
-                                        <EditIcon color="black" />
-                                    </button>
-                                    <button className="w-1/2 justify-center text-center text-black hover:text-white duration-200 cursor-pointer">
-                                        <DeleteIcon color="black" />
-                                    </button>
-                                </div>
-                            </div>
-
+                            <ListElement elementClassNames=" pl-6" elementId="" elementName="Nombre de artículo" />
                         </div>
                     </div>}
-
                 </div>
             </div>
-
-            
         </div>
     )
 }

@@ -1,7 +1,7 @@
 import DeleteIcon from '@mui/icons-material/Delete';
 import EditIcon from '@mui/icons-material/Edit';
 
-export default function ListElement ({ elementClassNames, elementName }) {
+export default function ListElement ({ elementClassNames, elementId, elementName }) {
     return (
         <div className={"flex flex-col sm:flex-row w-full py-3 px-2 hover:bg-gray-300 duration-200 cursor-pointer " + elementClassNames}>
             <div className="flex w-full sm:w-8/10 py-1">

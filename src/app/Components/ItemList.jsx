@@ -1,6 +1,14 @@
+import { useState } from "react";
 import ListElement from "./ListElement";
 
 export default function ItemList ({ listCategory, listTitle }) {
+    const [isSmallListOpen, setIsSmallListOpen] = useState(false);
+
+
+
+    function toggleSmallListVisibility (prevValue) {
+        setIsSmallListOpen(prevValue => !prevValue)
+    }
     return (
         <div className="flex flex-col w-full mb-4">
             <div className="flex w-full mt-2 mb-1 justify-center items-center">
@@ -8,8 +16,8 @@ export default function ItemList ({ listCategory, listTitle }) {
             </div>
             <div className="flex flex-col justify-center w-9/10 overflow-y-scroll my-2 mx-auto font-rubik max-h-64">
                 <div className="flex flex-col w-full h-fit">
-                    <ListElement elementClassNames="" elementId="" elementName="Nombre de artículo" />
-                    {listCategory === "courses" && <div className="flex flex-col w-full">
+                    <ListElement elementClassNames="" elementId="" elementName="Nombre de artículo" onClickFunction={toggleSmallListVisibility} />
+                    {listCategory === "courses" && isSmallListOpen && <div className="flex flex-col w-full">
                         <div className="flex flex-col w-full">
                             <ListElement elementClassNames=" pl-6" elementId="" elementName="Nombre de artículo" />
                         </div>

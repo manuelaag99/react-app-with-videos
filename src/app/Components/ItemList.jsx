@@ -17,8 +17,23 @@ export default function ItemList ({ listCategory, listTitle }) {
     }
     useEffect(() => {
         fetchItems();
+        if (listCategory === "courses") {
+            fetchModules();
+        }
     }, [])
 
+    const [modules, setModules] = useState();
+    async function fetchModules () {
+        try {
+            const { data, error } = await supabase.from("cai-modules").select();
+            if (error) console.log (error);
+            setModules(data);
+        } catch (err) {
+            console.log(err);
+        }
+    }
+
+    console.log(modules)
     function toggleSmallListVisibility () {
         setIsSmallListOpen(prevValue => !prevValue)
     }

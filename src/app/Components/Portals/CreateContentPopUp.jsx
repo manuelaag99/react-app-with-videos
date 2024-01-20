@@ -88,9 +88,6 @@ export default function CreateContentPopUp ({ content, onClose, open }) {
         }
     }
 
-    console.log(newContent.thumbnail.name)
-    console.log(newContent)
-
     const [courses, setCourses] = useState();
     async function fetchCourses () {
         try {
@@ -131,6 +128,9 @@ export default function CreateContentPopUp ({ content, onClose, open }) {
         onClose();
     }
 
+    console.log(courses)
+    console.log(newContent)
+
     const createContentPopUp = (
         <div className="h-full">
             <div className="bg-black opacity-50 fixed top-0 bottom-0 w-screen h-screen z-20" onClick={closePopUp}></div>
@@ -158,7 +158,7 @@ export default function CreateContentPopUp ({ content, onClose, open }) {
                     {(content === "module") && <select className="w-full py-4 px-2 mb-3 bg-gray-200 rounded-sm" defaultValue="" name="course" onChange={inputChangeHandle} onSelect={inputChangeHandle} placeholder="Nombre del curso..." >
                         <option className="w-full bg-gray-200 " value="select">--Selecciona un curso--</option>
                         {courses && courses.length > 0 && courses.map((course, index) => {
-                            return (<option className="w-full bg-gray-200 " key={index} value={course.course_id}>{course.course_title}</option>)
+                            return (<option className="w-full bg-gray-200 " key={index} value={course.id}>{course.title}</option>)
                         })}
                     </select>}
 
@@ -184,7 +184,7 @@ export default function CreateContentPopUp ({ content, onClose, open }) {
                     </div>
                 </div>
 
-                <Button additionalClassNamesForButton=" w-95percent py-3 bg-var-2 hover:bg-var-2-hovered duration-200 mx-auto rounded-sm my-3 disabled:bg-slate-500 " additionalClassNamesForText=" text-white text-button-desktop font-amatic font-bold" contentForButton="Crear" isDisabled={isButtonDisabled} onClickButtonAction={createButtonAction} />
+                <Button additionalClassNamesForButton=" w-95percent py-3 bg-var-2 hover:bg-var-2-hovered duration-200 mx-auto rounded-sm my-3 disabled:bg-slate-500 justify-center " additionalClassNamesForText=" text-white text-button-desktop font-amatic font-bold text-center " contentForButton="Crear" isDisabled={isButtonDisabled} onClickButtonAction={createButtonAction} />
             </div>
             <GeneralPopUp onClose={() => setOpenGeneralPopUp(false)} open={openGeneralPopUp} textForPopUp={messageForGeneralPopUp} />
         </div>

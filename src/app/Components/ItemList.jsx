@@ -3,8 +3,6 @@ import ListElement from "./ListElement";
 import { supabase } from "../supabase/client";
 
 export default function ItemList ({ listCategory, listTitle }) {
-    const [isSmallListOpen, setIsSmallListOpen] = useState(false);
-
     const [itemsForList, setItemsForList] = useState();
     async function fetchItems () {
         try {
@@ -33,9 +31,13 @@ export default function ItemList ({ listCategory, listTitle }) {
         }
     }
 
-    console.log(modules)
-    function toggleSmallListVisibility () {
-        setIsSmallListOpen(prevValue => !prevValue)
+    const [idOfModulesListToShow, setIdOfModulesListToShow] = useState();
+    function toggleSmallListVisibility (item) {
+        if (idOfModulesListToShow !== item.id) {
+            setIdOfModulesListToShow(item.id);
+        } else if (idOfModulesListToShow === item.id) {
+            setIdOfModulesListToShow();
+        }
     }
     return (
 
@@ -51,8 +53,8 @@ export default function ItemList ({ listCategory, listTitle }) {
                         {itemsForList && (itemsForList.length > 0) && itemsForList.map((item, index) => {
                             return (
                                 <div className="flex flex-col w-full">
-                                    <ListElement element={item} elementClassNames="" elementType={listCategory} key={index} index={index} onClickFunction={toggleSmallListVisibility} />
-                                    {(listCategory === "courses") && <div className="flex flex-col w-full">
+                                    <ListElement element={item} elementClassNames="" elementType={listCategory} key={index} index={index} onClickFunction={() => toggleSmallListVisibility(item)} />
+                                    {(listCategory === "courses") && (idOfModulesListToShow === item.id) && <div className="flex flex-col w-full">
                                         {modules.map((module, index) => {
                                             if (module.course_id === item.id) {
                                                 return (
@@ -62,7 +64,6 @@ export default function ItemList ({ listCategory, listTitle }) {
                                         })}
                                     </div>}
                                 </div>
-                                
                             )
                         })}
                         

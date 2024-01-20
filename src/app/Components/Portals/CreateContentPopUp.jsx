@@ -10,6 +10,7 @@ export default function CreateContentPopUp ({ content, onClose, open }) {
     const [error, setError] = useState();
     const [openGeneralPopUp, setOpenGeneralPopUp] = useState(false);
     const [messageForGeneralPopUp, setMessageForGeneralPopUp] = useState("");
+    const [generalPopUp, setGeneralPopUp] = useState({ message: "", textForButtonOne: "", textForButtonTwo: ""});
 
     const [newContent, setNewContent] = useState({ title: '', description: '', thumbnail: '', video: '' });
 
@@ -24,7 +25,7 @@ export default function CreateContentPopUp ({ content, onClose, open }) {
     async function createCourse () {
         newCourseId = uuidv4();
         try {
-            const { error } = await supabase.from("cai-courses").insert({ course_id: newCourseId, course_title: newContent.title, course_description: newContent.description, course_image_path: "courseThumbnails/" + newContent.thumbnail.name, course_video_path: "coursePreviewVideos/" + newContent.video.name });
+            const { error } = await supabase.from("cai-courses").insert({ id: newCourseId, title: newContent.title, description: newContent.description, course_image_path: "courseThumbnails/" + newContent.thumbnail.name, course_video_path: "coursePreviewVideos/" + newContent.video.name });
             if (error) setError(error);
         } catch (err) {
             setError(err);
@@ -42,10 +43,10 @@ export default function CreateContentPopUp ({ content, onClose, open }) {
             setError(err);
         }
         if (error) {
-            setMessageForGeneralPopUp("There was an error, please try again.")
+            setGeneralPopUp({ message: "Hubo un error. Intenta de nuevo.", textForButtonOne: "Aceptar", textForButtonTwo: ""})
             setOpenGeneralPopUp(true);
         } else if (!error) {
-            setMessageForGeneralPopUp("Successfully created new content!")
+            setGeneralPopUp({ message: "Se creó el contenido exitosamente.", textForButtonOne: "Aceptar", textForButtonTwo: ""})
             setOpenGeneralPopUp(true);
         }
     }
@@ -54,7 +55,7 @@ export default function CreateContentPopUp ({ content, onClose, open }) {
     async function createModule () {
         newModuleId = uuidv4();
         try {
-            const { error } = await supabase.from("cai-modules").insert({ course_id: newContent.course, module_id: newModuleId, module_title: newContent.title, module_description: newContent.description, module_image_path: "moduleThumbnails/" + newContent.thumbnail.name, module_video_path: "moduleVideos/" + newContent.video.name  });
+            const { error } = await supabase.from("cai-modules").insert({ course_id: newContent.course, id: newModuleId, title: newContent.title, description: newContent.description, module_image_path: "moduleThumbnails/" + newContent.thumbnail.name, module_video_path: "moduleVideos/" + newContent.video.name  });
             if (error) setError(error);
         } catch (err) {
             setError(err);
@@ -72,10 +73,10 @@ export default function CreateContentPopUp ({ content, onClose, open }) {
             setError(err);
         }
         if (error) {
-            setMessageForGeneralPopUp("There was an error, please try again.")
+            setGeneralPopUp({ message: "Hubo un error. Intenta de nuevo.", textForButtonOne: "Aceptar", textForButtonTwo: ""})
             setOpenGeneralPopUp(true);
         } else if (!error) {
-            setMessageForGeneralPopUp("Successfully created new content!")
+            setGeneralPopUp({ message: "Se creó el contenido exitosamente.", textForButtonOne: "Aceptar", textForButtonTwo: ""})
             setOpenGeneralPopUp(true);
         }
     }
@@ -186,7 +187,7 @@ export default function CreateContentPopUp ({ content, onClose, open }) {
 
                 <Button additionalClassNamesForButton=" w-95percent py-3 bg-var-2 hover:bg-var-2-hovered duration-200 mx-auto rounded-sm my-3 disabled:bg-slate-500 justify-center " additionalClassNamesForText=" text-white text-button-desktop font-amatic font-bold text-center " contentForButton="Crear" isDisabled={isButtonDisabled} onClickButtonAction={createButtonAction} />
             </div>
-            <GeneralPopUp onClose={() => setOpenGeneralPopUp(false)} open={openGeneralPopUp} textForPopUp={messageForGeneralPopUp} />
+            <GeneralPopUp onClose={() => setOpenGeneralPopUp(false)} open={openGeneralPopUp} infoForPopUp={generalPopUp} />
         </div>
     );
 

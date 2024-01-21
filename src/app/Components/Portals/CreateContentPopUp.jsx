@@ -7,7 +7,7 @@ import { v4 as uuidv4 } from "uuid";
 import GeneralPopUp from "./GeneralPopUp";
 
 export default function CreateContentPopUp ({ content, onClose, open }) {
-    const [error, setError] = useState();
+    const [errorWithCreatingContent, setErrorWithCreatingContent] = useState();
     const [openGeneralPopUp, setOpenGeneralPopUp] = useState(false);
     const [messageForGeneralPopUp, setMessageForGeneralPopUp] = useState("");
     const [generalPopUp, setGeneralPopUp] = useState({ message: "", textForButtonOne: "", textForButtonTwo: ""});
@@ -26,26 +26,26 @@ export default function CreateContentPopUp ({ content, onClose, open }) {
         newCourseId = uuidv4();
         try {
             const { error } = await supabase.from("cai-courses").insert({ id: newCourseId, title: newContent.title, description: newContent.description, course_image_path: "courseThumbnails/" + newContent.thumbnail.name, course_video_path: "coursePreviewVideos/" + newContent.video.name });
-            if (error) setError(error);
+            if (error) setErrorWithCreatingContent(error);
         } catch (err) {
-            setError(err);
+            setErrorWithCreatingContent(err);
         }
         try {
             const { error } = await supabase.storage.from("cai-images").upload("courseThumbnails/" + newContent.thumbnail.name, newContent.thumbnail);
-            if (error) setError(error);
+            if (error) setErrorWithCreatingContent(error);
         } catch (err) {
-            setError(err);
+            setErrorWithCreatingContent(err);
         }
         try {
             const { error } = await supabase.storage.from("cai-videos").upload("coursePreviewVideos/" + newContent.video.name, newContent.video);
-            if (error) setError(error);
+            if (error) setErrorWithCreatingContent(error);
         } catch (err) {
-            setError(err);
+            setErrorWithCreatingContent(err);
         }
-        if (error) {
+        if (errorWithCreatingContent) {
             setGeneralPopUp({ message: "Hubo un error. Intenta de nuevo.", textForButtonOne: "Aceptar", textForButtonTwo: ""})
             setOpenGeneralPopUp(true);
-        } else if (!error) {
+        } else if (!errorWithCreatingContent) {
             setGeneralPopUp({ message: "Se creó el contenido exitosamente.", textForButtonOne: "Aceptar", textForButtonTwo: ""})
             setOpenGeneralPopUp(true);
         }
@@ -56,26 +56,26 @@ export default function CreateContentPopUp ({ content, onClose, open }) {
         newModuleId = uuidv4();
         try {
             const { error } = await supabase.from("cai-modules").insert({ course_id: newContent.course, id: newModuleId, title: newContent.title, description: newContent.description, module_image_path: "moduleThumbnails/" + newContent.thumbnail.name, module_video_path: "moduleVideos/" + newContent.video.name  });
-            if (error) setError(error);
+            if (error) setErrorWithCreatingContent(error);
         } catch (err) {
-            setError(err);
+            setErrorWithCreatingContent(err);
         }
         try {
             const { error } = await supabase.storage.from("cai-images").upload("moduleThumbnails/" + newContent.thumbnail.name, newContent.thumbnail);
-            if (error) setError(error);
+            if (error) setErrorWithCreatingContent(error);
         } catch (err) {
-            setError(err);
+            setErrorWithCreatingContent(err);
         }
         try {
             const { error } = await supabase.storage.from("cai-videos").upload("moduleVideos/" + newContent.video.name, newContent.video);
-            if (error) setError(error);
+            if (error) setErrorWithCreatingContent(error);
         } catch (err) {
-            setError(err);
+            setErrorWithCreatingContent(err);
         }
-        if (error) {
+        if (errorWithCreatingContent) {
             setGeneralPopUp({ message: "Hubo un error. Intenta de nuevo.", textForButtonOne: "Aceptar", textForButtonTwo: ""})
             setOpenGeneralPopUp(true);
-        } else if (!error) {
+        } else if (!errorWithCreatingContent) {
             setGeneralPopUp({ message: "Se creó el contenido exitosamente.", textForButtonOne: "Aceptar", textForButtonTwo: ""})
             setOpenGeneralPopUp(true);
         }
@@ -131,11 +131,8 @@ export default function CreateContentPopUp ({ content, onClose, open }) {
 
     function closeGeneralPopUp () {
         setOpenGeneralPopUp(false);
-        closeCreateContentPopUp();
+        if (errorWithCreatingContent) closeCreateContentPopUp();
     }
-
-    console.log(courses)
-    console.log(newContent)
 
     const createContentPopUp = (
         <div className="h-full">

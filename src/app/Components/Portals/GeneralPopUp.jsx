@@ -1,7 +1,7 @@
 import { createPortal } from "react-dom"
 import Button from "../Button";
 
-export default function GeneralPopUp ({ onClose, infoForPopUp, open }) {
+export default function GeneralPopUp ({ infoForPopUp, onClose, open }) {
     const generalPopUp = (
         <div>
             <div className="bg-black opacity-50 fixed top-0 bottom-0 w-screen h-screen z-40" onClick={onClose}></div>

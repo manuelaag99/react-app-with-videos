@@ -124,9 +124,14 @@ export default function CreateContentPopUp ({ content, onClose, open }) {
         }
     }, [newContent])
 
-    function closePopUp () {
+    function closeCreateContentPopUp () {
         setNewContent({ title: '', description: '', thumbnail: '', video: '' });
         onClose();
+    }
+
+    function closeGeneralPopUp () {
+        setOpenGeneralPopUp(false);
+        closeCreateContentPopUp();
     }
 
     console.log(courses)
@@ -134,7 +139,7 @@ export default function CreateContentPopUp ({ content, onClose, open }) {
 
     const createContentPopUp = (
         <div className="h-full">
-            <div className="bg-black opacity-50 fixed top-0 bottom-0 w-screen h-screen z-20" onClick={closePopUp}></div>
+            <div className="bg-black opacity-50 fixed top-0 bottom-0 w-screen h-screen z-20" onClick={closeCreateContentPopUp}></div>
             <div className="flex flex-col justify-center fixed w-9/10 sm:w-6/10 h-fit bg-white rounded-md shadow-2xl left-[5%] sm:left-[20%] top-[6%] z-30 p-4 sm:p-9 ">
                 <div className="flex justify-center mx-auto w-95percent ">
                     <p className="font-amatic font-bold text-sign-in-or-sign-up-title-desktop">
@@ -187,7 +192,7 @@ export default function CreateContentPopUp ({ content, onClose, open }) {
 
                 <Button additionalClassNamesForButton=" w-95percent py-3 bg-var-2 hover:bg-var-2-hovered duration-200 mx-auto rounded-sm my-3 disabled:bg-slate-500 justify-center " additionalClassNamesForText=" text-white text-button-desktop font-amatic font-bold text-center " contentForButton="Crear" isDisabled={isButtonDisabled} onClickButtonAction={createButtonAction} />
             </div>
-            <GeneralPopUp onClose={() => setOpenGeneralPopUp(false)} open={openGeneralPopUp} infoForPopUp={generalPopUp} />
+            <GeneralPopUp onClose={closeGeneralPopUp} open={openGeneralPopUp} infoForPopUp={generalPopUp} />
         </div>
     );
 

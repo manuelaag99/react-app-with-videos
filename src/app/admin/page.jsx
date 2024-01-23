@@ -24,36 +24,50 @@ export default function AdminPage () {
     return (
         <div>
             <TopNavigationBar />
-            <div className="flex flex-col sm:flex-row sm:w-85percent w-95percent mx-auto justify-center items-start bg-white rounded-md sm:mt-40 mt-20 mb-28 pb-20 pt-7 px-7 shadow-2xl">
+            <div className="flex flex-col sm:w-85percent w-95percent mx-auto justify-center items-start bg-white rounded-md sm:mt-40 mt-20 mb-28 pb-20 pt-7 px-7 shadow-2xl">
 
-                <div className="flex flex-col justify-center sm:w-1/2 w-full">
-                    <div className="flex justify-center w-full mx-auto ">
-                        <p className="text-center text-black font-bold font-amatic text-page-title-desktop">
-                            Cursos
+                <div className="flex flex-col w-full mb-8">
+                    <div className="flex w-full justify-center">
+                        <p className="text-center font-bold font-amatic text-page-title-desktop">
+                            Modificar página principal
                         </p>
+                        
                     </div>
-                    <div className="flex flex-col sm:flex-row justify-center w-full mb-4 mx-auto mt-4">
-                        <Button contentForButton="Crear un curso" additionalClassNamesForButton=" w-fit bg-var-2 hover:bg-var-2-hovered duration-200 mx-auto my-3 shadow-md rounded-md " additionalClassNamesForText=" text-button-desktop text-white font-amatic font-bold" onClickButtonAction={createNewCourse}  />
-                        <Button contentForButton="Crear un módulo" additionalClassNamesForButton=" w-fit bg-var-2 hover:bg-var-2-hovered duration-200 mx-auto my-3 shadow-md rounded-md " additionalClassNamesForText=" text-button-desktop text-white font-amatic font-bold" onClickButtonAction={createNewModule}  />
-                    </div>
-
-                    <ItemList listCategory="courses" listTitle="Lista de cursos" />
-
                 </div>
+                
+                <div className="flex flex-col sm:flex-row w-full">
+                    <div className="flex flex-col justify-center sm:w-1/2 w-full items-start">
+                        <div className="flex justify-center w-full mx-auto ">
+                            <p className="text-center text-black font-bold font-amatic text-page-title-desktop">
+                                Cursos
+                            </p>
+                        </div>
+                        <div className="flex flex-col sm:flex-row justify-center w-full mb-4 mx-auto mt-4">
+                            <Button contentForButton="Crear un curso" additionalClassNamesForButton=" w-fit bg-var-2 hover:bg-var-2-hovered duration-200 mx-auto my-3 shadow-md rounded-md " additionalClassNamesForText=" text-button-desktop text-white font-amatic font-bold" onClickButtonAction={createNewCourse}  />
+                            <Button contentForButton="Crear un módulo" additionalClassNamesForButton=" w-fit bg-var-2 hover:bg-var-2-hovered duration-200 mx-auto my-3 shadow-md rounded-md " additionalClassNamesForText=" text-button-desktop text-white font-amatic font-bold" onClickButtonAction={createNewModule}  />
+                        </div>
 
-                <div className="flex flex-col justify-center sm:w-1/2 w-full">
-                    <div className="flex justify-center w-full mx-auto ">
-                        <p className="text-center text-black font-bold font-amatic text-page-title-desktop">
-                            Productos
-                        </p>
+                        <ItemList listCategory="courses" listTitle="Lista de cursos" />
                     </div>
-                    <div className="flex flex-col sm:flex-row justify-center w-full mb-4 mx-auto mt-4">
-                        <Button contentForButton="Crear un producto" additionalClassNamesForButton=" w-fit bg-var-2 hover:bg-var-2-hovered duration-200 mx-auto my-3 shadow-md rounded-md " additionalClassNamesForText=" text-button-desktop text-white font-amatic font-bold" onClickButtonAction={createNewCourse}  />
+
+                    <div className="flex flex-col justify-center sm:w-1/2 w-full items-start">
+                        <div className="flex justify-center w-full mx-auto ">
+                            <p className="text-center text-black font-bold font-amatic text-page-title-desktop">
+                                Productos
+                            </p>
+                        </div>
+                        <div className="flex flex-col sm:flex-row justify-center w-full mb-4 mx-auto mt-4">
+                            <Button contentForButton="Crear un producto" additionalClassNamesForButton=" w-fit bg-var-2 hover:bg-var-2-hovered duration-200 mx-auto my-3 shadow-md rounded-md " additionalClassNamesForText=" text-button-desktop text-white font-amatic font-bold" onClickButtonAction={createNewCourse}  />
+                        </div>
+
+                        <ItemList listCategory="products" listTitle="Lista de productos" />
                     </div>
-
-                    <ItemList listCategory="products" listTitle="Lista de productos" />
-
                 </div>
+                
+                
+
+
+
 
             </div>
 

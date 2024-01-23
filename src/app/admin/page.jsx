@@ -33,6 +33,55 @@ export default function AdminPage () {
                         </p>
                         
                     </div>
+                    <div className="flex flex-col w-full py-8">
+                        <div className="flex flex-col w-full justify-center">
+                            <div className="flex flex-row w-full">
+                                <div className="flex w-4/10 pr-6">
+                                    <p className="">
+                                        Mostrar apartado de cursos
+                                    </p>
+                                </div>
+                                <div className="flex w-6/10">
+                                    <p className="">
+                                        Texto para mostrar en apartado de cursos
+                                    </p>
+                                </div>
+                            </div>
+
+                            <div className="flex flex-row w-full">
+                                <div className="flex w-4/10 pr-6">
+                                    <input type="checkbox" />
+                                </div>
+                                <div className="flex w-6/10">
+                                    <textarea name="" id="" cols="30" rows="10"></textarea>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div className="flex flex-col w-full justify-center">
+                            <div className="flex flex-row w-full">
+                                <div className="flex w-4/10 pr-6">
+                                    <p className="">
+                                        Mostrar apartado de productos
+                                    </p>
+                                </div>
+                                <div className="flex w-6/10">
+                                    <p className="">
+                                        Texto para mostrar en apartado de productos
+                                    </p>
+                                </div>
+                            </div>
+
+                            <div className="flex flex-row w-full">
+                                <div className="flex w-4/10 pr-6">
+                                    <input type="checkbox" />
+                                </div>
+                                <div className="flex w-6/10">
+                                    <textarea name="" id="" cols="30" rows="10"></textarea>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
                 
                 <div className="flex flex-col sm:flex-row w-full">

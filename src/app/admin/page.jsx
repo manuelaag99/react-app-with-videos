@@ -36,48 +36,45 @@ export default function AdminPage () {
                     <div className="flex flex-col w-full py-8">
                         <div className="flex flex-col w-full justify-center">
                             <div className="flex flex-row w-full">
-                                <div className="flex w-4/10 pr-6">
-                                    <p className="">
-                                        Mostrar apartado de cursos
-                                    </p>
-                                </div>
-                                <div className="flex w-6/10">
-                                    <p className="">
-                                        Texto para mostrar en apartado de cursos
+                                <div className="flex w-full">
+                                    <p className="font-bold text-left">
+                                        Apartado de cursos
                                     </p>
                                 </div>
                             </div>
 
                             <div className="flex flex-row w-full">
-                                <div className="flex w-4/10 pr-6">
-                                    <input type="checkbox" />
+                                <div className="flex w-4/10 pr-6 items-start py-2">
+                                    <div>
+                                        <input id="showCourses" name="showCourses" type="checkbox" />
+                                        <label className="text-left pl-1" htmlFor="showCourses">Mostrar apartado de cursos</label>
+                                    </div>
                                 </div>
                                 <div className="flex w-6/10">
-                                    <textarea name="" id="" cols="30" rows="10"></textarea>
+                                    <textarea className="w-full px-2 py-2 bg-gray-200" name="" id="" rows="2" placeholder="Escribe aquí el texto para que aparezca en el apartado de cursos..."></textarea>
                                 </div>
                             </div>
                         </div>
 
                         <div className="flex flex-col w-full justify-center">
                             <div className="flex flex-row w-full">
-                                <div className="flex w-4/10 pr-6">
-                                    <p className="">
-                                        Mostrar apartado de productos
-                                    </p>
-                                </div>
-                                <div className="flex w-6/10">
-                                    <p className="">
-                                        Texto para mostrar en apartado de productos
+                                <div className="flex w-full">
+                                    <p className="font-bold text-left">
+                                        Apartado de productos
                                     </p>
                                 </div>
                             </div>
 
                             <div className="flex flex-row w-full">
-                                <div className="flex w-4/10 pr-6">
-                                    <input type="checkbox" />
+                                <div className="flex w-4/10 pr-6 items-start py-2">
+                                    <div>
+                                        <input id="showProducts" name="showProducts" type="checkbox"  />
+                                        <label className="text-left pl-1" htmlFor="showProducts">Mostrar apartado de productos</label>
+                                    </div>
+                                    
                                 </div>
                                 <div className="flex w-6/10">
-                                    <textarea name="" id="" cols="30" rows="10"></textarea>
+                                    <textarea className="w-full px-2 py-2 bg-gray-200" name="" id="" rows="2" placeholder="Escribe aquí el texto para que aparezca en el apartado de productos..."></textarea>
                                 </div>
                             </div>
                         </div>

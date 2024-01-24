@@ -33,8 +33,6 @@ export default function AdminPage () {
         console.log(e.target);
     }
 
-    console.log(sectionForHomePage)
-
     return (
         <div>
             <TopNavigationBar />
@@ -64,7 +62,7 @@ export default function AdminPage () {
                                     </div>
                                 </div>
                                 <div className="flex w-6/10">
-                                    <textarea className="w-full px-2 py-2 bg-gray-200" name="contentCourses" id="contentCourses" rows="2" placeholder="Escribe aquí el texto para que aparezca en el apartado de cursos..." onChange={(e) => inputsForSectionsChangeHandle(e)}></textarea>
+                                    <textarea disabled={!sectionForHomePage.showCourses} className="w-full px-2 py-2 bg-gray-200 disabled:text-gray-500" name="contentCourses" id="contentCourses" rows="2" placeholder="Escribe aquí el texto para que aparezca en el apartado de cursos..." onChange={(e) => inputsForSectionsChangeHandle(e)}></textarea>
                                 </div>
                             </div>
                         </div>
@@ -86,7 +84,7 @@ export default function AdminPage () {
                                     
                                 </div>
                                 <div className="flex w-6/10">
-                                    <textarea className="w-full px-2 py-2 bg-gray-200" name="contentProducts" id="contentProducts" rows="2" placeholder="Escribe aquí el texto para que aparezca en el apartado de productos..." onChange={(e) => inputsForSectionsChangeHandle(e)}></textarea>
+                                    <textarea disabled={!sectionForHomePage.showProducts} className="w-full px-2 py-2 bg-gray-200 disabled:text-gray-500" name="contentProducts" id="contentProducts" rows="2" placeholder="Escribe aquí el texto para que aparezca en el apartado de productos..." onChange={(e) => inputsForSectionsChangeHandle(e)}></textarea>
                                 </div>
                             </div>
                         </div>

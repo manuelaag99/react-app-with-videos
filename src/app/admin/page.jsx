@@ -3,8 +3,6 @@ import { useState } from "react";
 import Button from "../Components/Button";
 import CreateContentPopUp from "../Components/Portals/CreateContentPopUp";
 import TopNavigationBar from "../Components/TopNavigationBar";
-import DeleteIcon from '@mui/icons-material/Delete';
-import EditIcon from '@mui/icons-material/Edit';
 import ItemList from "../Components/ItemList";
 
 export default function AdminPage () {
@@ -21,6 +19,22 @@ export default function AdminPage () {
         setContentToCreate("module");
         setOpenCreatePortal(true);
     }
+
+    const [sectionForHomePage, setSectionForHomePage] = useState({ showCourses: true, contentCourses: "", showProducts: true, contentProducts: "" });
+
+    function inputsForSectionsChangeHandle (e) {
+        let field = e.target.name;
+        let newValue = e.target.value;
+        if (e.target.type === "checkbox") {
+            setSectionForHomePage({ ...sectionForHomePage, [field]: !sectionForHomePage[field] });
+        } else {
+            setSectionForHomePage({ ...sectionForHomePage, [field]: newValue });
+        }
+        console.log(e.target);
+    }
+
+    console.log(sectionForHomePage)
+
     return (
         <div>
             <TopNavigationBar />
@@ -42,16 +56,15 @@ export default function AdminPage () {
                                     </p>
                                 </div>
                             </div>
-
                             <div className="flex flex-row w-full">
                                 <div className="flex w-4/10 pr-6 items-start py-2">
                                     <div>
-                                        <input id="showCourses" name="showCourses" type="checkbox" />
+                                        <input id="showCourses" name="showCourses" type="checkbox" defaultChecked onChange={(e) => inputsForSectionsChangeHandle(e)} value="show" />
                                         <label className="text-left pl-1" htmlFor="showCourses">Mostrar apartado de cursos</label>
                                     </div>
                                 </div>
                                 <div className="flex w-6/10">
-                                    <textarea className="w-full px-2 py-2 bg-gray-200" name="" id="" rows="2" placeholder="Escribe aquí el texto para que aparezca en el apartado de cursos..."></textarea>
+                                    <textarea className="w-full px-2 py-2 bg-gray-200" name="contentCourses" id="contentCourses" rows="2" placeholder="Escribe aquí el texto para que aparezca en el apartado de cursos..." onChange={(e) => inputsForSectionsChangeHandle(e)}></textarea>
                                 </div>
                             </div>
                         </div>
@@ -64,17 +77,16 @@ export default function AdminPage () {
                                     </p>
                                 </div>
                             </div>
-
                             <div className="flex flex-row w-full">
                                 <div className="flex w-4/10 pr-6 items-start py-2">
                                     <div>
-                                        <input id="showProducts" name="showProducts" type="checkbox"  />
+                                        <input id="showProducts" name="showProducts" type="checkbox" defaultChecked onChange={(e) => inputsForSectionsChangeHandle(e)} />
                                         <label className="text-left pl-1" htmlFor="showProducts">Mostrar apartado de productos</label>
                                     </div>
                                     
                                 </div>
                                 <div className="flex w-6/10">
-                                    <textarea className="w-full px-2 py-2 bg-gray-200" name="" id="" rows="2" placeholder="Escribe aquí el texto para que aparezca en el apartado de productos..."></textarea>
+                                    <textarea className="w-full px-2 py-2 bg-gray-200" name="contentProducts" id="contentProducts" rows="2" placeholder="Escribe aquí el texto para que aparezca en el apartado de productos..." onChange={(e) => inputsForSectionsChangeHandle(e)}></textarea>
                                 </div>
                             </div>
                         </div>
@@ -92,7 +104,6 @@ export default function AdminPage () {
                             <Button contentForButton="Crear un curso" additionalClassNamesForButton=" w-fit bg-var-2 hover:bg-var-2-hovered duration-200 mx-auto my-3 shadow-md rounded-md " additionalClassNamesForText=" text-button-desktop text-white font-amatic font-bold" onClickButtonAction={createNewCourse}  />
                             <Button contentForButton="Crear un módulo" additionalClassNamesForButton=" w-fit bg-var-2 hover:bg-var-2-hovered duration-200 mx-auto my-3 shadow-md rounded-md " additionalClassNamesForText=" text-button-desktop text-white font-amatic font-bold" onClickButtonAction={createNewModule}  />
                         </div>
-
                         <ItemList listCategory="courses" listTitle="Lista de cursos" />
                     </div>
 
@@ -105,7 +116,6 @@ export default function AdminPage () {
                         <div className="flex flex-col sm:flex-row justify-center w-full mb-4 mx-auto mt-4">
                             <Button contentForButton="Crear un producto" additionalClassNamesForButton=" w-fit bg-var-2 hover:bg-var-2-hovered duration-200 mx-auto my-3 shadow-md rounded-md " additionalClassNamesForText=" text-button-desktop text-white font-amatic font-bold" onClickButtonAction={createNewCourse}  />
                         </div>
-
                         <ItemList listCategory="products" listTitle="Lista de productos" />
                     </div>
                 </div>

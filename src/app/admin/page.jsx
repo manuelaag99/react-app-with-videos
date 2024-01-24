@@ -54,20 +54,20 @@ export default function AdminPage () {
                                     </p>
                                 </div>
                             </div>
-                            <div className="flex flex-row w-full">
-                                <div className="flex w-4/10 pr-6 items-start py-2">
+                            <div className="flex flex-col sm:flex-row w-full">
+                                <div className="flex w-full sm:w-4/10 pr-6 items-start py-2">
                                     <div>
                                         <input id="showCourses" name="showCourses" type="checkbox" defaultChecked onChange={(e) => inputsForSectionsChangeHandle(e)} value="show" />
                                         <label className="text-left pl-1" htmlFor="showCourses">Mostrar apartado de cursos</label>
                                     </div>
                                 </div>
-                                <div className="flex w-6/10">
+                                <div className="flex w-full sm:w-6/10">
                                     <textarea disabled={!sectionForHomePage.showCourses} className="w-full px-2 py-2 bg-gray-200 disabled:text-gray-500" name="contentCourses" id="contentCourses" rows="2" placeholder="Escribe aquí el texto para que aparezca en el apartado de cursos..." onChange={(e) => inputsForSectionsChangeHandle(e)}></textarea>
                                 </div>
                             </div>
                         </div>
 
-                        <div className="flex flex-col w-full justify-center">
+                        <div className="flex flex-col w-full justify-center sm:mt-0 mt-6">
                             <div className="flex flex-row w-full">
                                 <div className="flex w-full">
                                     <p className="font-bold text-left">
@@ -75,15 +75,14 @@ export default function AdminPage () {
                                     </p>
                                 </div>
                             </div>
-                            <div className="flex flex-row w-full">
-                                <div className="flex w-4/10 pr-6 items-start py-2">
+                            <div className="flex flex-col sm:flex-row w-full">
+                                <div className="flex w-full sm:w-4/10 pr-6 items-start py-2">
                                     <div>
                                         <input id="showProducts" name="showProducts" type="checkbox" defaultChecked onChange={(e) => inputsForSectionsChangeHandle(e)} />
                                         <label className="text-left pl-1" htmlFor="showProducts">Mostrar apartado de productos</label>
                                     </div>
-                                    
                                 </div>
-                                <div className="flex w-6/10">
+                                <div className="flex w-full sm:w-6/10">
                                     <textarea disabled={!sectionForHomePage.showProducts} className="w-full px-2 py-2 bg-gray-200 disabled:text-gray-500" name="contentProducts" id="contentProducts" rows="2" placeholder="Escribe aquí el texto para que aparezca en el apartado de productos..." onChange={(e) => inputsForSectionsChangeHandle(e)}></textarea>
                                 </div>
                             </div>

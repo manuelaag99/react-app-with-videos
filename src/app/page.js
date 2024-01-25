@@ -58,12 +58,12 @@ export default function Home() {
 		</div>
 
 		<div className="flex sm:flex-row flex-col-reverse w-full bg-white px-6 py-9 shadow-lg">
-			<div className="flex flex-col sm:w-6/10 w-full pr-6">
+			<div className="flex flex-col sm:w-6/10 w-full sm:pr-6">
 				<div className="font-amatic font-bold text-page-title-desktop sm:-mt-4 mt-0">Cursos de repostería</div>
 				<div className="mb-5 mt-2 w-full">Breve explicación sobre los cursos de repostería aquí.</div>
-				<div>
-					<Button additionalClassNamesForButton=" px-7 shadow-md bg-var-3 hover:bg-var-3-hovered duration-200 cursor-pointer text-white text-button-desktop rounded-md font-amatic font-bold mr-5 " contentForButton="Iniciar Sesión" />
-					<Button additionalClassNamesForButton=" px-7 shadow-md bg-var-2 hover:bg-var-2-hovered duration-200 cursor-pointer text-white text-button-desktop rounded-md font-amatic font-bold " contentForButton="Registrarse" />
+				<div className="flex flex-col sm:flex-row justify-center">
+					<Button additionalClassNamesForButton=" flex w-full sm:w-fit justify-center items-center px-7 shadow-md bg-var-3 hover:bg-var-3-hovered duration-200 cursor-pointer text-white text-button-desktop rounded-md font-amatic font-bold mb-4 sm:mb-0 sm:mr-5 " additionalClassNamesForText=" text-center" contentForButton="Iniciar Sesión" />
+					<Button additionalClassNamesForButton=" flex w-full sm:w-fit justify-center items-center px-7 shadow-md bg-var-2 hover:bg-var-2-hovered duration-200 cursor-pointer text-white text-button-desktop rounded-md font-amatic font-bold " additionalClassNamesForText=" text-center" contentForButton="Registrarse" />
 				</div>
 			</div>
 			<div className="flex sm:w-4/10 w-full sm:mb-0 mb-6">
@@ -85,7 +85,7 @@ export default function Home() {
 				<div className="font-amatic font-bold text-page-title-desktop -mt-4">Hacer un pedido</div>
 				<div className="mb-5 mt-2 w-full">Breve explicación sobre los pedidos.</div>
 				<div>
-					<Button additionalClassNamesForButton=" px-7 shadow-md bg-var-2 hover:bg-var-2-hovered duration-200 cursor-pointer text-white text-button-desktop rounded-md font-amatic font-bold mr-5 " contentForButton="Ver productos" />
+					<Button additionalClassNamesForButton=" flex w-full sm:w-fit justify-center px-7 shadow-md bg-var-2 hover:bg-var-2-hovered duration-200 cursor-pointer text-white text-button-desktop rounded-md font-amatic font-bold mr-5 " additionalClassNamesForText=" text-center" contentForButton="Ver productos" />
 				</div>
 			</div>
 

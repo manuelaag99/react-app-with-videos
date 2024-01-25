@@ -8,7 +8,7 @@ export default function CoursePage () {
     const [courseIds, setCourseIds] = useState();
     async function fetchCourses () {
         try {
-            const { data } = await supabase.from("cai-courses").select("course_id");
+            const { data } = await supabase.from("cai-courses").select("id");
             setCourseIds(data);
         } catch (err) {
             console.log(err);
@@ -34,7 +34,7 @@ export default function CoursePage () {
                     </div>
                     <div className="flex justify-center w-full mt-8 mb-24">
                         {courseIds && courseIds.map((courseId, index) => {
-                            return <CourseBox courseId={courseId.course_id} index={index} key={index} />
+                            return <CourseBox courseId={courseId.id} index={index} key={index} />
                         })}
                     </div>
                 </div>

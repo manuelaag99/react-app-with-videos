@@ -34,7 +34,7 @@ module.exports = {
         "var-4": "#BEF0ED",
         "var-1-hovered": "#D05AA6",
         "var-2-hovered": "#FFC933",
-        "var-3-hovered": "#0B2E70"
+        "var-3-hovered": "#7eaeff"
       },
       width: {
         "5percent": "5%",
@@ -57,7 +57,7 @@ module.exports = {
         "var-3": "#0966E0",
         "var-1-hovered": "#D05AA6",
         "var-2-hovered": "#FFC933",
-        "var-3-hovered": "#0B2E70"
+        "var-3-hovered": "#7eaeff"
       }
     },
   },

@@ -30,7 +30,7 @@ export default function CourseBox ({ courseId, index }) {
     return (
         <div className="flex flex-col sm:flex-row h-fit px-6 py-6 my-4 bg-white  hover:bg-gray-300 duration-300 w-85percent shadow-lg rounded-lg cursor-pointer">
 
-            <div className="flex w-full sm:w-2/10 justify-center sm:mb-0 mb-5 h-24">
+            <div className="flex w-full sm:w-2/10 justify-center sm:mb-0 mb-5 h-44 sm:h-24">
                 {courseInfo && courseInfo.course_image_path && <Image additionalClassNames="w-full" imageSource={courseInfo.course_image_path} />}
                 {courseInfo && !courseInfo.course_image_path && <div className="w-full bg-gray-300 rounded-md"></div>}
             </div>

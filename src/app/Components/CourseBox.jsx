@@ -54,7 +54,7 @@ export default function CourseBox ({ courseId, index }) {
                             </div>
                         </div>
                         
-                        <button className="w-fit h-fit text-black hover:text-gray-100 duration-300 ml-2"><MoreVertIcon fontSize="small" /></button>
+                        
                     </div>
 
                 </div>

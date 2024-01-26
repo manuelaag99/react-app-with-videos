@@ -25,12 +25,12 @@ export default function ModuleBox ({ index, moduleId }) {
 
     return (
         <div className="flex sm:flex-row flex-col justify-center w-full py-5 px-6 hover:bg-gray-300 hover:shadow-lg duration-300 cursor-pointer" onClick={() => router.push("/courses/" + moduleInfo.course_id + "/" + moduleInfo.id)} key={index}>
-            <div className="flex justify-center items-center w-full sm:w-2/10 mb-4 sm:mb-0 mt-2 sm:mt-0">
+            <div className="flex justify-center items-center w-full sm:w-2/10 mb-4 sm:mb-0 mt-2 sm:mt-0 sm:h-28">
                 {moduleInfo && moduleInfo.module_image_path && <Image additionalClassNames="w-full" imageSource={moduleInfo.module_image_path} />}
             </div>
             <div className="flex flex-row sm:flex-col justify-center w-full sm:w-8/10 sm:pl-6">
                 
-                <div className="flex flex-col w-full pr-6 ">
+                <div className="flex flex-col w-full sm:pr-6 ">
                     <div className="flex w-full mb-1">
                         {moduleInfo && <p className="text-left text-black text-module-box-title-desktop font-bold font-amatic">Módulo {index + 1}: {moduleInfo.title}</p>}
                         {!moduleInfo && <div className="bg-gray-800 w-5/10 h-5 rounded-2xl mt-1"></div>}

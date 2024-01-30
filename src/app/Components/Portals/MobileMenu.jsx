@@ -1,7 +1,21 @@
 import Link from "next/link"
+import { useState } from "react";
 import { createPortal } from "react-dom"
+import SignInOrSignUpPopUp from "./SignInOrSignUpPopUp";
 
 export default function MobileMenu ({ onClose, open }) {
+    const [openSignInOrSignUpWindow, setOpenSignInOrSignUpWindow] = useState();
+    const [isItSignUp, setIsItSignUp] = useState();
+
+    function openSignUpWindow () {
+        setIsItSignUp(true);
+        setOpenSignInOrSignUpWindow(true);
+    }
+    function openSignInWindow () {
+        setIsItSignUp(false);
+        setOpenSignInOrSignUpWindow(true);
+    }
+
     const mobileMenu = (
         <div>
             <div className="bg-black opacity-50 fixed top-0 bottom-0 w-screen h-screen z-30" onClick={onClose}></div>
@@ -17,16 +31,16 @@ export default function MobileMenu ({ onClose, open }) {
                             Cursos
                         </p>
                     </Link>
-                    <Link className="flex justify-center py-6 px-3 text-white hover:text-var-1-hovered hover:bg-white duration-200 " href="">
+                    <div className="flex justify-center py-6 px-3 text-white hover:text-var-1-hovered hover:bg-white duration-200 " onClick={openSignUpWindow}>
                         <p className="text-left w-8/10 whitespace-nowrap">
                             Registrarse
                         </p>
-                    </Link>
-                    <Link className="flex justify-center py-6 px-3 text-white hover:text-var-1-hovered hover:bg-white duration-200 " href="">
+                    </div>
+                    <div className="flex justify-center py-6 px-3 text-white hover:text-var-1-hovered hover:bg-white duration-200 " onClick={openSignInWindow}>
                         <p className="text-left w-8/10 whitespace-nowrap">
                             Iniciar sesión
                         </p>
-                    </Link>
+                    </div>
                     <Link className="flex justify-center py-6 px-3 text-white hover:text-var-1-hovered hover:bg-white duration-200 " href="/admin/">
                         <p className="text-left w-8/10 whitespace-nowrap">
                             Administrar
@@ -44,6 +58,7 @@ export default function MobileMenu ({ onClose, open }) {
                     </button>
                 </div>
             </div>
+            <SignInOrSignUpPopUp onClose={() => setOpenSignInOrSignUpWindow(false)} open={openSignInOrSignUpWindow} openSignUp={isItSignUp} />
         </div>
     )
 

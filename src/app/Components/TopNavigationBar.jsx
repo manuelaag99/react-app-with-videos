@@ -34,7 +34,6 @@ export default function TopNavigationBar ({}) {
         fetchAdmins();
     }, [])
 
-    console.log(admins)
     const [isMobileMenuOpen, setIsMobileMenuOpen] = useState();
 
     const [openSignInOrSignUpWindow, setOpenSignInOrSignUpWindow] = useState();

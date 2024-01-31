@@ -35,7 +35,7 @@ export default function SignInOrSignUpPopUp ({ onClose, open, openSignUp }) {
     }
 
     function actionButton () {
-        if (signUp) {
+        if (isSignUp) {
             signUp();
         }
     }

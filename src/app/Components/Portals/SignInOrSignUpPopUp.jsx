@@ -12,7 +12,14 @@ export default function SignInOrSignUpPopUp ({ onClose, open, openSignUp }) {
         }
     }, [openSignUp])
 
-    console.log(openSignUp)
+    const [signInOrSignUpInputs, setSignInOrSignUpInputs] = useState();
+    function inputChangeHandle (e) {
+        let inputField = e.target.name;
+        let inputValue = e.target.value;
+        setSignInOrSignUpInputs({ ...signInOrSignUpInputs, [inputField]: inputValue });
+    }
+
+    console.log(signInOrSignUpInputs);
 
     const signInOrSignUpPopUp = (
         <div>
@@ -26,13 +33,13 @@ export default function SignInOrSignUpPopUp ({ onClose, open, openSignUp }) {
                 </div>
                 <div className="flex flex-col justify-center w-95percent mx-auto">
                     {isSignUp && <label className="text-sign-in-or-sign-up-labels-desktop" htmlFor="">Nombre de usuario:</label>}
-                    {isSignUp && <input className="w-full rounded-sm bg-gray-200 py-3 px-2 mb-3 mx-auto" type="text" placeholder="Escribe..." />}
+                    {isSignUp && <input className="w-full rounded-sm bg-gray-200 py-3 px-2 mb-3 mx-auto" type="text" placeholder="Escribe..." name="userName" onChange={(e) => inputChangeHandle(e)}  />}
                     {isSignUp && <label className="text-sign-in-or-sign-up-labels-desktop" htmlFor="">Nombre:</label>}
-                    {isSignUp && <input className="w-full rounded-sm bg-gray-200 py-3 px-2 mb-3 mx-auto" type="text" placeholder="Escribe..." />}
+                    {isSignUp && <input className="w-full rounded-sm bg-gray-200 py-3 px-2 mb-3 mx-auto" type="text" placeholder="Escribe..." name="displayName" onChange={(e) => inputChangeHandle(e)}  />}
                     <label className="text-sign-in-or-sign-up-labels-desktop" htmlFor="">Correo electrónico:</label>
-                    <input className="w-full rounded-sm bg-gray-200 py-3 px-2 mb-3 mx-auto" type="text" placeholder="Escribe..." />
+                    <input className="w-full rounded-sm bg-gray-200 py-3 px-2 mb-3 mx-auto" type="text" placeholder="Escribe..."  name="email" onChange={(e) => inputChangeHandle(e)} />
                     <label className="text-sign-in-or-sign-up-labels-desktop" htmlFor="">Contraseña:</label>
-                    <input className="w-full rounded-sm bg-gray-200 py-3 px-2 mb-3 mx-auto" type="text" placeholder="Escribe..." />
+                    <input className="w-full rounded-sm bg-gray-200 py-3 px-2 mb-3 mx-auto" type="text" placeholder="Escribe..."  name="password" onChange={(e) => inputChangeHandle(e)} />
                     <button className="bg-var-2 hover:bg-var-2-hovered duration-200 w-full rounded-sm py-3 mx-auto mt-5 mb-3 text-white font-amatic font-bold text-sign-in-or-sign-up-button-desktop">
                         {isSignUp && "Registrarse"}
                         {!isSignUp && "Iniciar sesión"}

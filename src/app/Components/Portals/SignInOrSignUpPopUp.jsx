@@ -1,5 +1,7 @@
+import { supabase } from "@/app/supabase/client";
 import { useEffect, useState } from "react";
 import { createPortal } from "react-dom";
+import { v4 as uuidv4 } from "uuid";
 
 export default function SignInOrSignUpPopUp ({ onClose, open, openSignUp }) {
     const [isSignUp, setIsSignUp] = useState();
@@ -21,6 +23,23 @@ export default function SignInOrSignUpPopUp ({ onClose, open, openSignUp }) {
 
     console.log(signInOrSignUpInputs);
 
+    let newUserId;
+    async function signUp () {
+        newUserId = uuidv4();
+        try {
+            const { error } = await supabase.from("cai-users").insert({ user_id: newUserId, username: signInOrSignUpInputs.userName, displayName: signInOrSignUpInputs.displayName, email: signInOrSignUpInputs.email, password: signInOrSignUpInputs.password });
+            if (error) console.log(error);
+        } catch (err) {
+            console.log(err);
+        }
+    }
+
+    function actionButton () {
+        if (signUp) {
+            signUp();
+        }
+    }
+
     const signInOrSignUpPopUp = (
         <div>
             <div className="bg-black opacity-50 fixed top-0 bottom-0 w-screen h-screen z-60" onClick={onClose}></div>
@@ -35,12 +54,12 @@ export default function SignInOrSignUpPopUp ({ onClose, open, openSignUp }) {
                     {isSignUp && <label className="text-sign-in-or-sign-up-labels-desktop" htmlFor="">Nombre de usuario:</label>}
                     {isSignUp && <input className="w-full rounded-sm bg-gray-200 py-3 px-2 mb-3 mx-auto" type="text" placeholder="Escribe..." name="userName" onChange={(e) => inputChangeHandle(e)}  />}
                     {isSignUp && <label className="text-sign-in-or-sign-up-labels-desktop" htmlFor="">Nombre:</label>}
-                    {isSignUp && <input className="w-full rounded-sm bg-gray-200 py-3 px-2 mb-3 mx-auto" type="text" placeholder="Escribe..." name="displayName" onChange={(e) => inputChangeHandle(e)}  />}
+                    {isSignUp && <input className="w-full rounded-sm bg-gray-200 py-3 px-2 mb-3 mx-auto" type="text" placeholder="Escribe..." name="displayName" onChange={(e) => inputChangeHandle(e)} autoCapitalize={true} />}
                     <label className="text-sign-in-or-sign-up-labels-desktop" htmlFor="">Correo electrónico:</label>
                     <input className="w-full rounded-sm bg-gray-200 py-3 px-2 mb-3 mx-auto" type="text" placeholder="Escribe..."  name="email" onChange={(e) => inputChangeHandle(e)} />
                     <label className="text-sign-in-or-sign-up-labels-desktop" htmlFor="">Contraseña:</label>
-                    <input className="w-full rounded-sm bg-gray-200 py-3 px-2 mb-3 mx-auto" type="text" placeholder="Escribe..."  name="password" onChange={(e) => inputChangeHandle(e)} />
-                    <button className="bg-var-2 hover:bg-var-2-hovered duration-200 w-full rounded-sm py-3 mx-auto mt-5 mb-3 text-white font-amatic font-bold text-sign-in-or-sign-up-button-desktop">
+                    <input className="w-full rounded-sm bg-gray-200 py-3 px-2 mb-3 mx-auto" type="text" placeholder="Escribe..."  name="password" onChange={(e) => inputChangeHandle(e)} autoComplete={false} />
+                    <button className="bg-var-2 hover:bg-var-2-hovered duration-200 w-full rounded-sm py-3 mx-auto mt-5 mb-3 text-white font-amatic font-bold text-sign-in-or-sign-up-button-desktop" onClick={actionButton}>
                         {isSignUp && "Registrarse"}
                         {!isSignUp && "Iniciar sesión"}
                     </button>

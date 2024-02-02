@@ -130,7 +130,7 @@ export default function CreateContentPopUp ({ content, onClose, open }) {
 
     function closeGeneralPopUp () {
         setOpenGeneralPopUp(false);
-        if (errorWithCreatingContent) closeCreateContentPopUp();
+        if (!errorWithCreatingContent) closeCreateContentPopUp();
     }
 
     const createContentPopUp = (

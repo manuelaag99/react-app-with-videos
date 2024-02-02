@@ -49,6 +49,12 @@ export default function SignInOrSignUpPopUp ({ onClose, open, openSignUp }) {
         }
     }
 
+    function closeGeneralPopUp () {
+        setSignInOrSignUpInputs();
+        setGeneralPopUp(false);
+        if (!errorWithSignInOrSignUp) onClose();
+    }
+
     const signInOrSignUpPopUp = (
         <div>
             <div className="bg-black opacity-50 fixed top-0 bottom-0 w-screen h-screen z-60" onClick={onClose}></div>
@@ -80,7 +86,7 @@ export default function SignInOrSignUpPopUp ({ onClose, open, openSignUp }) {
                     </p>}
                 </div>
             </div>
-            <GeneralPopUp infoForPopUp={generalPopUp} onCloseOnlyGeneralPopUp={() => setGeneralPopUp(false)} open={openGeneralPopUp} />
+            <GeneralPopUp infoForPopUp={generalPopUp} onClose={closeGeneralPopUp} open={openGeneralPopUp} />
         </div>
     )
     

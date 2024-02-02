@@ -5,6 +5,9 @@ import { createPortal } from "react-dom";
 import { v4 as uuidv4 } from "uuid";
 import GeneralPopUp from "./GeneralPopUp";
 
+import VisibilityIcon from '@mui/icons-material/Visibility';
+import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
+
 export default function SignInOrSignUpPopUp ({ onClose, open, openSignUp }) {
     const auth = useContext(AuthContext);
 
@@ -55,6 +58,15 @@ export default function SignInOrSignUpPopUp ({ onClose, open, openSignUp }) {
         if (!errorWithSignInOrSignUp) onClose();
     }
 
+    const [passwordInputType, setPasswordInputType] = useState("password");
+    function togglePasswordVisibility () {
+        if (passwordInputType === "password") {
+            setPasswordInputType("text")
+        } else if (passwordInputType === "text") {
+            setPasswordInputType("password")
+        }
+    }
+
     const signInOrSignUpPopUp = (
         <div>
             <div className="bg-black opacity-50 fixed top-0 bottom-0 w-screen h-screen z-60" onClick={onClose}></div>
@@ -67,13 +79,20 @@ export default function SignInOrSignUpPopUp ({ onClose, open, openSignUp }) {
                 </div>
                 <div className="flex flex-col justify-center w-95percent mx-auto">
                     {isSignUp && <label className="text-sign-in-or-sign-up-labels-desktop" htmlFor="">Nombre de usuario:</label>}
-                    {isSignUp && <input className="w-full rounded-sm bg-gray-200 py-3 px-2 mb-3 mx-auto" type="text" placeholder="Escribe..." name="userName" onChange={(e) => inputChangeHandle(e)}  />}
+                    {isSignUp && <input className="w-full rounded-sm bg-gray-200 py-3 px-2 sm:px-4 mb-3 mx-auto" type="text" placeholder="Escribe..." name="userName" onChange={(e) => inputChangeHandle(e)}  />}
                     {isSignUp && <label className="text-sign-in-or-sign-up-labels-desktop" htmlFor="">Nombre:</label>}
-                    {isSignUp && <input className="w-full rounded-sm bg-gray-200 py-3 px-2 mb-3 mx-auto" type="text" placeholder="Escribe..." name="displayName" onChange={(e) => inputChangeHandle(e)} autoCapitalize={true} />}
+                    {isSignUp && <input className="w-full rounded-sm bg-gray-200 py-3 px-2 sm:px-4 mb-3 mx-auto" type="text" placeholder="Escribe..." name="displayName" onChange={(e) => inputChangeHandle(e)} autoCapitalize="on" />}
                     <label className="text-sign-in-or-sign-up-labels-desktop" htmlFor="">Correo electrónico:</label>
-                    <input className="w-full rounded-sm bg-gray-200 py-3 px-2 mb-3 mx-auto" type="text" placeholder="Escribe..."  name="email" onChange={(e) => inputChangeHandle(e)} />
+                    <input className="w-full rounded-sm bg-gray-200 py-3 px-2 sm:px-4 mb-3 mx-auto" type="text" placeholder="Escribe..."  name="email" onChange={(e) => inputChangeHandle(e)} />
+                    
                     <label className="text-sign-in-or-sign-up-labels-desktop" htmlFor="">Contraseña:</label>
-                    <input className="w-full rounded-sm bg-gray-200 py-3 px-2 mb-3 mx-auto" type="text" placeholder="Escribe..."  name="password" onChange={(e) => inputChangeHandle(e)} autoComplete={false} />
+                    <div className="flex flex-row w-full rounded-sm bg-gray-200 mb-3 justify-between">
+                        <input className="w-8/10 rounded-sm bg-gray-200 py-3 px-2 sm:px-4 mx-auto float-left" type={passwordInputType} placeholder="Escribe..."  name="password" onChange={(e) => inputChangeHandle(e)} autoComplete="off"  />
+                        <button className="flex justify-end w-2/10 rounded-sm bg-gray-200 items-center pr-2 sm:pr-4" onClick={togglePasswordVisibility}>
+                            {(passwordInputType === "password") && <VisibilityIcon className="text-black hover:text-white duration-200 float-right" fontSize="medium" />}
+                            {(passwordInputType === "text") && <VisibilityOffIcon className="text-black hover:text-white duration-200 float-right" fontSize="medium" />}
+                        </button>
+                    </div>
                     <button className="bg-var-2 hover:bg-var-2-hovered duration-200 w-full rounded-sm py-3 mx-auto mt-5 mb-3 text-white font-amatic font-bold text-sign-in-or-sign-up-button-desktop" onClick={actionButton}>
                         {isSignUp && "Registrarse"}
                         {!isSignUp && "Iniciar sesión"}

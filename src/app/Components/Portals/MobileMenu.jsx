@@ -79,7 +79,7 @@ export default function MobileMenu ({ onClose, open }) {
         </div>
     )
 
-    if (open) {
+    if (open && admins) {
         return createPortal(mobileMenu, document.body)
     } else {
         null

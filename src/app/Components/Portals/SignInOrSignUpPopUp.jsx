@@ -1,11 +1,18 @@
+import { AuthContext } from "@/app/context/AuthContext";
 import { supabase } from "@/app/supabase/client";
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { createPortal } from "react-dom";
 import { v4 as uuidv4 } from "uuid";
+import GeneralPopUp from "./GeneralPopUp";
 
 export default function SignInOrSignUpPopUp ({ onClose, open, openSignUp }) {
-    const [isSignUp, setIsSignUp] = useState();
+    const auth = useContext(AuthContext);
 
+    const [errorWithSignInOrSignUp, setErrorWithSignInOrSignUp] = useState();
+    const [openGeneralPopUp, setOpenGeneralPopUp] = useState(false);
+    const [generalPopUp, setGeneralPopUp] = useState({ message: "", textForButtonOne: "", textForButtonTwo: ""});
+
+    const [isSignUp, setIsSignUp] = useState();
     useEffect(() => {
         if (openSignUp) {
             setIsSignUp(true);
@@ -21,16 +28,18 @@ export default function SignInOrSignUpPopUp ({ onClose, open, openSignUp }) {
         setSignInOrSignUpInputs({ ...signInOrSignUpInputs, [inputField]: inputValue });
     }
 
-    console.log(signInOrSignUpInputs);
-
     let newUserId;
     async function signUp () {
         newUserId = uuidv4();
         try {
             const { error } = await supabase.from("cai-users").insert({ user_id: newUserId, username: signInOrSignUpInputs.userName, displayName: signInOrSignUpInputs.displayName, email: signInOrSignUpInputs.email, password: signInOrSignUpInputs.password });
-            if (error) console.log(error);
+            if (error) setErrorWithSignInOrSignUp(error);
         } catch (err) {
-            console.log(err);
+            setErrorWithSignInOrSignUp(err);
+        }
+        if (!errorWithSignInOrSignUp) {
+            setGeneralPopUp({ message: "Exitosamente se creó tu cuenta." , textForButtonOne: "Aceptar", textForButtonTwo: "" });
+            setOpenGeneralPopUp(true);
         }
     }
 
@@ -71,6 +80,7 @@ export default function SignInOrSignUpPopUp ({ onClose, open, openSignUp }) {
                     </p>}
                 </div>
             </div>
+            <GeneralPopUp infoForPopUp={generalPopUp} onCloseOnlyGeneralPopUp={() => setGeneralPopUp(false)} open={openGeneralPopUp} />
         </div>
     )
     

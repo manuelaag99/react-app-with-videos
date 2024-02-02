@@ -9,7 +9,6 @@ import GeneralPopUp from "./GeneralPopUp";
 export default function CreateContentPopUp ({ content, onClose, open }) {
     const [errorWithCreatingContent, setErrorWithCreatingContent] = useState();
     const [openGeneralPopUp, setOpenGeneralPopUp] = useState(false);
-    const [messageForGeneralPopUp, setMessageForGeneralPopUp] = useState("");
     const [generalPopUp, setGeneralPopUp] = useState({ message: "", textForButtonOne: "", textForButtonTwo: ""});
 
     const [newContent, setNewContent] = useState({ title: '', description: '', thumbnail: '', video: '' });

@@ -72,7 +72,7 @@ module.exports = {
         "var-2": "#E09609",
         "var-3": "#0966E0",
         "var-4": "#BEF0ED",
-        "var-1-hovered": "#D05AA6",
+        "var-1-hovered": "#FFDEDE",
         "var-2-hovered": "#FFC933",
         "var-3-hovered": "#7eaeff"
       },
@@ -95,7 +95,7 @@ module.exports = {
         "var-1": "#DFACCD",
         "var-2": "#E09609",
         "var-3": "#0966E0",
-        "var-1-hovered": "#D05AA6",
+        "var-1-hovered": "#FFDDDD",
         "var-2-hovered": "#FFC933",
         "var-3-hovered": "#7eaeff"
       }

@@ -1,9 +1,10 @@
 "use client"
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Button from "../Components/Button";
 import CreateContentPopUp from "../Components/Portals/CreateContentPopUp";
 import TopNavigationBar from "../Components/TopNavigationBar";
 import ItemList from "../Components/ItemList";
+import { supabase } from "../supabase/client";
 
 export default function AdminPage () {
 
@@ -21,7 +22,6 @@ export default function AdminPage () {
     }
 
     const [sectionForHomePage, setSectionForHomePage] = useState({ showCourses: true, contentCourses: "", showProducts: true, contentProducts: "" });
-
     function inputsForSectionsChangeHandle (e) {
         let field = e.target.name;
         let newValue = e.target.value;
@@ -30,7 +30,34 @@ export default function AdminPage () {
         } else {
             setSectionForHomePage({ ...sectionForHomePage, [field]: newValue });
         }
-        console.log(e.target);
+    }
+
+    const [homeInfo, setHomeInfo] = useState();
+    async function fetchHomeInfo () {
+		try {
+			const { data, error } = await supabase.from("cai-home-info").select();
+			if (error) console.log (error);
+			setHomeInfo(data[0]);
+		} catch (err) {
+			console.log(err);
+		}
+	}
+    useEffect(() => {
+        fetchHomeInfo();
+    }, [])
+
+    async function updateHomeInfo () {
+        try {
+            if (!homeInfo) {
+                const { error } = await supabase.from("cai-home-info").insert({ id: "1", coursesInfo: sectionForHomePage.contentCourses, productsInfo: sectionForHomePage.contentProducts });
+                if (error) console.log (error);
+            } else {
+                const { error } = await supabase.from("cai-home-info").update({ coursesInfo: sectionForHomePage.contentCourses, productsInfo: sectionForHomePage.contentProducts }).eq("id", "1");
+                if (error) console.log (error);
+            }
+        } catch (err) {
+            console.log(err);
+        }
     }
 
     return (
@@ -45,8 +72,8 @@ export default function AdminPage () {
                         </p>
                         
                     </div>
-                    <div className="flex flex-col w-full py-8">
-                        <div className="flex flex-col w-full justify-center">
+                    <div className="flex flex-col w-full py-6">
+                        <div className="flex flex-col w-full justify-center sm:mb-3">
                             <div className="flex flex-row w-full">
                                 <div className="flex w-full">
                                     <p className="font-bold text-left">
@@ -67,7 +94,7 @@ export default function AdminPage () {
                             </div>
                         </div>
 
-                        <div className="flex flex-col w-full justify-center sm:mt-0 mt-6">
+                        <div className="flex flex-col w-full justify-center sm:mb-3 sm:mt-0 mt-6">
                             <div className="flex flex-row w-full">
                                 <div className="flex w-full">
                                     <p className="font-bold text-left">
@@ -86,6 +113,11 @@ export default function AdminPage () {
                                     <textarea disabled={!sectionForHomePage.showProducts} className="w-full px-2 py-2 bg-gray-200 disabled:text-gray-500" name="contentProducts" id="contentProducts" rows="2" placeholder="Escribe aquí el texto para que aparezca en el apartado de productos..." onChange={(e) => inputsForSectionsChangeHandle(e)}></textarea>
                                 </div>
                             </div>
+                        </div>
+
+
+                        <div className="flex flex-col w-full justify-center mt-8">
+                            <Button additionalClassNamesForButton=" flex justify-center items-center bg-var-1 hover:bg-var-1-hovered duration-200 rounded-md shadow-md w-full" additionalClassNamesForText=" text-center text-button-desktop text-white font-amatic font-bold" contentForButton="Actualizar información" onClickButtonAction={updateHomeInfo} />
                         </div>
                     </div>
                 </div>

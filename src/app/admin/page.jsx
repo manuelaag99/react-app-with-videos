@@ -46,6 +46,14 @@ export default function AdminPage () {
         fetchHomeInfo();
     }, [])
 
+    console.log(sectionForHomePage)
+    console.log(homeInfo)
+    useEffect(() => {
+        if (homeInfo) {
+            setSectionForHomePage({ ...sectionForHomePage, contentCourses: homeInfo.coursesInfo , contentProducts: homeInfo.productsInfo});
+        }
+    }, [homeInfo])
+
     async function updateHomeInfo () {
         try {
             if (!homeInfo) {
@@ -84,12 +92,12 @@ export default function AdminPage () {
                             <div className="flex flex-col sm:flex-row w-full">
                                 <div className="flex w-full sm:w-4/10 pr-6 items-start py-2">
                                     <div>
-                                        <input id="showCourses" name="showCourses" type="checkbox" defaultChecked onChange={(e) => inputsForSectionsChangeHandle(e)} value="show" />
+                                        <input id="showCourses" name="showCourses" type="checkbox" defaultChecked onChange={(e) => inputsForSectionsChangeHandle(e)} />
                                         <label className="text-left pl-1" htmlFor="showCourses">Mostrar apartado de cursos</label>
                                     </div>
                                 </div>
                                 <div className="flex w-full sm:w-6/10">
-                                    <textarea disabled={!sectionForHomePage.showCourses} className="w-full px-2 py-2 bg-gray-200 disabled:text-gray-500" name="contentCourses" id="contentCourses" rows="2" placeholder="Escribe aquí el texto para que aparezca en el apartado de cursos..." onChange={(e) => inputsForSectionsChangeHandle(e)}></textarea>
+                                    <textarea value={sectionForHomePage.contentCourses} disabled={!sectionForHomePage.showCourses} className="w-full px-2 py-2 bg-gray-200 disabled:text-gray-500" name="contentCourses" id="contentCourses" rows="2" placeholder="Escribe aquí el texto para que aparezca en el apartado de cursos..." onChange={(e) => inputsForSectionsChangeHandle(e)}></textarea>
                                 </div>
                             </div>
                         </div>
@@ -110,7 +118,7 @@ export default function AdminPage () {
                                     </div>
                                 </div>
                                 <div className="flex w-full sm:w-6/10">
-                                    <textarea disabled={!sectionForHomePage.showProducts} className="w-full px-2 py-2 bg-gray-200 disabled:text-gray-500" name="contentProducts" id="contentProducts" rows="2" placeholder="Escribe aquí el texto para que aparezca en el apartado de productos..." onChange={(e) => inputsForSectionsChangeHandle(e)}></textarea>
+                                    <textarea value={sectionForHomePage.contentProducts} disabled={!sectionForHomePage.showProducts} className="w-full px-2 py-2 bg-gray-200 disabled:text-gray-500" name="contentProducts" id="contentProducts" rows="2" placeholder="Escribe aquí el texto para que aparezca en el apartado de productos..." onChange={(e) => inputsForSectionsChangeHandle(e)}></textarea>
                                 </div>
                             </div>
                         </div>

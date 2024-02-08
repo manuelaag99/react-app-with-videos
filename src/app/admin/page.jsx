@@ -50,17 +50,17 @@ export default function AdminPage () {
     console.log(homeInfo)
     useEffect(() => {
         if (homeInfo) {
-            setSectionForHomePage({ ...sectionForHomePage, contentCourses: homeInfo.coursesInfo , contentProducts: homeInfo.productsInfo});
+            setSectionForHomePage({ ...sectionForHomePage, contentCourses: homeInfo.coursesInfo, showCourses: homeInfo.showCourses, contentProducts: homeInfo.productsInfo, showProducts: homeInfo.showProducts });
         }
     }, [homeInfo])
 
     async function updateHomeInfo () {
         try {
             if (!homeInfo) {
-                const { error } = await supabase.from("cai-home-info").insert({ id: "1", coursesInfo: sectionForHomePage.contentCourses, productsInfo: sectionForHomePage.contentProducts });
+                const { error } = await supabase.from("cai-home-info").insert({ id: "1", coursesInfo: sectionForHomePage.contentCourses, showCourses: sectionForHomePage.showCourses, productsInfo: sectionForHomePage.contentProducts, showProducts: sectionForHomePage.showProducts });
                 if (error) console.log (error);
             } else {
-                const { error } = await supabase.from("cai-home-info").update({ coursesInfo: sectionForHomePage.contentCourses, productsInfo: sectionForHomePage.contentProducts }).eq("id", "1");
+                const { error } = await supabase.from("cai-home-info").update({ coursesInfo: sectionForHomePage.contentCourses, showCourses: sectionForHomePage.showCourses, productsInfo: sectionForHomePage.contentProducts, showProducts: sectionForHomePage.showProducts }).eq("id", "1");
                 if (error) console.log (error);
             }
         } catch (err) {

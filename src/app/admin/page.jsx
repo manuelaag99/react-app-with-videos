@@ -88,7 +88,7 @@ export default function AdminPage () {
                                 </div>
                             </div>
                             <div className="flex flex-col sm:flex-row w-full">
-                                <div className="flex w-full sm:w-4/10 pr-6 items-start py-2">
+                                <div className="flex w-full sm:w-4/10 sm:pr-6 items-start py-2">
                                     <div>
                                         <input id="showCourses" name="showCourses" type="checkbox" defaultChecked={sectionForHomePage.showCourses} onChange={(e) => inputsForSectionsChangeHandle(e)} />
                                         <label className="text-left pl-1" htmlFor="showCourses">Mostrar apartado de cursos</label>
@@ -109,7 +109,7 @@ export default function AdminPage () {
                                 </div>
                             </div>
                             <div className="flex flex-col sm:flex-row w-full">
-                                <div className="flex w-full sm:w-4/10 pr-6 items-start py-2">
+                                <div className="flex w-full sm:w-4/10 sm:pr-6 items-start py-2">
                                     <div>
                                         <input id="showProducts" name="showProducts" type="checkbox" defaultChecked={sectionForHomePage.showProducts} onChange={(e) => inputsForSectionsChangeHandle(e)} />
                                         <label className="text-left pl-1" htmlFor="showProducts">Mostrar apartado de productos</label>

@@ -2,8 +2,6 @@ import DeleteIcon from '@mui/icons-material/Delete';
 import EditIcon from '@mui/icons-material/Edit';
 
 export default function ListElement ({ element, elementClassNames, elementType, onClickFunction }) {
-
-    console.log(element.title)
     return (
         <div className={"flex flex-col sm:flex-row w-full py-3 px-2 hover:bg-gray-300 duration-200 cursor-pointer " + elementClassNames} onClick={onClickFunction}>
             <div className="flex w-full sm:w-8/10 py-1">

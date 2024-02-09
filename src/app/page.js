@@ -62,7 +62,7 @@ export default function Home() {
 					</div>
 				</div>
 		
-				<div className="flex sm:flex-row flex-col-reverse w-full bg-white px-6 py-9 shadow-lg z-5">
+				{homeInfo && homeInfo.showCourses && <div className="flex sm:flex-row flex-col-reverse w-full bg-white px-6 py-9 shadow-lg z-5">
 					<div className="flex flex-col sm:w-6/10 w-full sm:pr-6">
 						<div className="font-amatic font-bold text-page-title-desktop sm:-mt-4 mt-0">Cursos de repostería</div>
 						{homeInfo && homeInfo.coursesInfo && <div className="mb-5 mt-2 w-full">{homeInfo.coursesInfo}</div>}
@@ -75,12 +75,10 @@ export default function Home() {
 						{coursesPhoto && <img className="w-full mx-auto object-cover h-44 sm:h-72" src={coursesPhoto} alt="" />}
 						{!coursesPhoto && <div className="w-full mx-auto bg-gray-300 h-44 sm:h-72"></div>}
 					</div>
+				</div>}
 		
-				</div>
 		
-		
-				<div className="flex sm:flex-row flex-col w-full bg-var-4 shadow-lg mb-10 z-6">
-					
+				{homeInfo && homeInfo.showProducts && <div className="flex sm:flex-row flex-col w-full bg-var-4 shadow-lg mb-10 z-6">
 					<div className="flex sm:w-4/10 w-full">
 						{productsPhoto && <img className="w-full mx-auto object-cover h-44 sm:h-72" src={productsPhoto} alt="" />}
 						{!productsPhoto && <div className="w-full mx-auto bg-gray-300 h-44 sm:h-72"></div>}
@@ -93,8 +91,7 @@ export default function Home() {
 							<Button additionalClassNamesForButton=" flex w-full sm:w-fit justify-center px-7 shadow-md bg-var-2 hover:bg-var-2-hovered duration-200 cursor-pointer text-white text-button-desktop rounded-md font-amatic font-bold mr-5 " additionalClassNamesForText=" text-center" contentForButton="Ver productos" />
 						</div>
 					</div>
-		
-				</div>
+				</div>}
 	
 			</div>
 		)

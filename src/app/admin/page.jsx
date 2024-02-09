@@ -20,7 +20,7 @@ export default function AdminPage () {
         setOpenCreatePortal(true);
     }
 
-    const [sectionForHomePage, setSectionForHomePage] = useState({ showCourses: true, contentCourses: "", showProducts: true, contentProducts: "" });
+    const [sectionForHomePage, setSectionForHomePage] = useState({ showCourses: null, contentCourses: "", showProducts: null, contentProducts: "" });
     function inputsForSectionsChangeHandle (e) {
         let field = e.target.name;
         let newValue = e.target.value;
@@ -45,6 +45,7 @@ export default function AdminPage () {
         fetchHomeInfo();
     }, [])
 
+    console.log(sectionForHomePage)
     useEffect(() => {
         if (homeInfo) {
             setSectionForHomePage({ ...sectionForHomePage, contentCourses: homeInfo.coursesInfo, showCourses: homeInfo.showCourses, contentProducts: homeInfo.productsInfo, showProducts: homeInfo.showProducts });

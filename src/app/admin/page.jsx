@@ -7,7 +7,6 @@ import ItemList from "../Components/ItemList";
 import { supabase } from "../supabase/client";
 
 export default function AdminPage () {
-
     const [contentToCreate, setContentToCreate] = useState();
     const [openCreatePortal, setOpenCreatePortal] = useState();
 
@@ -46,8 +45,6 @@ export default function AdminPage () {
         fetchHomeInfo();
     }, [])
 
-    console.log(sectionForHomePage)
-    console.log(homeInfo)
     useEffect(() => {
         if (homeInfo) {
             setSectionForHomePage({ ...sectionForHomePage, contentCourses: homeInfo.coursesInfo, showCourses: homeInfo.showCourses, contentProducts: homeInfo.productsInfo, showProducts: homeInfo.showProducts });
@@ -92,7 +89,7 @@ export default function AdminPage () {
                             <div className="flex flex-col sm:flex-row w-full">
                                 <div className="flex w-full sm:w-4/10 pr-6 items-start py-2">
                                     <div>
-                                        <input id="showCourses" name="showCourses" type="checkbox" defaultChecked onChange={(e) => inputsForSectionsChangeHandle(e)} />
+                                        <input id="showCourses" name="showCourses" type="checkbox" defaultChecked={sectionForHomePage.showCourses} onChange={(e) => inputsForSectionsChangeHandle(e)} />
                                         <label className="text-left pl-1" htmlFor="showCourses">Mostrar apartado de cursos</label>
                                     </div>
                                 </div>
@@ -113,7 +110,7 @@ export default function AdminPage () {
                             <div className="flex flex-col sm:flex-row w-full">
                                 <div className="flex w-full sm:w-4/10 pr-6 items-start py-2">
                                     <div>
-                                        <input id="showProducts" name="showProducts" type="checkbox" defaultChecked onChange={(e) => inputsForSectionsChangeHandle(e)} />
+                                        <input id="showProducts" name="showProducts" type="checkbox" defaultChecked={sectionForHomePage.showProducts} onChange={(e) => inputsForSectionsChangeHandle(e)} />
                                         <label className="text-left pl-1" htmlFor="showProducts">Mostrar apartado de productos</label>
                                     </div>
                                 </div>

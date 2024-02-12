@@ -40,16 +40,40 @@ export default function Home() {
 		}
 	}
 
+	const [coursesPhotoPath, setCoursesPhotoPath] = useState();
 	const [coursesPhoto, setCoursesPhoto] = useState();
+	const [productsPhotoPath, setProductsPhotoPath] = useState();
 	const [productsPhoto, setProductsPhoto] = useState();
-
-	console.log(homeInfo)
+	let randomPhotoNumber;
+	async function fetchCoursePhotoPath () {
+		try {
+			const { data, error } = await supabase.from("cai-modules").select("module_image_path");
+			if (error) console.log(error);
+			setCoursesPhotoPath(data[Math.floor(Math.random() * data.length) - 1].module_image_path);
+		} catch (err) {
+			console.log(err);
+		}
+	}
+	async function fetchPhotos() {
+		try {
+			const { data, error } = await supabase.storage.from("cai-images").getPublicUrl(coursesPhotoPath);
+			if (error) console.log(error);
+			setCoursesPhoto(data.publicUrl);
+		} catch (err) {
+			console.log(err);
+		}
+	}
 
 	useEffect(() => {
     	fetchHomePhotos();
 		fetchLogo();
 		fetchHomeInfo();
+		fetchCoursePhotoPath();
   	}, [])
+
+	useEffect(() => {
+		fetchPhotos();
+	}, [coursesPhotoPath, productsPhotoPath])
 
 	if (homePhoto && caiLogo) {
 		return (

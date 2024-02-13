@@ -186,7 +186,7 @@ export default function CreateContentPopUp ({ content, onClose, open }) {
                     </div>
                 </div>
 
-                <Button additionalClassNamesForButton=" w-95percent py-3 bg-var-2 hover:bg-var-2-hovered duration-200 mx-auto rounded-sm my-3 disabled:bg-slate-500 justify-center " additionalClassNamesForText=" text-white text-button-desktop font-amatic font-bold text-center " contentForButton="Crear" isDisabled={isButtonDisabled} onClickButtonAction={createButtonAction} />
+                <Button additionalClassNamesForButton=" flex justify-center w-95percent py-3 bg-var-2 hover:bg-var-2-hovered duration-200 mx-auto rounded-sm my-3 disabled:bg-slate-500 justify-center " additionalClassNamesForText=" text-white text-button-desktop font-amatic font-bold text-center " contentForButton="Crear" isDisabled={isButtonDisabled} onClickButtonAction={createButtonAction} />
             </div>
             <GeneralPopUp onClose={closeGeneralPopUp} open={openGeneralPopUp} infoForPopUp={generalPopUp} />
         </div>

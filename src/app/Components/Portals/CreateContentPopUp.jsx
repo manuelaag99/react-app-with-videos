@@ -164,6 +164,12 @@ export default function CreateContentPopUp ({ content, onClose, open }) {
                         })}
                     </select>}
 
+                    {(content === "product") && <label className="text-sign-in-or-sign-up-labels-desktop font-bold" htmlFor="">Nombre del producto</label>}
+                    {(content === "product") && <input className="w-full py-3 px-2 mb-3 bg-gray-200 rounded-sm" name="title" onChange={inputChangeHandle} placeholder="Nombre del producto..." type="text" />}
+                    {(content === "product") && <label className="text-sign-in-or-sign-up-labels-desktop font-bold" htmlFor="">Descripción del producto</label>}
+                    {(content === "product") && <input className="w-full py-3 px-2 mb-3 bg-gray-200 rounded-sm" name="description" onChange={inputChangeHandle} placeholder="Descripción del producto..." type="text" />}
+                    {(content === "product") && <label className="text-sign-in-or-sign-up-labels-desktop font-bold" htmlFor="">Precio del producto</label>}
+                    {(content === "product") && <input className="w-full py-3 px-2 mb-3 bg-gray-200 rounded-sm" name="price" onChange={inputChangeHandle} placeholder="Precio del producto..." type="number" />}
 
                 </div>
 
@@ -182,6 +188,9 @@ export default function CreateContentPopUp ({ content, onClose, open }) {
                         </div>}
                         {(content === "module") && <div className="flex w-46percent">
                             <VideoUpload additionalClassnames=" h-full" instructionForUpload="Video correspondiente al módulo" sendFile={(file) => setNewContent({...newContent, video: file})} typeOfFile="video" />
+                        </div>}
+                        {(content === "product") && <div className="flex w-46percent mx-auto">
+                            <VideoUpload additionalClassnames=" h-full" instructionForUpload="Miniatura para el producto" sendFile={(file) => setNewContent({...newContent, thumbnail: file})} typeOfFile="image" />
                         </div>}
                     </div>
                 </div>

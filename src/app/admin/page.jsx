@@ -20,6 +20,11 @@ export default function AdminPage () {
         setOpenCreatePortal(true);
     }
 
+    function createNewProduct () {
+        setContentToCreate("product");
+        setOpenCreatePortal(true);
+    }
+
     const [sectionForHomePage, setSectionForHomePage] = useState({ showCourses: null, contentCourses: "", showProducts: null, contentProducts: "" });
     function inputsForSectionsChangeHandle (e) {
         console.log("click")
@@ -150,17 +155,12 @@ export default function AdminPage () {
                             </p>
                         </div>
                         <div className="flex flex-col sm:flex-row justify-center w-full mb-4 mx-auto mt-4">
-                            <Button contentForButton="Crear un producto" additionalClassNamesForButton=" flex justify-center w-full sm:w-fit bg-var-2 hover:bg-var-2-hovered duration-200 mx-auto my-3 shadow-md rounded-md " additionalClassNamesForText=" text-button-desktop text-white font-amatic font-bold text-center " onClickButtonAction={createNewCourse}  />
+                            <Button contentForButton="Crear un producto" additionalClassNamesForButton=" flex justify-center w-full sm:w-fit bg-var-2 hover:bg-var-2-hovered duration-200 mx-auto my-3 shadow-md rounded-md " additionalClassNamesForText=" text-button-desktop text-white font-amatic font-bold text-center " onClickButtonAction={createNewProduct}  />
                         </div>
                         <ItemList listCategory="products" listTitle="Lista de productos" />
                     </div>
                 </div>
                 
-                
-
-
-
-
             </div>
 
             <CreateContentPopUp content={contentToCreate} onClose={() => setOpenCreatePortal(false)} open={openCreatePortal} />

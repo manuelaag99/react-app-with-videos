@@ -5,8 +5,6 @@ import { supabase } from "./supabase/client";
 import Button from "./Components/Button";
 
 export default function Home() {
-
-	let homePhotoNumber;
 	const [homePhoto, setHomePhoto] = useState();
   	async function fetchHomePhotos () {
     	try {
@@ -44,12 +42,20 @@ export default function Home() {
 	const [coursesPhoto, setCoursesPhoto] = useState();
 	const [productsPhotoPath, setProductsPhotoPath] = useState();
 	const [productsPhoto, setProductsPhoto] = useState();
-	let randomPhotoNumber;
 	async function fetchCoursePhotoPath () {
 		try {
 			const { data, error } = await supabase.from("cai-modules").select("module_image_path");
 			if (error) console.log(error);
 			setCoursesPhotoPath(data[Math.floor(Math.random() * data.length) - 1].module_image_path);
+		} catch (err) {
+			console.log(err);
+		}
+	}
+	async function fetchProductsPhotoPath () {
+		try {
+			const { data, error } = await supabase.from("cai-products").select("product_image_path");
+			if (error) console.log(error);
+			setProductsPhotoPath(data[Math.floor(Math.random() * data.length) - 1].product_image_path);
 		} catch (err) {
 			console.log(err);
 		}
@@ -62,6 +68,13 @@ export default function Home() {
 		} catch (err) {
 			console.log(err);
 		}
+		try {
+			const { data, error } = await supabase.storage.from("cai-images").getPublicUrl(productsPhotoPath);
+			if (error) console.log(error);
+			setProductsPhoto(data.publicUrl);
+		} catch (err) {
+			console.log(err);
+		}
 	}
 
 	useEffect(() => {
@@ -69,6 +82,7 @@ export default function Home() {
 		fetchLogo();
 		fetchHomeInfo();
 		fetchCoursePhotoPath();
+		fetchProductsPhotoPath();
   	}, [])
 
 	useEffect(() => {

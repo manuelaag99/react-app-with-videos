@@ -20,6 +20,8 @@ export default function CreateContentPopUp ({ content, onClose, open }) {
         setNewContent({ ...newContent, [field]: value });
     }
 
+    console.log(newContent)
+
     let newCourseId;
     async function createCourse () {
         newCourseId = uuidv4();
@@ -80,11 +82,37 @@ export default function CreateContentPopUp ({ content, onClose, open }) {
         }
     }
 
+    let newProductId;
+    async function createProduct () {
+        newProductId = uuidv4();
+        try {
+            const { error } = await supabase.from("cai-products").insert({ id: newModuleId, title: newContent.title, description: newContent.description, price: newContent.price, product_image_path: "productThumbnails/" + newContent.thumbnail.name });
+            if (error) setErrorWithCreatingContent(error);
+        } catch (err) {
+            setErrorWithCreatingContent(err);
+        }
+        try {
+            const { error } = await supabase.storage.from("cai-products").upload("productThumbnails/" + newContent.thumbnail.name, newContent.thumbnail);
+            if (error) setErrorWithCreatingContent(error);
+        } catch (err) {
+            setErrorWithCreatingContent(err);
+        }
+        if (errorWithCreatingContent) {
+            setGeneralPopUp({ message: "Hubo un error. Intenta de nuevo.", textForButtonOne: "Aceptar", textForButtonTwo: ""})
+            setOpenGeneralPopUp(true);
+        } else if (!errorWithCreatingContent) {
+            setGeneralPopUp({ message: "Se creó el contenido exitosamente.", textForButtonOne: "Aceptar", textForButtonTwo: ""})
+            setOpenGeneralPopUp(true);
+        }
+    }
+
     function createButtonAction () {
-        if (content === "module") {
-            createModule();
-        } else if (content === "course") {
+        if (content === "course") {
             createCourse();
+        } else if (content === "module") {
+            createModule();
+        } else if (content === "product") {
+            createProduct();
         }
     }
 
@@ -116,6 +144,12 @@ export default function CreateContentPopUp ({ content, onClose, open }) {
             }
         } else if (content === "course") {
             if ((newContent.title !== '') && (newContent.description !== '') && (newContent.thumbnail !== '') && (newContent.video !== '')) {
+                setIsButtonDisabled(false);
+            } else {
+                setIsButtonDisabled(true);
+            }
+        } else if (content === "product") {
+            if ((newContent.title !== '') && (newContent.description !== '') && (newContent.thumbnail !== '')) {
                 setIsButtonDisabled(false);
             } else {
                 setIsButtonDisabled(true);

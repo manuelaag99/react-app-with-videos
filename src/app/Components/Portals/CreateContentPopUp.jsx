@@ -170,7 +170,7 @@ export default function CreateContentPopUp ({ content, onClose, open }) {
     const createContentPopUp = (
         <div className="h-full">
             <div className="bg-black opacity-50 fixed top-0 bottom-0 w-screen h-screen z-20" onClick={closeCreateContentPopUp}></div>
-            <div className="flex flex-col justify-center fixed w-9/10 sm:w-6/10 h-fit bg-white rounded-md shadow-2xl left-[5%] sm:left-[20%] top-[6%] z-30 p-4 sm:p-9 ">
+            <div className="flex flex-col justify-center fixed w-9/10 sm:w-6/10 h-fit bg-white rounded-md shadow-2xl left-[5%] sm:left-[20%] top-[6%] z-30 p-3 sm:p-98">
                 <div className="flex justify-center mx-auto w-95percent ">
                     <p className="font-amatic font-bold text-sign-in-or-sign-up-title-desktop">
                         {(content === "course") && "Crear curso"}
@@ -179,18 +179,18 @@ export default function CreateContentPopUp ({ content, onClose, open }) {
                 </div>
 
                 <div className="flex flex-col mx-auto w-95percent my-3">
-                    {(content === "course") && <label className="text-sign-in-or-sign-up-labels-desktop font-bold" htmlFor="">Nombre del curso</label>}
+                    {(content === "course") && <label className="text-sign-in-or-sign-up-labels-desktop font-bold mb-1" htmlFor="">Nombre del curso</label>}
                     {(content === "course") && <input className="w-full py-3 px-2 mb-3 bg-gray-200 rounded-sm" name="title" onChange={inputChangeHandle} placeholder="Nombre del curso..." type="text" />}
-                    {(content === "course") && <label className="text-sign-in-or-sign-up-labels-desktop font-bold" htmlFor="">Descripción del curso</label>}
+                    {(content === "course") && <label className="text-sign-in-or-sign-up-labels-desktop font-bold mb-1" htmlFor="">Descripción del curso</label>}
                     {(content === "course") && <input className="w-full py-3 px-2 mb-3 bg-gray-200 rounded-sm" name="description" onChange={inputChangeHandle} placeholder="Descripción del curso..." type="text" />}
                     
                                         
-                    {(content === "module") && <label className="text-sign-in-or-sign-up-labels-desktop font-bold" htmlFor="">Nombre del módulo</label>}
+                    {(content === "module") && <label className="text-sign-in-or-sign-up-labels-desktop font-bold mb-1" htmlFor="">Nombre del módulo</label>}
                     {(content === "module") && <input className="w-full py-3 px-2 mb-3 bg-gray-200 rounded-sm" name="title" onChange={inputChangeHandle} placeholder="Nombre del módulo..." type="text" />}
-                    {(content === "module") && <label className="text-sign-in-or-sign-up-labels-desktop font-bold" htmlFor="">Descripción del módulo</label>}
+                    {(content === "module") && <label className="text-sign-in-or-sign-up-labels-desktop font-bold mb-1" htmlFor="">Descripción del módulo</label>}
                     {(content === "module") && <input className="w-full py-3 px-2 mb-3 bg-gray-200 rounded-sm" name="description" onChange={inputChangeHandle} placeholder="Descripción del módulo..." type="text" />}
 
-                    {(content === "module") && <label className="text-sign-in-or-sign-up-labels-desktop font-bold" htmlFor="">Curso al que pertenece</label>}
+                    {(content === "module") && <label className="text-sign-in-or-sign-up-labels-desktop font-bold mb-1" htmlFor="">Curso al que pertenece</label>}
                     {(content === "module") && <select className="w-full py-4 px-2 mb-3 bg-gray-200 rounded-sm" defaultValue="" name="course" onChange={inputChangeHandle} onSelect={inputChangeHandle} placeholder="Nombre del curso..." >
                         <option className="w-full bg-gray-200 " value="select">--Selecciona un curso--</option>
                         {courses && courses.length > 0 && courses.map((course, index) => {
@@ -198,18 +198,18 @@ export default function CreateContentPopUp ({ content, onClose, open }) {
                         })}
                     </select>}
 
-                    {(content === "product") && <label className="text-sign-in-or-sign-up-labels-desktop font-bold" htmlFor="">Nombre del producto</label>}
+                    {(content === "product") && <label className="text-sign-in-or-sign-up-labels-desktop font-bold mb-1" htmlFor="">Nombre del producto</label>}
                     {(content === "product") && <input className="w-full py-3 px-2 mb-3 bg-gray-200 rounded-sm" name="title" onChange={inputChangeHandle} placeholder="Nombre del producto..." type="text" />}
-                    {(content === "product") && <label className="text-sign-in-or-sign-up-labels-desktop font-bold" htmlFor="">Descripción del producto</label>}
+                    {(content === "product") && <label className="text-sign-in-or-sign-up-labels-desktop font-bold mb-1" htmlFor="">Descripción del producto</label>}
                     {(content === "product") && <input className="w-full py-3 px-2 mb-3 bg-gray-200 rounded-sm" name="description" onChange={inputChangeHandle} placeholder="Descripción del producto..." type="text" />}
-                    {(content === "product") && <label className="text-sign-in-or-sign-up-labels-desktop font-bold" htmlFor="">Precio del producto</label>}
+                    {(content === "product") && <label className="text-sign-in-or-sign-up-labels-desktop font-bold mb-1" htmlFor="">Precio del producto</label>}
                     {(content === "product") && <input className="w-full py-3 px-2 mb-3 bg-gray-200 rounded-sm" name="price" onChange={inputChangeHandle} placeholder="Precio del producto..." type="number" />}
 
                 </div>
 
                 <div className="flex flex-col w-95percent mx-auto">
-                    {(content === "course") && <label className="text-sign-in-or-sign-up-labels-desktop font-bold w-full text-left" htmlFor="">Si vas a crear un curso, se recomienda agregar un video con un pequeño fragmento de algún modulo. Asimismo, para que el curso tenga una miniatura, puedes subir una imagen, de dimensiones 16:9.</label>}
-                    {(content === "module") && <label className="text-sign-in-or-sign-up-labels-desktop font-bold w-full text-left" htmlFor="">Si vas a crear un módulo, tienes que subir a continuación el video corespondiente, así como una miniatura del mismo, de dimensiones 16:9.</label>}
+                    {(content === "course") && <label className="text-sign-in-or-sign-up-labels-desktop font-bold w-full text-left mb-1" htmlFor="">Si vas a crear un curso, se recomienda agregar un video con un pequeño fragmento de algún modulo. Asimismo, para que el curso tenga una miniatura, puedes subir una imagen, de dimensiones 16:9.</label>}
+                    {(content === "module") && <label className="text-sign-in-or-sign-up-labels-desktop font-bold w-full text-left mb-1" htmlFor="">Si vas a crear un módulo, tienes que subir a continuación el video corespondiente, así como una miniatura del mismo, de dimensiones 16:9.</label>}
                     <div className="flex flex-row justify-between w-full mx-auto h-28 mb-3">
                         {(content === "course") && <div className="flex w-46percent h-full">
                             <VideoUpload additionalClassnames=" h-full" instructionForUpload="Miniatura para el curso" sendFile={(file) => setNewContent({...newContent, thumbnail: file})} typeOfFile="image" />

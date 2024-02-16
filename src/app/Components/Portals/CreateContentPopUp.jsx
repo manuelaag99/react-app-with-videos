@@ -21,24 +21,28 @@ export default function CreateContentPopUp ({ content, onClose, open }) {
     }
 
     console.log(newContent)
+    let imageId;
+    let videoId;
 
     let newCourseId;
     async function createCourse () {
         newCourseId = uuidv4();
+        imageId = uuidv4();
+        videoId = uuidv4();
         try {
-            const { error } = await supabase.from("cai-courses").insert({ id: newCourseId, title: newContent.title, description: newContent.description, course_image_path: "courseThumbnails/" + newContent.thumbnail.name, course_video_path: "coursePreviewVideos/" + newContent.video.name });
+            const { error } = await supabase.from("cai-courses").insert({ id: newCourseId, title: newContent.title, description: newContent.description, course_image_path: "courseThumbnails/" + imageId, course_video_path: "coursePreviewVideos/" + videoId });
             if (error) setErrorWithCreatingContent(error);
         } catch (err) {
             setErrorWithCreatingContent(err);
         }
         try {
-            const { error } = await supabase.storage.from("cai-images").upload("courseThumbnails/" + newContent.thumbnail.name, newContent.thumbnail);
+            const { error } = await supabase.storage.from("cai-images").upload("courseThumbnails/" + imageId, newContent.thumbnail);
             if (error) setErrorWithCreatingContent(error);
         } catch (err) {
             setErrorWithCreatingContent(err);
         }
         try {
-            const { error } = await supabase.storage.from("cai-videos").upload("coursePreviewVideos/" + newContent.video.name, newContent.video);
+            const { error } = await supabase.storage.from("cai-videos").upload("coursePreviewVideos/" + videoId, newContent.video);
             if (error) setErrorWithCreatingContent(error);
         } catch (err) {
             setErrorWithCreatingContent(err);
@@ -55,20 +59,22 @@ export default function CreateContentPopUp ({ content, onClose, open }) {
     let newModuleId;
     async function createModule () {
         newModuleId = uuidv4();
+        imageId = uuidv4();
+        videoId = uuidv4();
         try {
-            const { error } = await supabase.from("cai-modules").insert({ course_id: newContent.course, id: newModuleId, title: newContent.title, description: newContent.description, module_image_path: "moduleThumbnails/" + newContent.thumbnail.name, module_video_path: "moduleVideos/" + newContent.video.name  });
+            const { error } = await supabase.from("cai-modules").insert({ course_id: newContent.course, id: newModuleId, title: newContent.title, description: newContent.description, module_image_path: "moduleThumbnails/" + imageId, module_video_path: "moduleVideos/" + videoId });
             if (error) setErrorWithCreatingContent(error);
         } catch (err) {
             setErrorWithCreatingContent(err);
         }
         try {
-            const { error } = await supabase.storage.from("cai-images").upload("moduleThumbnails/" + newContent.thumbnail.name, newContent.thumbnail);
+            const { error } = await supabase.storage.from("cai-images").upload("moduleThumbnails/" + imageId, newContent.thumbnail);
             if (error) setErrorWithCreatingContent(error);
         } catch (err) {
             setErrorWithCreatingContent(err);
         }
         try {
-            const { error } = await supabase.storage.from("cai-videos").upload("moduleVideos/" + newContent.video.name, newContent.video);
+            const { error } = await supabase.storage.from("cai-videos").upload("moduleVideos/" + videoId, newContent.video);
             if (error) setErrorWithCreatingContent(error);
         } catch (err) {
             setErrorWithCreatingContent(err);
@@ -85,14 +91,15 @@ export default function CreateContentPopUp ({ content, onClose, open }) {
     let newProductId;
     async function createProduct () {
         newProductId = uuidv4();
+        imageId = uuidv4();
         try {
-            const { error } = await supabase.from("cai-products").insert({ id: newModuleId, title: newContent.title, description: newContent.description, price: newContent.price, product_image_path: "productThumbnails/" + newContent.thumbnail.name });
+            const { error } = await supabase.from("cai-products").insert({ id: newProductId, title: newContent.title, description: newContent.description, price: newContent.price, product_image_path: "productThumbnails/" + imageId });
             if (error) setErrorWithCreatingContent(error);
         } catch (err) {
             setErrorWithCreatingContent(err);
         }
         try {
-            const { error } = await supabase.storage.from("cai-products").upload("productThumbnails/" + newContent.thumbnail.name, newContent.thumbnail);
+            const { error } = await supabase.storage.from("cai-images").upload("productThumbnails/" + imageId, newContent.thumbnail);
             if (error) setErrorWithCreatingContent(error);
         } catch (err) {
             setErrorWithCreatingContent(err);

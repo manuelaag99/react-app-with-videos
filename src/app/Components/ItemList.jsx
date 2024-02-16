@@ -41,20 +41,19 @@ export default function ItemList ({ listCategory, listTitle }) {
     }
     return (
 
-        <div className="flex flex-col w-full mb-4">
+        <div className="flex flex-col w-full mb-4 h-fit">
             {!itemsForList && <p className="text-center font-bold mt-2">No hay nada que mostrar.</p>}
-            {itemsForList && (itemsForList.length > 0) && <div className="flex flex-col w-full">
+            {itemsForList && (itemsForList.length > 0) && <div className="flex flex-col w-full max-h-32">
                 <div className="flex w-full mt-2 mb-1 justify-center items-center">
                     <p className="text-center font-bold font-rubik">{listTitle}</p>
                 </div>
-                <div className="flex flex-col justify-center w-9/10 overflow-y-scroll my-2 mx-auto font-rubik max-h-64">
-                    <div className="flex flex-col w-full h-fit">
+                <div className="flex flex-col justify-center items-start w-9/10 overflow-y-scroll my-2 mx-auto font-rubik h-fit">
                         
                         {itemsForList && (itemsForList.length > 0) && itemsForList.map((item, index) => {
                             return (
-                                <div className="flex flex-col w-full">
+                                <div className="flex flex-col w-full h-fit">
                                     <ListElement element={item} elementClassNames="" elementType={listCategory} key={index} index={index} onClickFunction={() => toggleSmallListVisibility(item)} />
-                                    {(listCategory === "courses") && (idOfModulesListToShow === item.id) && <div className="flex flex-col w-full">
+                                    {(listCategory === "courses") && (idOfModulesListToShow === item.id) && <div className="flex flex-col justify-center items-start w-full h-fit">
                                         {modules.map((module, index) => {
                                             if (module.course_id === item.id) {
                                                 return (
@@ -67,10 +66,8 @@ export default function ItemList ({ listCategory, listTitle }) {
                             )
                         })}
                         
-                    </div>
                 </div>
             </div>}
-
         </div>
     )
 }

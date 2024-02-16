@@ -51,7 +51,6 @@ export default function AdminPage () {
         fetchHomeInfo();
     }, [])
 
-    console.log(sectionForHomePage)
     useEffect(() => {
         if (homeInfo) {
             setSectionForHomePage({ ...sectionForHomePage, contentCourses: homeInfo.coursesInfo, showCourses: homeInfo.showCourses, contentProducts: homeInfo.productsInfo, showProducts: homeInfo.showProducts });

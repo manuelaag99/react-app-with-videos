@@ -6,7 +6,7 @@ import { useEffect, useState } from "react";
 import { v4 as uuidv4 } from "uuid";
 import GeneralPopUp from "./GeneralPopUp";
 
-export default function CreateContentPopUp ({ content, onClose, open }) {
+export default function CreateContentPopUp ({ content, isCreate, onClose, open }) {
     const [errorWithCreatingContent, setErrorWithCreatingContent] = useState();
     const [openGeneralPopUp, setOpenGeneralPopUp] = useState(false);
     const [generalPopUp, setGeneralPopUp] = useState({ message: "", textForButtonOne: "", textForButtonTwo: ""});

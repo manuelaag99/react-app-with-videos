@@ -57,7 +57,7 @@ export default function ItemList ({ listCategory, listTitle }) {
                                         {modules.map((module, index) => {
                                             if (module.course_id === item.id) {
                                                 return (
-                                                    <ListElement element={module} elementClassNames=" pl-6" elementId="" elementName="Nombre de artículo" key={index} />
+                                                    <ListElement element={module} elementClassNames=" pl-6" elementType="module" elementName="Nombre de artículo" key={index} />
                                                 )
                                             }
                                         })}

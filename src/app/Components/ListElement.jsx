@@ -1,6 +1,7 @@
 import DeleteIcon from '@mui/icons-material/Delete';
 import EditIcon from '@mui/icons-material/Edit';
 import { useState } from 'react';
+import CreateContentPopUp from './Portals/CreateContentPopUp';
 
 export default function ListElement ({ element, elementClassNames, elementType, onClickFunction }) {
     const [openWindowForEdit, setOpenWindowForEdit] = useState();
@@ -20,6 +21,8 @@ export default function ListElement ({ element, elementClassNames, elementType, 
                     <DeleteIcon color="black" />
                 </button>
             </div>
+
+            <CreateContentPopUp content={elementType} isCreate={false} onClose={() => setOpenWindowForEdit(false)} open={openWindowForEdit} />
         </div>
     )
 }

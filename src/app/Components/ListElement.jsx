@@ -22,7 +22,7 @@ export default function ListElement ({ element, elementClassNames, elementType, 
                 </button>
             </div>
 
-            <CreateContentPopUp content={elementType} isCreate={false} onClose={() => setOpenWindowForEdit(false)} open={openWindowForEdit} />
+            <CreateContentPopUp content={elementType} existingElementToEdit={element} isCreate={false} onClose={() => setOpenWindowForEdit(false)} open={openWindowForEdit} />
         </div>
     )
 }

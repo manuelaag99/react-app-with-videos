@@ -11,17 +11,17 @@ export default function AdminPage () {
     const [openCreatePortal, setOpenCreatePortal] = useState();
 
     function createNewCourse () {
-        setContentToCreate("course");
+        setContentToCreate("courses");
         setOpenCreatePortal(true);
     }
 
     function createNewModule () {
-        setContentToCreate("module");
+        setContentToCreate("modules");
         setOpenCreatePortal(true);
     }
 
     function createNewProduct () {
-        setContentToCreate("product");
+        setContentToCreate("products");
         setOpenCreatePortal(true);
     }
 
@@ -144,7 +144,7 @@ export default function AdminPage () {
                             <Button contentForButton="Crear un curso" additionalClassNamesForButton=" flex justify-center w-full sm:w-fit bg-var-2 hover:bg-var-2-hovered duration-200 mx-auto my-3 shadow-md rounded-md " additionalClassNamesForText=" text-button-desktop text-white font-amatic font-bold text-center " onClickButtonAction={createNewCourse}  />
                             <Button contentForButton="Crear un módulo" additionalClassNamesForButton=" flex justify-center w-full sm:w-fit bg-var-2 hover:bg-var-2-hovered duration-200 mx-auto my-3 shadow-md rounded-md " additionalClassNamesForText=" text-button-desktop text-white font-amatic font-bold text-center " onClickButtonAction={createNewModule}  />
                         </div>
-                        <ItemList listCategory="course" listTitle="Lista de cursos" />
+                        <ItemList listCategory="courses" listTitle="Lista de cursos" />
                     </div>
 
                     <div className="flex flex-col justify-center sm:w-1/2 w-full items-start">
@@ -156,7 +156,7 @@ export default function AdminPage () {
                         <div className="flex flex-col sm:flex-row justify-center w-full mb-4 mx-auto mt-4">
                             <Button contentForButton="Crear un producto" additionalClassNamesForButton=" flex justify-center w-full sm:w-fit bg-var-2 hover:bg-var-2-hovered duration-200 mx-auto my-3 shadow-md rounded-md " additionalClassNamesForText=" text-button-desktop text-white font-amatic font-bold text-center " onClickButtonAction={createNewProduct}  />
                         </div>
-                        <ItemList listCategory="product" listTitle="Lista de productos" />
+                        <ItemList listCategory="products" listTitle="Lista de productos" />
                     </div>
                 </div>
                 

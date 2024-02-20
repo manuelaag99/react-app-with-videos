@@ -6,7 +6,7 @@ import { useEffect, useState } from "react";
 import { v4 as uuidv4 } from "uuid";
 import GeneralPopUp from "./GeneralPopUp";
 
-export default function CreateContentPopUp ({ content, isCreate, onClose, open }) {
+export default function CreateContentPopUp ({ content, existingElementToEdit, isCreate, onClose, open }) {
     const [errorWithCreatingContent, setErrorWithCreatingContent] = useState();
     const [openGeneralPopUp, setOpenGeneralPopUp] = useState(false);
     const [generalPopUp, setGeneralPopUp] = useState({ message: "", textForButtonOne: "", textForButtonTwo: ""});
@@ -87,9 +87,6 @@ export default function CreateContentPopUp ({ content, isCreate, onClose, open }
         }
     }
 
-    console.log(isCreate)
-    console.log(content)
-
     let newProductId;
     async function createProduct () {
         newProductId = uuidv4();
@@ -116,11 +113,11 @@ export default function CreateContentPopUp ({ content, isCreate, onClose, open }
     }
 
     function createButtonAction () {
-        if (content === "course") {
+        if (content === "courses") {
             createCourse();
-        } else if (content === "module") {
+        } else if (content === "modules") {
             createModule();
-        } else if (content === "product") {
+        } else if (content === "products") {
             createProduct();
         }
     }
@@ -141,7 +138,7 @@ export default function CreateContentPopUp ({ content, isCreate, onClose, open }
 
     const [isButtonDisabled, setIsButtonDisabled] = useState(true);
     useEffect(() => {
-        if (content === "module") {
+        if (content === "modules") {
             if (!newContent.course) {
                 setIsButtonDisabled(true);
             } else if (newContent.course === 'select') {
@@ -151,13 +148,13 @@ export default function CreateContentPopUp ({ content, isCreate, onClose, open }
             } else {
                 setIsButtonDisabled(true);
             }
-        } else if (content === "course") {
+        } else if (content === "courses") {
             if ((newContent.title !== '') && (newContent.description !== '') && (newContent.thumbnail !== '') && (newContent.video !== '')) {
                 setIsButtonDisabled(false);
             } else {
                 setIsButtonDisabled(true);
             }
-        } else if (content === "product") {
+        } else if (content === "products") {
             if ((newContent.title !== '') && (newContent.description !== '') && (newContent.thumbnail !== '')) {
                 setIsButtonDisabled(false);
             } else {
@@ -165,6 +162,18 @@ export default function CreateContentPopUp ({ content, isCreate, onClose, open }
             }
         }
     }, [newContent])
+
+    useEffect(() => {
+        if (existingElementToEdit) {
+            if (!isCreate && (content === "courses")) {
+                setNewContent({ title: existingElementToEdit.title, description: existingElementToEdit.description, thumbnail: existingElementToEdit.course_image_path, video: existingElementToEdit.course_video_path });
+            } else if (!isCreate && (content === "modules")) {
+                setNewContent({ title: existingElementToEdit.title, description: existingElementToEdit.description, thumbnail: existingElementToEdit.module_image_path, video: existingElementToEdit.module_video_path });
+            } else if (!isCreate && (content === "products")) {
+                setNewContent({ title: existingElementToEdit.title, description: existingElementToEdit.description, price: existingElementToEdit.price, thumbnail: existingElementToEdit.product_image_path });
+            }
+        }
+    }, [existingElementToEdit])
 
     function closeCreateContentPopUp () {
         setNewContent({ title: '', description: '', thumbnail: '', video: '' });
@@ -181,62 +190,62 @@ export default function CreateContentPopUp ({ content, isCreate, onClose, open }
             <div className="bg-black opacity-50 fixed top-0 bottom-0 w-screen h-screen z-20" onClick={closeCreateContentPopUp}></div>
             <div className="flex flex-col justify-center fixed w-9/10 sm:w-6/10 h-fit bg-white rounded-md shadow-2xl left-[5%] sm:left-[20%] top-[6%] z-30 p-3 sm:p-98">
                 <div className="flex justify-center mx-auto w-95percent ">
-                    {(isCreate === true) && <p className="font-amatic font-bold text-sign-in-or-sign-up-title-desktop">
-                        {isCreate && (content === "course") && "Crear curso"}
-                        {isCreate && (content === "module") && "Crear módulo"}
-                        {isCreate && (content === "product") && "Crear producto"}
-                        {!isCreate && (content === "course") && "Editar curso"}
-                        {!isCreate && (content === "module") && "Editar módulo"}
-                        {!isCreate && (content === "product") && "Editar producto"}
-                    </p>}
+                    <p className="font-amatic font-bold text-sign-in-or-sign-up-title-desktop">
+                        {isCreate && (content === "courses") && "Crear curso"}
+                        {isCreate && (content === "modules") && "Crear módulo"}
+                        {isCreate && (content === "products") && "Crear producto"}
+                        {!isCreate && (content === "courses") && "Editar curso"}
+                        {!isCreate && (content === "modules") && "Editar módulo"}
+                        {!isCreate && (content === "products") && "Editar producto"}
+                    </p>
                 </div>
 
                 <div className="flex flex-col mx-auto w-95percent my-3">
-                    {(content === "course") && <label className="text-sign-in-or-sign-up-labels-desktop font-bold mb-1" htmlFor="">Nombre del curso</label>}
-                    {(content === "course") && <input className="w-full py-3 px-2 mb-3 bg-gray-200 rounded-sm" name="title" onChange={inputChangeHandle} placeholder="Nombre del curso..." type="text" />}
-                    {(content === "course") && <label className="text-sign-in-or-sign-up-labels-desktop font-bold mb-1" htmlFor="">Descripción del curso</label>}
-                    {(content === "course") && <input className="w-full py-3 px-2 mb-3 bg-gray-200 rounded-sm" name="description" onChange={inputChangeHandle} placeholder="Descripción del curso..." type="text" />}
+                    {(content === "courses") && <label className="text-sign-in-or-sign-up-labels-desktop font-bold mb-1" htmlFor="">Nombre del curso</label>}
+                    {(content === "courses") && <input className="w-full py-3 px-2 mb-3 bg-gray-200 rounded-sm" name="title" onChange={inputChangeHandle} placeholder="Nombre del curso..." type="text" />}
+                    {(content === "courses") && <label className="text-sign-in-or-sign-up-labels-desktop font-bold mb-1" htmlFor="">Descripción del curso</label>}
+                    {(content === "courses") && <input className="w-full py-3 px-2 mb-3 bg-gray-200 rounded-sm" name="description" onChange={inputChangeHandle} placeholder="Descripción del curso..." type="text" />}
                     
                                         
-                    {(content === "module") && <label className="text-sign-in-or-sign-up-labels-desktop font-bold mb-1" htmlFor="">Nombre del módulo</label>}
-                    {(content === "module") && <input className="w-full py-3 px-2 mb-3 bg-gray-200 rounded-sm" name="title" onChange={inputChangeHandle} placeholder="Nombre del módulo..." type="text" />}
-                    {(content === "module") && <label className="text-sign-in-or-sign-up-labels-desktop font-bold mb-1" htmlFor="">Descripción del módulo</label>}
-                    {(content === "module") && <input className="w-full py-3 px-2 mb-3 bg-gray-200 rounded-sm" name="description" onChange={inputChangeHandle} placeholder="Descripción del módulo..." type="text" />}
+                    {(content === "modules") && <label className="text-sign-in-or-sign-up-labels-desktop font-bold mb-1" htmlFor="">Nombre del módulo</label>}
+                    {(content === "modules") && <input className="w-full py-3 px-2 mb-3 bg-gray-200 rounded-sm" name="title" onChange={inputChangeHandle} placeholder="Nombre del módulo..." type="text" />}
+                    {(content === "modules") && <label className="text-sign-in-or-sign-up-labels-desktop font-bold mb-1" htmlFor="">Descripción del módulo</label>}
+                    {(content === "modules") && <input className="w-full py-3 px-2 mb-3 bg-gray-200 rounded-sm" name="description" onChange={inputChangeHandle} placeholder="Descripción del módulo..." type="text" />}
 
-                    {(content === "module") && <label className="text-sign-in-or-sign-up-labels-desktop font-bold mb-1" htmlFor="">Curso al que pertenece</label>}
-                    {(content === "module") && <select className="w-full py-4 px-2 mb-3 bg-gray-200 rounded-sm" defaultValue="" name="course" onChange={inputChangeHandle} onSelect={inputChangeHandle} placeholder="Nombre del curso..." >
+                    {(content === "modules") && <label className="text-sign-in-or-sign-up-labels-desktop font-bold mb-1" htmlFor="">Curso al que pertenece</label>}
+                    {(content === "modules") && <select className="w-full py-4 px-2 mb-3 bg-gray-200 rounded-sm" defaultValue="" name="courses" onChange={inputChangeHandle} onSelect={inputChangeHandle} placeholder="Nombre del curso..." >
                         <option className="w-full bg-gray-200 " value="select">--Selecciona un curso--</option>
                         {courses && courses.length > 0 && courses.map((course, index) => {
                             return (<option className="w-full bg-gray-200 " key={index} value={course.id}>{course.title}</option>)
                         })}
                     </select>}
 
-                    {(content === "product") && <label className="text-sign-in-or-sign-up-labels-desktop font-bold mb-1" htmlFor="">Nombre del producto</label>}
-                    {(content === "product") && <input className="w-full py-3 px-2 mb-3 bg-gray-200 rounded-sm" name="title" onChange={inputChangeHandle} placeholder="Nombre del producto..." type="text" />}
-                    {(content === "product") && <label className="text-sign-in-or-sign-up-labels-desktop font-bold mb-1" htmlFor="">Descripción del producto</label>}
-                    {(content === "product") && <input className="w-full py-3 px-2 mb-3 bg-gray-200 rounded-sm" name="description" onChange={inputChangeHandle} placeholder="Descripción del producto..." type="text" />}
-                    {(content === "product") && <label className="text-sign-in-or-sign-up-labels-desktop font-bold mb-1" htmlFor="">Precio del producto</label>}
-                    {(content === "product") && <input className="w-full py-3 px-2 mb-3 bg-gray-200 rounded-sm" name="price" onChange={inputChangeHandle} placeholder="Precio del producto..." type="number" />}
+                    {(content === "products") && <label className="text-sign-in-or-sign-up-labels-desktop font-bold mb-1" htmlFor="">Nombre del producto</label>}
+                    {(content === "products") && <input className="w-full py-3 px-2 mb-3 bg-gray-200 rounded-sm" name="title" onChange={inputChangeHandle} placeholder="Nombre del producto..." type="text" />}
+                    {(content === "products") && <label className="text-sign-in-or-sign-up-labels-desktop font-bold mb-1" htmlFor="">Descripción del producto</label>}
+                    {(content === "products") && <input className="w-full py-3 px-2 mb-3 bg-gray-200 rounded-sm" name="description" onChange={inputChangeHandle} placeholder="Descripción del producto..." type="text" />}
+                    {(content === "products") && <label className="text-sign-in-or-sign-up-labels-desktop font-bold mb-1" htmlFor="">Precio del producto</label>}
+                    {(content === "products") && <input className="w-full py-3 px-2 mb-3 bg-gray-200 rounded-sm" name="price" onChange={inputChangeHandle} placeholder="Precio del producto..." type="number" />}
 
                 </div>
 
                 <div className="flex flex-col w-95percent mx-auto">
-                    {(content === "course") && <label className="text-sign-in-or-sign-up-labels-desktop font-bold w-full text-left mb-1" htmlFor="">Si vas a crear un curso, se recomienda agregar un video con un pequeño fragmento de algún modulo. Asimismo, para que el curso tenga una miniatura, puedes subir una imagen, de dimensiones 16:9.</label>}
-                    {(content === "module") && <label className="text-sign-in-or-sign-up-labels-desktop font-bold w-full text-left mb-1" htmlFor="">Si vas a crear un módulo, tienes que subir a continuación el video corespondiente, así como una miniatura del mismo, de dimensiones 16:9.</label>}
+                    {(content === "courses") && <label className="text-sign-in-or-sign-up-labels-desktop font-bold w-full text-left mb-1" htmlFor="">Si vas a crear un curso, se recomienda agregar un video con un pequeño fragmento de algún modulo. Asimismo, para que el curso tenga una miniatura, puedes subir una imagen, de dimensiones 16:9.</label>}
+                    {(content === "modules") && <label className="text-sign-in-or-sign-up-labels-desktop font-bold w-full text-left mb-1" htmlFor="">Si vas a crear un módulo, tienes que subir a continuación el video corespondiente, así como una miniatura del mismo, de dimensiones 16:9.</label>}
                     <div className="flex flex-row justify-between w-full mx-auto h-28 mb-3">
-                        {(content === "course") && <div className="flex w-46percent h-full">
+                        {(content === "courses") && <div className="flex w-46percent h-full">
                             <VideoUpload additionalClassnames=" h-full" instructionForUpload="Miniatura para el curso" sendFile={(file) => setNewContent({...newContent, thumbnail: file})} typeOfFile="image" />
                         </div>}
-                        {(content === "course") && <div className="flex w-46percent">
+                        {(content === "courses") && <div className="flex w-46percent">
                             <VideoUpload additionalClassnames=" h-full" instructionForUpload="Video de fragmento del curso" sendFile={(file) => setNewContent({...newContent, video: file})} typeOfFile="video" />
                         </div>}
-                        {(content === "module") && <div className="flex w-46percent">
+                        {(content === "modules") && <div className="flex w-46percent">
                             <VideoUpload additionalClassnames=" h-full" instructionForUpload="Miniatura para el módulo" sendFile={(file) => setNewContent({...newContent, thumbnail: file})} typeOfFile="image" />
                         </div>}
-                        {(content === "module") && <div className="flex w-46percent">
+                        {(content === "modules") && <div className="flex w-46percent">
                             <VideoUpload additionalClassnames=" h-full" instructionForUpload="Video correspondiente al módulo" sendFile={(file) => setNewContent({...newContent, video: file})} typeOfFile="video" />
                         </div>}
-                        {(content === "product") && <div className="flex w-46percent mx-auto">
+                        {(content === "products") && <div className="flex w-46percent mx-auto">
                             <VideoUpload additionalClassnames=" h-full" instructionForUpload="Miniatura para el producto" sendFile={(file) => setNewContent({...newContent, thumbnail: file})} typeOfFile="image" />
                         </div>}
                     </div>

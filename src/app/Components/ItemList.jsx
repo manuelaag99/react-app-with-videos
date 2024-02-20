@@ -53,11 +53,11 @@ export default function ItemList ({ listCategory, listTitle }) {
                             return (
                                 <div className="flex flex-col w-full h-fit">
                                     <ListElement element={item} elementClassNames="" elementType={listCategory} key={index} index={index} onClickFunction={() => toggleSmallListVisibility(item)} />
-                                    {(listCategory === "course") && (idOfModulesListToShow === item.id) && <div className="flex flex-col justify-center items-start w-full h-fit">
+                                    {(listCategory === "courses") && (idOfModulesListToShow === item.id) && <div className="flex flex-col justify-center items-start w-full h-fit">
                                         {modules.map((module, index) => {
                                             if (module.course_id === item.id) {
                                                 return (
-                                                    <ListElement element={module} elementClassNames=" pl-6" elementType="module" elementName="Nombre de artículo" key={index} />
+                                                    <ListElement element={module} elementClassNames=" pl-6" elementType="modules" elementName="Nombre de artículo" key={index} />
                                                 )
                                             }
                                         })}

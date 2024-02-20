@@ -4,7 +4,7 @@ import { useState } from 'react';
 import CreateContentPopUp from './Portals/CreateContentPopUp';
 
 export default function ListElement ({ element, elementClassNames, elementType, onClickFunction }) {
-    const [openWindowForEdit, setOpenWindowForEdit] = useState();
+    const [openWindowForEdit, setOpenWindowForEdit] = useState(false);
 
     return (
         <div className={"flex flex-col sm:flex-row w-full py-3 px-2 hover:bg-gray-300 duration-200 cursor-pointer h-fit " + elementClassNames} onClick={onClickFunction}>

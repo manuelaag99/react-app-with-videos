@@ -30,7 +30,7 @@ export default function VideoPlayer ({ additionalClassNames, existingVideoSource
         return null;
     } else {
         return (
-            <div className={"flex w-full mx-auto my-5 " + additionalClassNames}>
+            <div className={"flex w-full mx-auto " + additionalClassNames}>
                 <video className="object-cover w-full rounded-md " controls >
                     <source src={videoToPlay} type="video/mp4" />
                     Your browser does not support this video tag.

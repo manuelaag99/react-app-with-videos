@@ -15,7 +15,7 @@ export default function CourseVideoPage ({ params }) {
     const [moduleInfo, setModuleInfo] = useState();
     async function fetchModuleInfo () {
         try {
-            const { data, error } = await supabase.from("cai-modules").select().eq("module_id", params.moduleId);
+            const { data, error } = await supabase.from("cai-modules").select().eq("id", params.moduleId);
             if (error) console.log (error);
             setModuleInfo(data[0]);
         } catch (err) {
@@ -36,11 +36,11 @@ export default function CourseVideoPage ({ params }) {
                 <TopNavigationBar />
                 <div className="flex flex-col justify-center sm:w-85percent w-95percent mx-auto bg-white rounded-md sm:mt-40 mt-20 mb-28 shadow-lg ">
                     <div className="flex flex-col w-full px-6 py-7">
-                        <div className="flex w-full py-2 font-bold font-amatic text-black text-page-title-desktop -mt-6">{moduleInfo.module_title}</div>
-                        <div className="flex w-full py-2 font-medium font-rubik text-gray-400">{moduleInfo.module_description}</div>
+                        <div className="flex w-full py-2 font-bold font-amatic text-black text-page-title-desktop -mt-6">{moduleInfo.title}</div>
+                        <div className="flex w-full py-2 font-medium font-rubik text-gray-400">{moduleInfo.description}</div>
                     </div>
-                    <div className="flex flex-col w-95percent mx-auto mb-10 ">
-                        <VideoPlayer additionalClassNames="" videoSource={moduleInfo.module_video_path} videoHeight="1080" videoWidth="1920" />
+                    <div className="flex flex-col w-9/10 mx-auto mb-10 ">
+                        <VideoPlayer additionalClassNames=" my-5" videoSource={moduleInfo.module_video_path} />
                     </div>
                     <div className="flex flex-col w-full px-6 py-3 h-fit mb-7">
                         <div className="flex w-full py-2">

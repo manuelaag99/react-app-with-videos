@@ -32,10 +32,12 @@ export default function CoursePage () {
                     <div className="flex justify-center w-full mt-32">
                         <p className="font-amatic text-section-title-desktop font-bold text-white drop-shadow-2xl">Cursos</p>
                     </div>
-                    <div className="flex justify-center w-full mt-8 mb-24">
-                        {courseIds && courseIds.map((courseId, index) => {
-                            return <CourseBox courseId={courseId.id} index={index} key={index} />
-                        })}
+                    <div className="flex flex-col justify-center w-full mt-8 mb-24">
+                        <div className="flex flex-col justify-center w-full items-start mx-auto">
+                            {courseIds && courseIds.map((courseId, index) => {
+                                return <CourseBox courseId={courseId.id} index={index} key={index} />
+                            })}
+                        </div>
                     </div>
                 </div>
             </div>

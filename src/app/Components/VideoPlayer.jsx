@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { supabase } from "../supabase/client";
 
-export default function VideoPlayer ({ additionalClassNames, videoSource, videoHeight, videoWidth }) {
+export default function VideoPlayer ({ additionalClassNames, existingVideoSource, videoSource }) {
     const [videoToPlay, setVideoToPlay] = useState();
 
     async function fetchVideo () {
@@ -15,7 +15,16 @@ export default function VideoPlayer ({ additionalClassNames, videoSource, videoH
     }
     useEffect(() => {
         fetchVideo();
-    }, [])
+    }, [videoSource])
+
+    // useEffect(() => {
+    //     if (existingVideoSource) {
+    //         setVideoToPlay(existingVideoSource);
+    //     }
+    // }, [existingVideoSource])
+
+    console.log(videoSource)
+    console.log(videoToPlay)
 
     if (!videoToPlay) {
         return null;

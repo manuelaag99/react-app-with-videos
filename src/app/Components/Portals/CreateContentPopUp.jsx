@@ -235,19 +235,19 @@ export default function CreateContentPopUp ({ content, existingElementToEdit, is
                     {(content === "modules") && <label className="text-sign-in-or-sign-up-labels-desktop font-bold w-full text-left mb-1" htmlFor="">Si vas a crear un módulo, tienes que subir a continuación el video corespondiente, así como una miniatura del mismo, de dimensiones 16:9.</label>}
                     <div className="flex flex-row justify-between w-full mx-auto h-28 mb-3">
                         {(content === "courses") && <div className="flex w-46percent h-full">
-                            <VideoUpload additionalClassnames=" h-full" instructionForUpload="Miniatura para el curso" sendFile={(file) => setNewContent({...newContent, thumbnail: file})} typeOfFile="image" />
+                            <VideoUpload additionalClassnames=" h-full" existingSource={newContent.thumbnail} instructionForUpload="Miniatura para el curso" sendFile={(file) => setNewContent({...newContent, thumbnail: file})} typeOfFile="image" />
                         </div>}
                         {(content === "courses") && <div className="flex w-46percent">
-                            <VideoUpload additionalClassnames=" h-full" instructionForUpload="Video de fragmento del curso" sendFile={(file) => setNewContent({...newContent, video: file})} typeOfFile="video" />
+                            <VideoUpload additionalClassnames=" h-full" existingSource={newContent.video} instructionForUpload="Video de fragmento del curso" sendFile={(file) => setNewContent({...newContent, video: file})} typeOfFile="video" />
                         </div>}
                         {(content === "modules") && <div className="flex w-46percent">
-                            <VideoUpload additionalClassnames=" h-full" instructionForUpload="Miniatura para el módulo" sendFile={(file) => setNewContent({...newContent, thumbnail: file})} typeOfFile="image" />
+                            <VideoUpload additionalClassnames=" h-full" existingSource={newContent.thumbnail} instructionForUpload="Miniatura para el módulo" sendFile={(file) => setNewContent({...newContent, thumbnail: file})} typeOfFile="image" />
                         </div>}
                         {(content === "modules") && <div className="flex w-46percent">
-                            <VideoUpload additionalClassnames=" h-full" instructionForUpload="Video correspondiente al módulo" sendFile={(file) => setNewContent({...newContent, video: file})} typeOfFile="video" />
+                            <VideoUpload additionalClassnames=" h-full" existingSource={newContent.video} instructionForUpload="Video correspondiente al módulo" sendFile={(file) => setNewContent({...newContent, video: file})} typeOfFile="video" />
                         </div>}
                         {(content === "products") && <div className="flex w-46percent mx-auto">
-                            <VideoUpload additionalClassnames=" h-full" instructionForUpload="Miniatura para el producto" sendFile={(file) => setNewContent({...newContent, thumbnail: file})} typeOfFile="image" />
+                            <VideoUpload additionalClassnames=" h-full" existingSource={newContent.thumbnail} instructionForUpload="Miniatura para el producto" sendFile={(file) => setNewContent({...newContent, thumbnail: file})} typeOfFile="image" />
                         </div>}
                     </div>
                 </div>

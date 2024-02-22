@@ -3,18 +3,21 @@ import InsertPhotoIcon from '@mui/icons-material/InsertPhoto';
 import VideocamIcon from '@mui/icons-material/Videocam';
 import Videocam from "@mui/icons-material/Videocam";
 import VideoPlayer from "./VideoPlayer";
+import { supabase } from "../supabase/client";
 
-export default function VideoUpload ({ additionalClassnames, instructionForUpload, sendFile, typeOfFile }) {
+export default function VideoUpload ({ additionalClassnames, existingSource, instructionForUpload, sendFile, typeOfFile }) {
     const imageSelectorRef = useRef();
     const [file, setFile] = useState();
     const [preview, setPreview] = useState();
 
     useEffect(() => {
-        if (!file) return;
-        const fileReader = new FileReader();
-        fileReader.onload = () => setPreview(fileReader.result);
-        fileReader.readAsDataURL(file);
-        sendFile(file);
+        if (!existingSource) {
+            if (!file) return;
+            const fileReader = new FileReader();
+            fileReader.onload = () => setPreview(fileReader.result);
+            fileReader.readAsDataURL(file);
+            sendFile(file);   
+        }
     }, [file])
 
     function cancelImageUpload () {
@@ -35,6 +38,36 @@ export default function VideoUpload ({ additionalClassnames, instructionForUploa
     function selectFileHandler (e) {
         imageSelectorRef.current.click(e);
     }
+
+    async function fetchExistingSource () {
+        if (typeOfFile === "image") {
+            try {
+                const { data, error } = await supabase.storage.from("cai-images").getPublicUrl(existingSource);
+                if (error) console.log(error);
+                setFile(data.publicUrl);
+                setPreview(data.publicUrl);
+            } catch (err) {
+                console.log(err);
+            }
+        } else {
+            try {
+                const { data, error } = await supabase.storage.from("cai-videos").getPublicUrl(existingSource);
+                if (error) console.log(error);
+                setFile(data.publicUrl);
+                setPreview(data.publicUrl);
+            } catch (err) {
+                console.log(err);
+            }
+        }
+    }
+
+    useEffect(() => {
+        if (existingSource) {
+            fetchExistingSource();
+        }
+    }, [existingSource])
+
+    console.log(preview)
 
     return (
         <div className={"flex justify-center w-full " + additionalClassnames}>

@@ -43,7 +43,7 @@ export default function ItemList ({ listCategory, listTitle }) {
 
         <div className="flex flex-col w-full mb-4 h-fit">
             {!itemsForList && <p className="text-center font-bold mt-2">No hay nada que mostrar.</p>}
-            {itemsForList && (itemsForList.length > 0) && <div className="flex flex-col w-full max-h-32">
+            {itemsForList && (itemsForList.length > 0) && <div className="flex flex-col w-full max-h-64">
                 <div className="flex w-full mt-2 mb-1 justify-center items-center">
                     <p className="text-center font-bold font-rubik">{listTitle}</p>
                 </div>

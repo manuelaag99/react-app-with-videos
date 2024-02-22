@@ -168,7 +168,7 @@ export default function CreateContentPopUp ({ content, existingElementToEdit, is
             if (!isCreate && (content === "courses")) {
                 setNewContent({ title: existingElementToEdit.title, description: existingElementToEdit.description, thumbnail: existingElementToEdit.course_image_path, video: existingElementToEdit.course_video_path });
             } else if (!isCreate && (content === "modules")) {
-                setNewContent({ title: existingElementToEdit.title, description: existingElementToEdit.description, thumbnail: existingElementToEdit.module_image_path, video: existingElementToEdit.module_video_path });
+                setNewContent({ title: existingElementToEdit.title, description: existingElementToEdit.description, courses: existingElementToEdit.course_id, thumbnail: existingElementToEdit.module_image_path, video: existingElementToEdit.module_video_path });
             } else if (!isCreate && (content === "products")) {
                 setNewContent({ title: existingElementToEdit.title, description: existingElementToEdit.description, price: existingElementToEdit.price, thumbnail: existingElementToEdit.product_image_path });
             }
@@ -185,6 +185,7 @@ export default function CreateContentPopUp ({ content, existingElementToEdit, is
         if (!errorWithCreatingContent) closeCreateContentPopUp();
     }
 
+    console.log(newContent)
     const createContentPopUp = (
         <div className="h-full">
             <div className="bg-black opacity-50 fixed top-0 bottom-0 w-screen h-screen z-20" onClick={closeCreateContentPopUp}></div>
@@ -213,7 +214,7 @@ export default function CreateContentPopUp ({ content, existingElementToEdit, is
                     {(content === "modules") && <input value={newContent.description} className="w-full py-3 px-2 mb-3 bg-gray-200 rounded-sm" name="description" onChange={inputChangeHandle} placeholder="Descripción del módulo..." type="text" />}
 
                     {(content === "modules") && <label className="text-sign-in-or-sign-up-labels-desktop font-bold mb-1" htmlFor="">Curso al que pertenece</label>}
-                    {(content === "modules") && <select className="w-full py-4 px-2 mb-3 bg-gray-200 rounded-sm" defaultValue="" name="courses" onChange={inputChangeHandle} onSelect={inputChangeHandle} placeholder="Nombre del curso..." >
+                    {(content === "modules") && <select value={newContent.courses} className="w-full py-4 pl-1 pr-4 mb-3 bg-gray-200 rounded-sm" defaultValue={existingElementToEdit ? newContent.courses : ""} name="courses" onChange={inputChangeHandle} onSelect={inputChangeHandle} placeholder="Nombre del curso..." >
                         <option className="w-full bg-gray-200 " value="select">--Selecciona un curso--</option>
                         {courses && courses.length > 0 && courses.map((course, index) => {
                             return (<option className="w-full bg-gray-200 " key={index} value={course.id}>{course.title}</option>)

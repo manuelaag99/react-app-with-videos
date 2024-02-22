@@ -203,18 +203,18 @@ export default function CreateContentPopUp ({ content, existingElementToEdit, is
 
                 <div className="flex flex-col mx-auto w-95percent my-3">
                     {(content === "courses") && <label className="text-sign-in-or-sign-up-labels-desktop font-bold mb-1" htmlFor="">Nombre del curso</label>}
-                    {(content === "courses") && <input value={newContent.title} className="w-full py-3 px-2 mb-3 bg-gray-200 rounded-sm" name="title" onChange={inputChangeHandle} placeholder={existingElementToEdit ? null : "Nombre del curso..."} type="text" />}
+                    {(content === "courses") && <input value={newContent.title} className="w-full py-2 px-2 mb-3 bg-gray-200 rounded-sm text-inputs-desktop" name="title" onChange={inputChangeHandle} placeholder={existingElementToEdit ? null : "Nombre del curso..."} type="text" />}
                     {(content === "courses") && <label className="text-sign-in-or-sign-up-labels-desktop font-bold mb-1" htmlFor="">Descripción del curso</label>}
-                    {(content === "courses") && <input value={newContent.description} className="w-full py-3 px-2 mb-3 bg-gray-200 rounded-sm" name="description" onChange={inputChangeHandle} placeholder="Descripción del curso..." type="text" />}
+                    {(content === "courses") && <input value={newContent.description} className="w-full py-2 px-2 mb-3 bg-gray-200 rounded-sm text-inputs-desktop" name="description" onChange={inputChangeHandle} placeholder="Descripción del curso..." type="text" />}
                     
                                         
                     {(content === "modules") && <label className="text-sign-in-or-sign-up-labels-desktop font-bold mb-1" htmlFor="">Nombre del módulo</label>}
-                    {(content === "modules") && <input value={newContent.title} className="w-full py-3 px-2 mb-3 bg-gray-200 rounded-sm" name="title" onChange={inputChangeHandle} placeholder="Nombre del módulo..." type="text" />}
+                    {(content === "modules") && <input value={newContent.title} className="w-full py-2 px-2 mb-3 bg-gray-200 rounded-sm text-inputs-desktop" name="title" onChange={inputChangeHandle} placeholder="Nombre del módulo..." type="text" />}
                     {(content === "modules") && <label className="text-sign-in-or-sign-up-labels-desktop font-bold mb-1" htmlFor="">Descripción del módulo</label>}
-                    {(content === "modules") && <input value={newContent.description} className="w-full py-3 px-2 mb-3 bg-gray-200 rounded-sm" name="description" onChange={inputChangeHandle} placeholder="Descripción del módulo..." type="text" />}
+                    {(content === "modules") && <input value={newContent.description} className="w-full py-2 px-2 mb-3 bg-gray-200 rounded-sm text-inputs-desktop" name="description" onChange={inputChangeHandle} placeholder="Descripción del módulo..." type="text" />}
 
                     {(content === "modules") && <label className="text-sign-in-or-sign-up-labels-desktop font-bold mb-1" htmlFor="">Curso al que pertenece</label>}
-                    {(content === "modules") && <select value={newContent.courses} className="w-full py-4 pl-1 pr-4 mb-3 bg-gray-200 rounded-sm" defaultValue={existingElementToEdit ? newContent.courses : ""} name="courses" onChange={inputChangeHandle} onSelect={inputChangeHandle} placeholder="Nombre del curso..." >
+                    {(content === "modules") && <select value={newContent.courses} className="w-full py-3 pl-1 pr-4 mb-3 bg-gray-200 rounded-sm text-inputs-desktop" defaultValue={existingElementToEdit ? newContent.courses : ""} name="courses" onChange={inputChangeHandle} onSelect={inputChangeHandle} placeholder="Nombre del curso..." >
                         <option className="w-full bg-gray-200 " value="select">--Selecciona un curso--</option>
                         {courses && courses.length > 0 && courses.map((course, index) => {
                             return (<option className="w-full bg-gray-200 " key={index} value={course.id}>{course.title}</option>)
@@ -222,9 +222,9 @@ export default function CreateContentPopUp ({ content, existingElementToEdit, is
                     </select>}
 
                     {(content === "products") && <label className="text-sign-in-or-sign-up-labels-desktop font-bold mb-1" htmlFor="">Nombre del producto</label>}
-                    {(content === "products") && <input value={newContent.title} className="w-full py-3 px-2 mb-3 bg-gray-200 rounded-sm" name="title" onChange={inputChangeHandle} placeholder="Nombre del producto..." type="text" />}
+                    {(content === "products") && <input value={newContent.title} className="w-full py-2 px-2 mb-3 bg-gray-200 rounded-sm text-inputs-desktop" name="title" onChange={inputChangeHandle} placeholder="Nombre del producto..." type="text" />}
                     {(content === "products") && <label className="text-sign-in-or-sign-up-labels-desktop font-bold mb-1" htmlFor="">Descripción del producto</label>}
-                    {(content === "products") && <input value={newContent.description} className="w-full py-3 px-2 mb-3 bg-gray-200 rounded-sm" name="description" onChange={inputChangeHandle} placeholder="Descripción del producto..." type="text" />}
+                    {(content === "products") && <input value={newContent.description} className="w-full py-2 px-2 mb-3 bg-gray-200 rounded-sm text-inputs-desktop" name="description" onChange={inputChangeHandle} placeholder="Descripción del producto..." type="text" />}
                     {(content === "products") && <label className="text-sign-in-or-sign-up-labels-desktop font-bold mb-1" htmlFor="">Precio del producto</label>}
                     {(content === "products") && <input value={newContent.price} className="w-full py-3 px-2 mb-3 bg-gray-200 rounded-sm" name="price" onChange={inputChangeHandle} placeholder="Precio del producto..." type="number" />}
 

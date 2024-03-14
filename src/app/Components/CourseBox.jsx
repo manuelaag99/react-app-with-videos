@@ -28,7 +28,7 @@ export default function CourseBox ({ courseId, index }) {
     console.log(courseInfo)
 
     return (
-        <div className="flex flex-col sm:flex-row h-fit px-6 py-6 my-4 bg-white mx-auto hover:bg-gray-300 duration-300 w-85percent shadow-lg rounded-lg cursor-pointer">
+        <div className="flex flex-col sm:flex-row h-fit px-6 py-6 my-4 bg-white mx-auto hover:bg-gray-300 duration-300 w-85percent shadow-lg rounded-lg cursor-pointer" onClick={() => router.push("/courses/" + courseId)}>
 
             <div className="flex w-full sm:w-1/10 justify-center sm:mb-0 mb-5 h-44 sm:h-24">
                 {courseInfo && courseInfo.course_image_path && <Image additionalClassNames="w-full" imageSource={courseInfo.course_image_path} />}

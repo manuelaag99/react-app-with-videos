@@ -4,6 +4,7 @@ import TopNavigationBar from '@/app/Components/TopNavigationBar';
 import { useEffect, useState } from 'react';
 import ModuleBox from '@/app/Components/ModuleBox';
 import { supabase } from '@/app/supabase/client';
+import Image from '@/app/Components/Image';
 
 export default function CoursePage ({ params }) {
     const [courseInfo, setCourseInfo] = useState();
@@ -49,16 +50,10 @@ export default function CoursePage ({ params }) {
                                 {courseInfo && <p className="font-medium text-left pr-6 text-gray-400 font-rubik">{courseInfo.description}</p>}
                             </div>
                         </div>
-                        <div className="flex w-full justify-start">
-                            <div className="flex flex-row w-full justify-start">
-                                <p className="text-left text-gray-400 mr-2"><AccessTimeIcon fontSize="medium" /></p>
-                                {!courseInfo && <div className="rounded-lg bg-gray-300 w-3/10 h-5 mt-1"></div>}
-                            </div>
-                        </div>
                     </div>
 
                     <div className="flex flex-col sm:w-46percent w-full mb-5">
-                        <img src="" alt="" />
+                        {courseInfo && courseInfo.course_image_path && <Image additionalClassNames="w-full" imageSource={courseInfo.course_image_path} />}
                     </div>
                 </div>
 

@@ -31,11 +31,22 @@ export default function SignInOrSignUpPopUp ({ onClose, open, openSignUp }) {
         setSignInOrSignUpInputs({ ...signInOrSignUpInputs, [inputField]: inputValue });
     }
 
-    let newUserId;
+    const [signUpData, setSignUpData] = useState();
     async function signUp () {
-        newUserId = uuidv4();
         try {
-            const { error } = await supabase.from("cai-users").insert({ user_id: newUserId, username: signInOrSignUpInputs.userName, displayName: signInOrSignUpInputs.displayName, email: signInOrSignUpInputs.email, password: signInOrSignUpInputs.password });
+            const { data, error } = await supabase.auth.signUp({
+                email: signInOrSignUpInputs.email,
+                password: signInOrSignUpInputs.password 
+            })
+            if (error) console.log(error);
+            if (!error) setSignUpData(data)
+        } catch (err) {
+            console.log(err);
+        }
+    }
+    async function createUserInDatabase () {
+        try {
+            const { error } = await supabase.from("cai-users").insert({ user_id: signUpData.user.id, username: signInOrSignUpInputs.userName, displayName: signInOrSignUpInputs.displayName, email: signInOrSignUpInputs.email, password: signInOrSignUpInputs.password });
             if (error) setErrorWithSignInOrSignUp(error);
         } catch (err) {
             setErrorWithSignInOrSignUp(err);
@@ -45,10 +56,29 @@ export default function SignInOrSignUpPopUp ({ onClose, open, openSignUp }) {
             setOpenGeneralPopUp(true);
         }
     }
+    useEffect(() => {
+        if (signUpData) {
+            createUserInDatabase();
+        }
+    }, [signUpData])
 
+    async function signIn () {
+        try {
+            const { error } = await supabase.auth.signInWithPassword({
+                email: signInOrSignUpInputs.email,
+                password: signInOrSignUpInputs.password 
+            })
+            if (error) console.log(error);
+        } catch (err) {
+            console.log(err);
+        }
+    }
+    
     function actionButton () {
         if (isSignUp) {
             signUp();
+        } else if (!isSignUp) {
+            signIn();
         }
     }
 

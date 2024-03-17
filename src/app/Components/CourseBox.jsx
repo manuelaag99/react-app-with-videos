@@ -24,9 +24,6 @@ export default function CourseBox ({ courseId, index }) {
         fetchCourseInfo();
     }, [])
 
-    console.log(courseId)
-    console.log(courseInfo)
-
     return (
         <div className="flex flex-col md:flex-row h-fit px-6 py-6 my-4 bg-white mx-auto hover:bg-gray-300 duration-300 w-85percent shadow-lg rounded-lg cursor-pointer" onClick={() => router.push("/courses/" + courseId)}>
 

@@ -7,7 +7,6 @@ import { useRouter } from "next/navigation";
 export default function ModuleBox ({ index, moduleId }) {
     const router = useRouter();
 
-    console.log(moduleId)
     const [moduleInfo, setModuleInfo] = useState();
     async function fetchModuleInfo () {
         try {

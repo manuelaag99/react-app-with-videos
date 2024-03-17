@@ -32,7 +32,7 @@ export default function CourseBox ({ courseId, index }) {
 
             <div className="flex w-full md:w-2/10 justify-center md:mb-0 mb-5 h-44 md:h-24">
                 {courseInfo && courseInfo.course_image_path && <Image additionalClassNames="w-full" imageSource={courseInfo.course_image_path} />}
-                {courseInfo && !courseInfo.course_image_path && <div className="w-full bg-gray-300 rounded-md"></div>}
+                {!courseInfo || !courseInfo.course_image_path && <div className="w-full bg-gray-300 rounded-md"></div>}
             </div>
 
             <div className="flex flex-col justify-between w-full md:w-8/10">

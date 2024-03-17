@@ -36,10 +36,10 @@ export default function CoursePage ({ params }) {
     return (
         <div className="flex flex-col justify-center w-full">
             <TopNavigationBar />
-            <div className="flex flex-col sm:w-85percent w-95percent mx-auto justify-center bg-white rounded-md sm:mt-40 mt-20 mb-28 pb-16 shadow-2xl">
+            <div className="flex flex-col md:w-85percent w-95percent mx-auto justify-center bg-white rounded-md md:mt-40 mt-20 mb-28 pb-16 shadow-2xl">
                 
-                <div className="flex sm:flex-row flex-col-reverse sm:justify-between justify-center w-full p-6">
-                    <div className="flex flex-col sm:w-1/2 w-full items-center mb-14">
+                <div className="flex md:flex-row flex-col-reverse md:justify-between justify-center w-full p-6">
+                    <div className="flex flex-col md:w-1/2 w-full items-center mb-14">
                         <div className="flex flex-col w-full justify-start mb-10">
                             <div className="flex w-full mb-6">
                                 {!courseInfo && <div className="rounded-2xl bg-gray-700 w-4/10 h-14 mt-1"></div>}
@@ -52,8 +52,9 @@ export default function CoursePage ({ params }) {
                         </div>
                     </div>
 
-                    <div className="flex flex-col sm:w-46percent w-full mb-5">
+                    <div className="flex flex-col md:w-46percent w-full mb-5">
                         {courseInfo && courseInfo.course_image_path && <Image additionalClassNames="w-full" imageSource={courseInfo.course_image_path} />}
+                        {!courseInfo || !courseInfo.course_image_path && <div className="w-full bg-gray-300 rounded-md"></div>}
                     </div>
                 </div>
 

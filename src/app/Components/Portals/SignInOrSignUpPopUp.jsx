@@ -39,7 +39,8 @@ export default function SignInOrSignUpPopUp ({ onClose, open, openSignUp }) {
                 password: signInOrSignUpInputs.password 
             })
             if (error) console.log(error);
-            if (!error) setSignUpData(data)
+            if (!error) setSignUpData(data);
+            console.log(data)
         } catch (err) {
             console.log(err);
         }
@@ -54,6 +55,7 @@ export default function SignInOrSignUpPopUp ({ onClose, open, openSignUp }) {
         if (!errorWithSignInOrSignUp) {
             setGeneralPopUp({ message: "Exitosamente se creó tu cuenta." , textForButtonOne: "Aceptar", textForButtonTwo: "" });
             setOpenGeneralPopUp(true);
+            auth.login(signUpData.user.id, signUpData.session.access_token);
         }
     }
     useEffect(() => {
@@ -62,6 +64,7 @@ export default function SignInOrSignUpPopUp ({ onClose, open, openSignUp }) {
         }
     }, [signUpData])
 
+    console.log(signUpData)
     async function signIn () {
         try {
             const { error } = await supabase.auth.signInWithPassword({

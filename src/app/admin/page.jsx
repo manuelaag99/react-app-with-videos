@@ -5,11 +5,9 @@ import CreateContentPopUp from "../Components/Portals/CreateContentPopUp";
 import TopNavigationBar from "../Components/TopNavigationBar";
 import ItemList from "../Components/ItemList";
 import { supabase } from "../supabase/client";
-import { AuthContext, AuthProvider } from "../utils/AuthContext";
 import { useRouter } from "next/navigation";
 
 export default function AdminPage () {
-    const auth = useContext(AuthContext);
     const router = useRouter();
     const [contentToCreate, setContentToCreate] = useState();
     const [openCreatePortal, setOpenCreatePortal] = useState();
@@ -90,7 +88,6 @@ export default function AdminPage () {
         )
     } else {
         return (
-            <AuthProvider>
                 <div>
                     <TopNavigationBar />
                     <div className="flex flex-col sm:w-85percent w-95percent mx-auto justify-center items-start bg-white rounded-md sm:mt-40 mt-20 mb-28 pb-20 pt-7 px-7 shadow-2xl">
@@ -182,7 +179,6 @@ export default function AdminPage () {
                     </div>
                     <CreateContentPopUp content={contentToCreate} isCreate={true} onClose={() => setOpenCreatePortal(false)} open={openCreatePortal} />
                 </div>
-            </AuthProvider>
         )
     }
 }

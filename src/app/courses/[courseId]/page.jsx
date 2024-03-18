@@ -1,15 +1,11 @@
 "use client"
-import AccessTimeIcon from '@mui/icons-material/AccessTime';
 import TopNavigationBar from '@/app/Components/TopNavigationBar';
 import { useContext, useEffect, useState } from 'react';
 import ModuleBox from '@/app/Components/ModuleBox';
 import { supabase } from '@/app/supabase/client';
 import Image from '@/app/Components/Image';
-import { AuthContext, AuthProvider } from '@/app/utils/AuthContext';
 
 export default function CoursePage ({ params }) {
-    const auth = useContext(AuthContext)
-    console.log(auth)
     const [courseInfo, setCourseInfo] = useState();
     async function fetchCourseInfo () {
         try {

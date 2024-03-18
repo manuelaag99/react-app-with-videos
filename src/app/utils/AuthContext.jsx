@@ -1,4 +1,5 @@
-const { createContext, useState, useCallback } = require("react");
+"use client"
+const { createContext, useState, useCallback, useContext } = require("react");
 
 const AuthContext = createContext({
     isLoggedIn: false,
@@ -8,11 +9,10 @@ const AuthContext = createContext({
     logout: () => {}
 });
 
-const AuthProvider = ({ children }) => {
+export function AuthProvider ({ children }) {
     const [ isLoggedIn, setIsLoggedIn ] = useState(false);
-
-    const [userId, setUserId] = useState();
-    const [token, setToken] = useState();
+    const [ userId, setUserId ] = useState();
+    const [ token, setToken ] = useState();
 
     const logIn = useCallback((uId, token) => {
         setUserId(uId);
@@ -20,9 +20,10 @@ const AuthProvider = ({ children }) => {
     }, [])
 
     const logOut = useCallback(() => {
-        setUserId(null);
         setToken(null);
+        setUserId(null);
     }, [])
+
 
     return (
         <AuthContext.Provider value={{ isLoggedIn: token, token: token, userId: userId, login: logIn, logout: logOut }}>
@@ -31,4 +32,8 @@ const AuthProvider = ({ children }) => {
     )
 }
 
-export { AuthContext, AuthProvider }
+// export { AuthContext, AuthProvider }
+
+export function useAuthContext () {
+    return useContext(AuthContext);
+}

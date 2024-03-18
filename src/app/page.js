@@ -3,7 +3,6 @@ import { useEffect, useState } from "react";
 import TopNavigationBar from "./Components/TopNavigationBar";
 import { supabase } from "./supabase/client";
 import Button from "./Components/Button";
-import { AuthContext, AuthProvider } from "./utils/AuthContext";
 
 export default function Home() {
 	const [homePhoto, setHomePhoto] = useState();
@@ -92,7 +91,6 @@ export default function Home() {
 
 	if (homePhoto && caiLogo) {
 		return (
-			<AuthProvider>
 				<div className="flex flex-col justify-center w-full mt-20 bg">
 				<TopNavigationBar />
 					<div className="flex w-full h-64 z-4">
@@ -134,7 +132,6 @@ export default function Home() {
 					</div>}
 		
 				</div>
-			</AuthProvider>
 		)
 	}
 }

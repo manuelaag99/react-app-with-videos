@@ -3,13 +3,13 @@ import { useContext, useEffect, useState } from "react";
 import { createPortal } from "react-dom"
 import SignInOrSignUpPopUp from "./SignInOrSignUpPopUp";
 import { supabase } from "@/app/supabase/client";
-import { AuthContext, AuthProvider } from "@/app/utils/AuthContext";
+import { useAuthContext } from "@/app/utils/AuthContext";
 
 export default function MobileMenu ({ onClose, open }) {
-    const auth = useContext(AuthContext);
+    const auth = useAuthContext()
+    console.log(auth)
     const [openSignInOrSignUpWindow, setOpenSignInOrSignUpWindow] = useState();
     const [isItSignUp, setIsItSignUp] = useState();
-
     function openSignUpWindow () {
         setIsItSignUp(true);
         setOpenSignInOrSignUpWindow(true);
@@ -33,9 +33,7 @@ export default function MobileMenu ({ onClose, open }) {
         fetchAdmins();
     }, [])
 
-    console.log(auth)
     const mobileMenu = (
-        <AuthProvider>
             <div>
                 <div className="bg-black opacity-50 fixed top-0 bottom-0 w-screen h-screen z-30" onClick={onClose}></div>
                 <div className="flex flex-row fixed z-50 top-0 left-[20%] w-full h-screen ">
@@ -79,7 +77,6 @@ export default function MobileMenu ({ onClose, open }) {
                 </div>
                 <SignInOrSignUpPopUp onClose={() => setOpenSignInOrSignUpWindow(false)} open={openSignInOrSignUpWindow} openSignUp={isItSignUp} />
             </div>
-        </AuthProvider>
     )
 
     if (open && admins) {

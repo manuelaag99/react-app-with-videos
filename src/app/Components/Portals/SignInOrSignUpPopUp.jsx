@@ -1,4 +1,3 @@
-import { AuthContext } from "@/app/context/AuthContext";
 import { supabase } from "@/app/supabase/client";
 import { useContext, useEffect, useState } from "react";
 import { createPortal } from "react-dom";
@@ -7,10 +6,10 @@ import GeneralPopUp from "./GeneralPopUp";
 
 import VisibilityIcon from '@mui/icons-material/Visibility';
 import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
+import { useAuthContext } from "@/app/utils/AuthContext";
 
 export default function SignInOrSignUpPopUp ({ onClose, open, openSignUp }) {
-    const auth = useContext(AuthContext);
-
+    const auth = useAuthContext();
     const [errorWithSignInOrSignUp, setErrorWithSignInOrSignUp] = useState();
     const [openGeneralPopUp, setOpenGeneralPopUp] = useState(false);
     const [generalPopUp, setGeneralPopUp] = useState({ message: "", textForButtonOne: "", textForButtonTwo: ""});

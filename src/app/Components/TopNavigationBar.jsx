@@ -4,10 +4,10 @@ import { supabase } from '../supabase/client';
 import Link from 'next/link';
 import MobileMenu from './Portals/MobileMenu';
 import SignInOrSignUpPopUp from './Portals/SignInOrSignUpPopUp';
-import { AuthContext } from '../context/AuthContext';
+import { useAuthContext } from '../utils/AuthContext';
 
 export default function TopNavigationBar ({}) {
-    const auth = useContext(AuthContext);
+    const auth = useAuthContext();
     const [caiLogo, setCaiLogo] = useState();
     async function fetchLogo () {
         try {

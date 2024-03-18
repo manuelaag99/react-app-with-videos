@@ -1,7 +1,6 @@
 import { supabase } from "@/app/supabase/client";
-import { useContext, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { createPortal } from "react-dom";
-import { v4 as uuidv4 } from "uuid";
 import GeneralPopUp from "./GeneralPopUp";
 
 import VisibilityIcon from '@mui/icons-material/Visibility';
@@ -63,18 +62,31 @@ export default function SignInOrSignUpPopUp ({ onClose, open, openSignUp }) {
         }
     }, [signUpData])
 
-    console.log(signUpData)
+    const [signInData, setSignInData] = useState();
     async function signIn () {
         try {
-            const { error } = await supabase.auth.signInWithPassword({
+            const { data, error } = await supabase.auth.signInWithPassword({
                 email: signInOrSignUpInputs.email,
                 password: signInOrSignUpInputs.password 
             })
-            if (error) console.log(error);
+            if (error) setErrorWithSignInOrSignUp(error);
+            setSignInData(data)
         } catch (err) {
-            console.log(err);
+            setErrorWithSignInOrSignUp(err);
         }
     }
+    function logInExistingUser () {
+        if (!errorWithSignInOrSignUp) {
+            setGeneralPopUp({ message: "Exitosamente iniciaste sesión." , textForButtonOne: "Aceptar", textForButtonTwo: "" });
+            setOpenGeneralPopUp(true);
+            auth.login(signInData.user.id, signInData.session.access_token);
+        }
+    }
+    useEffect(() => {
+        if (signInData) {
+            logInExistingUser();
+        }
+    }, [signInData])
     
     function actionButton () {
         if (isSignUp) {

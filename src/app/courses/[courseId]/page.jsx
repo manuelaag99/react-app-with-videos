@@ -4,8 +4,10 @@ import { useContext, useEffect, useState } from 'react';
 import ModuleBox from '@/app/Components/ModuleBox';
 import { supabase } from '@/app/supabase/client';
 import Image from '@/app/Components/Image';
+import { useAuthContext } from '@/app/utils/AuthContext';
 
 export default function CoursePage ({ params }) {
+    const auth = useAuthContext();
     const [courseInfo, setCourseInfo] = useState();
     async function fetchCourseInfo () {
         try {

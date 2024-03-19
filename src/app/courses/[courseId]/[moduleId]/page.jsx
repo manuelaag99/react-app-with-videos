@@ -3,8 +3,10 @@ import { useEffect, useState } from "react";
 import TopNavigationBar from "../../../Components/TopNavigationBar";
 import VideoPlayer from "../../../Components/VideoPlayer";
 import { supabase } from "@/app/supabase/client";
+import { useAuthContext } from "@/app/utils/AuthContext";
 
 export default function CourseVideoPage ({ params }) {
+    const auth = useAuthContext();
 
     const [moduleInfo, setModuleInfo] = useState();
     async function fetchModuleInfo () {

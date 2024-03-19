@@ -3,8 +3,10 @@ import { useEffect, useState } from "react";
 import TopNavigationBar from "./Components/TopNavigationBar";
 import { supabase } from "./supabase/client";
 import Button from "./Components/Button";
+import { useAuthContext } from "./utils/AuthContext";
 
 export default function Home() {
+    const auth = useAuthContext();
 	const [homePhoto, setHomePhoto] = useState();
   	async function fetchHomePhotos () {
     	try {

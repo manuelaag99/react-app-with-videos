@@ -6,8 +6,10 @@ import TopNavigationBar from "../Components/TopNavigationBar";
 import ItemList from "../Components/ItemList";
 import { supabase } from "../supabase/client";
 import { useRouter } from "next/navigation";
+import { useAuthContext } from "../utils/AuthContext";
 
 export default function AdminPage () {
+    const auth = useAuthContext();
     const router = useRouter();
     const [contentToCreate, setContentToCreate] = useState();
     const [openCreatePortal, setOpenCreatePortal] = useState();

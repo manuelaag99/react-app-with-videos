@@ -3,8 +3,10 @@ import { useEffect, useState } from 'react';
 import TopNavigationBar from '../Components/TopNavigationBar';
 import { supabase } from '../supabase/client';
 import CourseBox from '../Components/CourseBox';
+import { useAuthContext } from '../utils/AuthContext';
 
 export default function CoursePage () {
+    const auth = useAuthContext();
     const [courseIds, setCourseIds] = useState();
     async function fetchCourses () {
         try {

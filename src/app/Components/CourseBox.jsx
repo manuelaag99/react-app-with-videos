@@ -1,11 +1,9 @@
-import Button from "./Button";
-
-import AccessTimeIcon from '@mui/icons-material/AccessTime';
-import MoreVertIcon from '@mui/icons-material/MoreVert';
 import { useEffect, useState } from "react";
 import { supabase } from "../supabase/client";
-import Image from "./Image";
 import { useRouter } from "next/navigation";
+
+import Button from "./Button";
+import Image from "./Image";
 
 export default function CourseBox ({ courseId, index }) {
     const router = useRouter();
@@ -35,25 +33,10 @@ export default function CourseBox ({ courseId, index }) {
             <div className="flex flex-col justify-between w-full md:w-8/10">
 
                 <div className="flex w-full justify-between">
-
                     <div className="flex md:w-fit w-full float-left md:pl-5 mr-4">
                         {courseInfo && courseInfo.title && <p className="font-bold md:text-left font-amatic text-course-box-title-desktop text-black -mt-1 ">{courseInfo.title}</p>}
                         {courseInfo && !courseInfo.title && <div className="bg-gray-700 rounded-2xl w-9/10 h-9 my-2 "></div>}
                     </div>
-
-                    <div className="flex w-fit float-right">
-                        <div className="flex">
-                            <div className="w-fit h-fit">
-                                <p><AccessTimeIcon color="#ddd" fontSize="small"/></p>
-                            </div>
-                            <div className="w-fit h-fit">
-                                {courseInfo && courseInfo.course_length && <p className="font-amatic font-bold text-gray-500 ml-2">{courseInfo.course_length}</p>}
-                            </div>
-                        </div>
-                        
-                        
-                    </div>
-
                 </div>
 
                 <div className="flex md:flex-row flex-col w-full md:w-fit justify-center md:justify-between md:pl-5">

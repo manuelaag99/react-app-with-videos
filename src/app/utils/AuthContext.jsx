@@ -17,11 +17,13 @@ export function AuthProvider ({ children }) {
     const logIn = useCallback((uId, token) => {
         setUserId(uId);
         setToken(token);
+        setIsLoggedIn(token);
     }, [])
 
     const logOut = useCallback(() => {
         setToken(null);
         setUserId(null);
+        setIsLoggedIn()
     }, [])
 
 

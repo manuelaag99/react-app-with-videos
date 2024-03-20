@@ -19,20 +19,35 @@ export default function TopNavigationBar ({}) {
         }
     }
     
-    const [admins, setAdmins] = useState()
-    async function fetchAdmins () {
-        try {
-            const { data, error } = await supabase.from("cai-admins").select().eq("user_id", auth.uId);
-            if (error) console.log(error);
-            if (data) setAdmins(data);
-        } catch (err) {
-            console.log(err);
-        }
-    }
     useEffect(() => {
         fetchLogo();
+    }, [])
+
+    const [websiteAdmins, setWebsiteAdmins] = useState();
+	async function fetchAdmins () {
+		try {
+			const { data, error } = await supabase.from("cai-admins").select();
+			if (error) console.log (error);
+			setWebsiteAdmins(data);
+		} catch (err) {
+			console.log(err);
+		}
+	}
+    useEffect(() => {
         fetchAdmins();
     }, [])
+    const [isUserAdmin, setIsUserAdmin] = useState(false);
+    useEffect(() => {
+        if (websiteAdmins && (websiteAdmins.length > 0)) {
+            websiteAdmins.some((admin) => {
+                if (auth.userId === admin.user_id) {
+                    setIsUserAdmin(true);
+                } else {
+                    setIsUserAdmin(false);
+                }
+            })
+        }
+    }, [auth, websiteAdmins])
 
     const [isMobileMenuOpen, setIsMobileMenuOpen] = useState();
 
@@ -48,7 +63,7 @@ export default function TopNavigationBar ({}) {
         setOpenSignInOrSignUpWindow(true);
     }
 
-    if (admins && caiLogo) {
+    if (websiteAdmins && caiLogo) {
         return (
             <div className="flex flex-col w-full h-fit px-3 py-2 bg-var-1 fixed top-0 shadow-xl z-20">
                 <div className="flex flex-row justify-between w-full h-fit">
@@ -81,7 +96,7 @@ export default function TopNavigationBar ({}) {
                                 Iniciar sesión
                             </p>
                         </div>}
-                        {admins && (admins.length > 0) && admins.includes(auth.uId) && <Link className="px-3 cursor-pointer pt-2" href="/admin/">
+                        {websiteAdmins && (websiteAdmins.length > 0) && isUserAdmin && <Link className="px-3 cursor-pointer pt-2" href="/admin/">
                             <p className="text-white hover:text-var-1-hovered duration-200 whitespace-nowrap mt-1">
                                 Administrar
                             </p>

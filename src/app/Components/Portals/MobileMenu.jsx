@@ -7,7 +7,6 @@ import { useAuthContext } from "@/app/utils/AuthContext";
 
 export default function MobileMenu ({ onClose, open }) {
     const auth = useAuthContext()
-    console.log(auth)
     const [openSignInOrSignUpWindow, setOpenSignInOrSignUpWindow] = useState();
     const [isItSignUp, setIsItSignUp] = useState();
     function openSignUpWindow () {
@@ -19,19 +18,32 @@ export default function MobileMenu ({ onClose, open }) {
         setOpenSignInOrSignUpWindow(true);
     }
 
-    const [admins, setAdmins] = useState()
-    async function fetchAdmins () {
-        try {
-            const { data, error } = await supabase.from("cai-admins").select().eq("user_id", auth.uId);
-            if (error) console.log(error);
-            if (data) setAdmins(data);
-        } catch (err) {
-            console.log(err);
-        }
-    }
+    const [websiteAdmins, setWebsiteAdmins] = useState();
+	async function fetchAdmins () {
+		try {
+			const { data, error } = await supabase.from("cai-admins").select();
+			if (error) console.log (error);
+			setWebsiteAdmins(data);
+		} catch (err) {
+			console.log(err);
+		}
+	}
     useEffect(() => {
         fetchAdmins();
     }, [])
+    const [isUserAdmin, setIsUserAdmin] = useState(false);
+    useEffect(() => {
+        if (websiteAdmins && (websiteAdmins.length > 0)) {
+            websiteAdmins.some((admin) => {
+                if (auth.userId === admin.user_id) {
+                    setIsUserAdmin(true);
+                } else {
+                    setIsUserAdmin(false);
+                }
+            })
+        }
+    }, [auth, websiteAdmins])
+
 
     const mobileMenu = (
             <div>
@@ -58,7 +70,7 @@ export default function MobileMenu ({ onClose, open }) {
                                 Iniciar sesión
                             </p>
                         </div>}
-                        {admins && (admins.length > 0) && admins.includes(auth.uId) && <Link className="flex justify-center py-6 px-3 text-white hover:text-var-1-hovered hover:bg-white duration-200 " href="/admin/">
+                        {websiteAdmins && (websiteAdmins.length > 0) && isUserAdmin && <Link className="flex justify-center py-6 px-3 text-white hover:text-var-1-hovered hover:bg-white duration-200 " href="/admin/">
                             <p className="text-left w-8/10 whitespace-nowrap">
                                 Administrar
                             </p>
@@ -79,7 +91,7 @@ export default function MobileMenu ({ onClose, open }) {
             </div>
     )
 
-    if (open && admins) {
+    if (open && websiteAdmins) {
         return createPortal(mobileMenu, document.body)
     } else {
         null

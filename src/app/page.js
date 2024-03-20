@@ -85,6 +85,7 @@ export default function Home() {
 		fetchHomeInfo();
 		fetchCoursePhotoPath();
 		fetchProductsPhotoPath();
+		fetchAdmins();
   	}, [])
 
 	useEffect(() => {

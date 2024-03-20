@@ -4,6 +4,7 @@ import TopNavigationBar from "../../../Components/TopNavigationBar";
 import VideoPlayer from "../../../Components/VideoPlayer";
 import { supabase } from "@/app/supabase/client";
 import { useAuthContext } from "@/app/utils/AuthContext";
+import UnavailableContent from "@/app/Components/UnavailableContent";
 
 export default function CourseVideoPage ({ params }) {
     const auth = useAuthContext();
@@ -60,7 +61,9 @@ export default function CourseVideoPage ({ params }) {
 
     if (!moduleInfo || !coursesThatTheUserHasPurchased) {
         return null;
-    } else {
+    } else if (coursesThatTheUserHasPurchased && !hasUserPurchasedThisCourse) {
+        return (<UnavailableContent />)
+    } else if (coursesThatTheUserHasPurchased && hasUserPurchasedThisCourse) {
         return (
             <div className="flex flex-col justify-center w-full ">
                 <TopNavigationBar />
@@ -71,11 +74,6 @@ export default function CourseVideoPage ({ params }) {
                     </div>}
                     {coursesThatTheUserHasPurchased && hasUserPurchasedThisCourse && <div className="flex flex-col w-9/10 mx-auto mb-10 ">
                         <VideoPlayer additionalClassNames=" my-5" videoSource={moduleInfo.module_video_path} />
-                    </div>}
-                    {coursesThatTheUserHasPurchased && !hasUserPurchasedThisCourse && <div>
-                        <p className="text-center text-black">
-                            Lo sentimos, no tienes acceso a esto porque no has comprado este curso.
-                        </p>
                     </div>}
                     <div className="flex flex-col w-full px-10 py-3 h-fit mb-7">
                         <div className="flex w-full py-2">

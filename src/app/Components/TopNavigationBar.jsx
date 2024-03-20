@@ -5,9 +5,11 @@ import Link from 'next/link';
 import MobileMenu from './Portals/MobileMenu';
 import SignInOrSignUpPopUp from './Portals/SignInOrSignUpPopUp';
 import { useAuthContext } from '../utils/AuthContext';
+import { useRouter } from 'next/navigation';
 
 export default function TopNavigationBar ({}) {
     const auth = useAuthContext();
+    const router = useRouter();
     const [caiLogo, setCaiLogo] = useState();
     async function fetchLogo () {
         try {
@@ -63,6 +65,11 @@ export default function TopNavigationBar ({}) {
         setOpenSignInOrSignUpWindow(true);
     }
 
+    function signOutFunction () {
+        auth.logout();
+        router.push("/");
+    }
+
     if (websiteAdmins && caiLogo) {
         return (
             <div className="flex flex-col w-full h-fit px-3 py-2 bg-var-1 fixed top-0 shadow-xl z-20">
@@ -101,7 +108,7 @@ export default function TopNavigationBar ({}) {
                                 Administrar
                             </p>
                         </Link>}
-                        {auth.isLoggedIn && <div className="px-3 cursor-pointer pt-2">
+                        {auth.isLoggedIn && <div className="px-3 cursor-pointer pt-2" onClick={signOutFunction}>
                             <p className="text-white hover:text-var-1-hovered duration-200 whitespace-nowrap mt-1">
                                 Cerrar sesión
                             </p>

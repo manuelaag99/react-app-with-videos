@@ -85,14 +85,13 @@ export default function Home() {
 		fetchHomeInfo();
 		fetchCoursePhotoPath();
 		fetchProductsPhotoPath();
-		fetchAdmins();
   	}, [])
 
 	useEffect(() => {
 		fetchPhotos();
 	}, [coursesPhotoPath, productsPhotoPath])
 
-	if (homePhoto && caiLogo) {
+	if (homePhoto && caiLogo && homePhoto && homeInfo && coursesPhoto && productsPhoto) {
 		return (
 				<div className="flex flex-col justify-center w-full mt-20 bg">
 				<TopNavigationBar />

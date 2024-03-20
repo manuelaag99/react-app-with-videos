@@ -44,6 +44,11 @@ export default function MobileMenu ({ onClose, open }) {
         }
     }, [auth, websiteAdmins])
 
+    
+    function signOutFunction () {
+        auth.logout();
+        router.push("/");
+    }
 
     const mobileMenu = (
             <div>
@@ -75,7 +80,7 @@ export default function MobileMenu ({ onClose, open }) {
                                 Administrar
                             </p>
                         </Link>}
-                        {auth.isLoggedIn && <button className="flex justify-center py-6 px-3 text-white hover:text-var-1-hovered hover:bg-white duration-200 " onClick={onClose}>
+                        {auth.isLoggedIn && <button className="flex justify-center py-6 px-3 text-white hover:text-var-1-hovered hover:bg-white duration-200 " onClick={signOutFunction}>
                             <p className="text-left w-8/10 whitespace-nowrap">
                                 Cerrar sesión
                             </p>

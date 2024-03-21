@@ -5,6 +5,8 @@ import ModuleBox from '@/app/Components/ModuleBox';
 import { supabase } from '@/app/supabase/client';
 import Image from '@/app/Components/Image';
 import { useAuthContext } from '@/app/utils/AuthContext';
+import Button from '@/app/Components/Button';
+import PurchasePopUp from '@/app/Components/Portals/PurchasePopUp';
 
 export default function CoursePage ({ params }) {
     const auth = useAuthContext();
@@ -34,6 +36,11 @@ export default function CoursePage ({ params }) {
         fetchModuleIds();
     }, [])
 
+    const [isPurchasePopUpVisible, setIsPurchasePopUpVisible] = useState(false);
+    function purchaseCourse () {
+        setIsPurchasePopUpVisible(true);
+    }
+
     return (
         <div className="flex flex-col justify-center w-full">
             <TopNavigationBar />
@@ -49,6 +56,9 @@ export default function CoursePage ({ params }) {
                             <div className="flex w-full mb-6">
                                 {!courseInfo && <div className="rounded-lg bg-gray-400 w-full h-5 mt-3"></div>}
                                 {courseInfo && <p className="font-medium text-left pr-6 text-gray-400 font-rubik">{courseInfo.description}</p>}
+                            </div>
+                            <div className="flex w-full justify-start items-start">
+                                <Button additionalClassNamesForButton=" text-center -mt-1.5 -mb-1.5" additionalClassNamesForText=" flex justify-center md:mt-0 mt-3 px-4 py-2 font-amatic text-button-desktop font-bold rounded-md shadow-md bg-var-2 hover:bg-var-2-hovered duration-300 text-white" contentForButton="Comprar curso" isDisabled={false} onClickButtonAction={() => purchaseCourse()} />
                             </div>
                         </div>
                     </div>
@@ -67,6 +77,7 @@ export default function CoursePage ({ params }) {
                     })}
                 </div>}
             </div>
+            <PurchasePopUp closePurchasePopUp={() => setIsPurchasePopUpVisible(false)} open={isPurchasePopUpVisible} />
         </div>
     )
 }

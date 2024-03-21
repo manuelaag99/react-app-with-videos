@@ -29,7 +29,7 @@ body {
 body {
   background-image: url(https://tqpmqzprtfjaojxkozba.supabase.co/storage/v1/object/public/cai-images/generalPics/cai-bg-1.jpg);
   background-repeat: no-repeat;
-  background-size: cover;
+  background-size: auto;
   background-position: top;
   background-color: rgba(255, 255, 255, 1);
 }

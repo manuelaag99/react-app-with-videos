@@ -45,7 +45,7 @@ export default function CoursePage ({ params }) {
         <div className="flex flex-col justify-center w-full">
             <TopNavigationBar />
             <div className="flex flex-col md:w-85percent w-95percent mx-auto justify-center bg-white rounded-md md:mt-40 mt-20 mb-28 pb-16 shadow-2xl">
-                
+
                 <div className="flex md:flex-row flex-col-reverse md:justify-between justify-center w-full p-6">
                     <div className="flex flex-col md:w-1/2 w-full items-center mb-14">
                         <div className="flex flex-col w-full justify-start mb-10">
@@ -77,7 +77,7 @@ export default function CoursePage ({ params }) {
                     })}
                 </div>}
             </div>
-            <PurchasePopUp closePurchasePopUp={() => setIsPurchasePopUpVisible(false)} open={isPurchasePopUpVisible} />
+            <PurchasePopUp closePurchasePopUp={() => setIsPurchasePopUpVisible(false)} courseId={params.courseId} open={isPurchasePopUpVisible} userId={auth.user_Id} />
         </div>
     )
 }

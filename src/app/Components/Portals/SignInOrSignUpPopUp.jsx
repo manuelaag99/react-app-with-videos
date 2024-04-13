@@ -6,6 +6,7 @@ import GeneralPopUp from "./GeneralPopUp";
 import VisibilityIcon from '@mui/icons-material/Visibility';
 import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
 import { useAuthContext } from "@/app/utils/AuthContext";
+import { areBothTextsTheSame, isTextAPassword, isTextAnEmail, minLengthText, nonEmptyText } from "@/app/validityCheck";
 
 export default function SignInOrSignUpPopUp ({ onClose, open, openSignUp }) {
     const auth = useAuthContext();
@@ -27,6 +28,7 @@ export default function SignInOrSignUpPopUp ({ onClose, open, openSignUp }) {
         let inputField = e.target.name;
         let inputValue = e.target.value;
         setSignInOrSignUpInputs({ ...signInOrSignUpInputs, [inputField]: inputValue });
+        checkUsernameValidity(inputValue, inputField);
     }
 
     const [signUpData, setSignUpData] = useState();
@@ -121,6 +123,36 @@ export default function SignInOrSignUpPopUp ({ onClose, open, openSignUp }) {
             setPasswordInputType("password")
         }
     }
+
+    const [errorInInputs, setErrorInInputs] = useState({ displayName: "", userName: "", email: "", password: "" })
+    function checkUsernameValidity (enteredValue, field) {
+        if (field === "userName" || field === "displayName") {
+            if (nonEmptyText && minLengthText(enteredValue, 6)) {
+                setErrorInInputs({ ...errorInInputs, [field]: "" });
+            } else {
+                setErrorInInputs({ ...errorInInputs, [field]: "Escribe al menos 6 caracteres." });
+            }
+        } else if (field === "email") {
+            if (nonEmptyText && isTextAnEmail(enteredValue)) {
+                setErrorInInputs({ ...errorInInputs, email: "" })    
+            } else {
+                setErrorInInputs({ ...errorInInputs, email: "Escribe un e-mail válido." })
+            }
+        } else if (field === "password") {
+            if (nonEmptyText && isTextAPassword(enteredValue, 10)) {
+                setErrorInInputs({ ...errorInInputs, password: "" });
+            } else {
+                setErrorInInputs({ ...errorInInputs, password: "Escribe una contraseña válida." });
+            }
+        }
+    }
+
+    useEffect(() => {
+        if (signInOrSignUpInputs) {
+            checkUsernameValidity();
+        }
+    }, [signInOrSignUpInputs])
+    console.log(errorInInputs)
 
     const signInOrSignUpPopUp = (
         <div>

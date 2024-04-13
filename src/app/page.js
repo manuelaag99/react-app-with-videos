@@ -5,6 +5,7 @@ import { supabase } from "./supabase/client";
 import Button from "./Components/Button";
 import { useAuthContext } from "./utils/AuthContext";
 import { useRouter } from "next/navigation";
+import SignInOrSignUpPopUp from "./Components/Portals/SignInOrSignUpPopUp";
 
 export default function Home() {
     const auth = useAuthContext();
@@ -93,6 +94,18 @@ export default function Home() {
 		fetchPhotos();
 	}, [coursesPhotoPath, productsPhotoPath])
 
+	const [openSignInOrSignUpWindow, setOpenSignInOrSignUpWindow] = useState();
+    const [isItSignUp, setIsItSignUp] = useState();
+
+    function openSignUpWindow () {
+        setIsItSignUp(true);
+        setOpenSignInOrSignUpWindow(true);
+    }
+    function openSignInWindow () {
+        setIsItSignUp(false);
+        setOpenSignInOrSignUpWindow(true);
+    }
+
 	if (homePhoto && caiLogo && homePhoto && homeInfo && coursesPhoto && productsPhoto) {
 		return (
 				<div className="flex flex-col justify-center w-full mt-20 bg">
@@ -109,8 +122,8 @@ export default function Home() {
 							<div className="font-amatic font-bold text-page-title-desktop sm:-mt-4 mt-0">Cursos de repostería</div>
 							{homeInfo && homeInfo.coursesInfo && <div className="mb-5 mt-2 w-full">{homeInfo.coursesInfo}</div>}
 							<div className="flex flex-col sm:flex-row justify-center sm:justify-start">
-								{!auth.isLoggedIn && <Button additionalClassNamesForButton=" flex w-full sm:w-fit justify-center items-center px-7 shadow-md bg-var-3 hover:bg-var-3-hovered duration-200 cursor-pointer text-white text-button-desktop rounded-md font-amatic font-bold mb-4 sm:mb-0 sm:mr-5 " additionalClassNamesForText=" text-center" contentForButton="Iniciar Sesión" />}
-								{!auth.isLoggedIn && <Button additionalClassNamesForButton=" flex w-full sm:w-fit justify-center items-center px-7 shadow-md bg-var-2 hover:bg-var-2-hovered duration-200 cursor-pointer text-white text-button-desktop rounded-md font-amatic font-bold " additionalClassNamesForText=" text-center" contentForButton="Registrarse" />}
+								{!auth.isLoggedIn && <Button onClickButtonAction={openSignInWindow} additionalClassNamesForButton=" flex w-full sm:w-fit justify-center items-center px-7 shadow-md bg-var-3 hover:bg-var-3-hovered duration-200 cursor-pointer text-white text-button-desktop rounded-md font-amatic font-bold mb-4 sm:mb-0 sm:mr-5 " additionalClassNamesForText=" text-center" contentForButton="Iniciar Sesión" />}
+								{!auth.isLoggedIn && <Button onClickButtonAction={openSignUpWindow} additionalClassNamesForButton=" flex w-full sm:w-fit justify-center items-center px-7 shadow-md bg-var-2 hover:bg-var-2-hovered duration-200 cursor-pointer text-white text-button-desktop rounded-md font-amatic font-bold " additionalClassNamesForText=" text-center" contentForButton="Registrarse" />}
 								{auth.isLoggedIn && <Button onClickButtonAction={() => router.push("/courses")} additionalClassNamesForButton=" flex w-full sm:w-fit justify-center items-center px-7 shadow-md bg-var-3 hover:bg-var-3-hovered duration-200 cursor-pointer text-white text-button-desktop rounded-md font-amatic font-bold mb-4 sm:mb-0 sm:mr-5 " additionalClassNamesForText=" text-center" contentForButton="Ver cursos" />}
 							</div>
 						</div>
@@ -136,6 +149,7 @@ export default function Home() {
 						</div>
 					</div>}
 		
+					<SignInOrSignUpPopUp onClose={() => setOpenSignInOrSignUpWindow(false)} open={openSignInOrSignUpWindow} openSignUp={isItSignUp} />
 				</div>
 		)
 	}

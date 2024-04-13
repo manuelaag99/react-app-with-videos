@@ -3,6 +3,7 @@ import EditIcon from '@mui/icons-material/Edit';
 import { useState } from 'react';
 import CreateContentPopUp from './Portals/CreateContentPopUp';
 import { PeopleAlt } from '@mui/icons-material';
+import PeopleList from './Portals/PeopleList';
 
 export default function ListElement ({ element, elementClassNames, elementType, onClickFunction }) {
     const [openWindowForEdit, setOpenWindowForEdit] = useState(false);
@@ -28,6 +29,7 @@ export default function ListElement ({ element, elementClassNames, elementType, 
             </div>
 
             <CreateContentPopUp content={elementType} existingElementToEdit={element} isCreate={false} onClose={() => setOpenWindowForEdit(false)} open={openWindowForEdit} />
+            <PeopleList onClose={() => setOpenWindowForPeople(false)} open={openWindowForPeople} />
         </div>
     )
 }

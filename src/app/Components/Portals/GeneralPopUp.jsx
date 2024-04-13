@@ -11,8 +11,8 @@ export default function GeneralPopUp ({ infoForPopUp, onClose, open }) {
                         <p className="text-center">{infoForPopUp.message}</p>
                     </div>
                     <div className={"flex flex-col sm:flex-row w-full " + ((infoForPopUp.textForButtonTwo !== "") ? " justify-between" : " justify-center" )}>
-                        {(infoForPopUp.textForButtonOne !== "") && <Button additionalClassNamesForText=" text-center" additionalClassNamesForButton=" flex justify-center py-2 bg-var-1 text-white hover:bg-var-1-hovered duration-200 rounded-md shadow-md sm:mt-0" contentForButton={infoForPopUp.textForButtonOne} onClickButtonAction={onClose} />}
-                        {(infoForPopUp.textForButtonTwo !== "") && <Button additionalClassNamesForText=" text-center" additionalClassNamesForButton=" flex justify-center py-2 bg-var-1 text-white hover:bg-var-1-hovered duration-200 rounded-md shadow-md sm:mt-0 mt-4" contentForButton={infoForPopUp.textForButtonTwo} onClickButtonAction={() => console.log("click")} />}
+                        {(infoForPopUp.textForButtonOne !== "") && <Button additionalClassNamesForText=" text-center" additionalClassNamesForButton=" flex justify-center py-2 px-6 bg-var-1 text-white hover:bg-var-1-hovered duration-200 rounded-md shadow-md sm:mt-0" contentForButton={infoForPopUp.textForButtonOne} onClickButtonAction={onClose} />}
+                        {(infoForPopUp.textForButtonTwo !== "") && <Button additionalClassNamesForText=" text-center" additionalClassNamesForButton=" flex justify-center py-2 px-6 bg-var-1 text-white hover:bg-var-1-hovered duration-200 rounded-md shadow-md sm:mt-0 mt-4" contentForButton={infoForPopUp.textForButtonTwo} onClickButtonAction={() => console.log("click")} />}
                     </div>
                 </div>
             </div>

@@ -123,15 +123,15 @@ export default function SignInOrSignUpPopUp ({ onClose, open, openSignUp }) {
                 </div>
                 <div className="flex flex-col justify-center w-95percent mx-auto">
                     {isSignUp && <label className="text-sign-in-or-sign-up-labels-desktop" htmlFor="">Nombre de usuario:</label>}
-                    {isSignUp && <input className="w-full rounded-sm bg-gray-200 py-3 px-2 sm:px-4 mb-3 mx-auto" type="text" placeholder="Escribe..." name="userName" onChange={(e) => inputChangeHandle(e)}  />}
+                    {isSignUp && <input className="w-full rounded-sm bg-gray-200 py-3 px-2 sm:px-4 mb-3 mx-auto" type="text" placeholder="Escribe tu usuario..." name="userName" onChange={(e) => inputChangeHandle(e)}  />}
                     {isSignUp && <label className="text-sign-in-or-sign-up-labels-desktop" htmlFor="">Nombre:</label>}
-                    {isSignUp && <input className="w-full rounded-sm bg-gray-200 py-3 px-2 sm:px-4 mb-3 mx-auto" type="text" placeholder="Escribe..." name="displayName" onChange={(e) => inputChangeHandle(e)} autoCapitalize="on" />}
+                    {isSignUp && <input className="w-full rounded-sm bg-gray-200 py-3 px-2 sm:px-4 mb-3 mx-auto" type="text" placeholder="Escribe tu nombre..." name="displayName" onChange={(e) => inputChangeHandle(e)} autoCapitalize="on" />}
                     <label className="text-sign-in-or-sign-up-labels-desktop" htmlFor="">Correo electrónico:</label>
-                    <input className="w-full rounded-sm bg-gray-200 py-3 px-2 sm:px-4 mb-3 mx-auto" type="text" placeholder="Escribe..."  name="email" onChange={(e) => inputChangeHandle(e)} />
+                    <input className="w-full rounded-sm bg-gray-200 py-3 px-2 sm:px-4 mb-3 mx-auto" type="text" placeholder="Escribe tu correo electrónico..."  name="email" onChange={(e) => inputChangeHandle(e)} />
                     
                     <label className="text-sign-in-or-sign-up-labels-desktop" htmlFor="">Contraseña:</label>
                     <div className="flex flex-row w-full rounded-sm bg-gray-200 mb-3 justify-between">
-                        <input className="w-8/10 rounded-sm bg-gray-200 py-3 px-2 sm:px-4 mx-auto float-left" type={passwordInputType} placeholder="Escribe..."  name="password" onChange={(e) => inputChangeHandle(e)} autoComplete="off"  />
+                        <input className="w-8/10 rounded-sm bg-gray-200 py-3 px-2 sm:px-4 mx-auto float-left" type={passwordInputType} placeholder="Escribe tu contraseña..."  name="password" onChange={(e) => inputChangeHandle(e)} autoComplete="off"  />
                         <button className="flex justify-end w-2/10 rounded-sm bg-gray-200 items-center pr-2 sm:pr-4" onClick={togglePasswordVisibility}>
                             {(passwordInputType === "password") && <VisibilityIcon className="text-black hover:text-white duration-200 float-right" fontSize="medium" />}
                             {(passwordInputType === "text") && <VisibilityOffIcon className="text-black hover:text-white duration-200 float-right" fontSize="medium" />}

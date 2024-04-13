@@ -11,7 +11,7 @@ export default function SignInOrSignUpPopUp ({ onClose, open, openSignUp }) {
     const auth = useAuthContext();
     const [errorWithSignInOrSignUp, setErrorWithSignInOrSignUp] = useState();
     const [openGeneralPopUp, setOpenGeneralPopUp] = useState(false);
-    const [generalPopUp, setGeneralPopUp] = useState({ message: "", textForButtonOne: "", textForButtonTwo: ""});
+    const [generalPopUp, setGeneralPopUp] = useState({ message: "", textForButtonOne: "", textForButtonTwo: "" });
 
     const [isSignUp, setIsSignUp] = useState();
     useEffect(() => {
@@ -54,6 +54,9 @@ export default function SignInOrSignUpPopUp ({ onClose, open, openSignUp }) {
             setGeneralPopUp({ message: "Exitosamente se creó tu cuenta." , textForButtonOne: "Aceptar", textForButtonTwo: "" });
             setOpenGeneralPopUp(true);
             auth.login(signUpData.user.id, signUpData.session.access_token);
+        } else {
+            setGeneralPopUp({ message: "Error: " + errorWithSignInOrSignUp, textForButtonOne: "Cerrar", textForButtonTwo: ""  })
+            setOpenGeneralPopUp(true);
         }
     }
     useEffect(() => {
@@ -80,6 +83,9 @@ export default function SignInOrSignUpPopUp ({ onClose, open, openSignUp }) {
             setGeneralPopUp({ message: "Exitosamente iniciaste sesión." , textForButtonOne: "Aceptar", textForButtonTwo: "" });
             setOpenGeneralPopUp(true);
             auth.login(signInData.user.id, signInData.session.access_token);
+        } else {
+            setGeneralPopUp({ message: "Error: " + errorWithSignInOrSignUp, textForButtonOne: "Cerrar", textForButtonTwo: ""  })
+            setOpenGeneralPopUp(true);
         }
     }
     useEffect(() => {
@@ -96,10 +102,15 @@ export default function SignInOrSignUpPopUp ({ onClose, open, openSignUp }) {
         }
     }
 
-    function closeGeneralPopUp () {
+    function closeGeneralPopUp () {        
+        setGeneralPopUp({ message: "", textForButtonOne: "", textForButtonTwo: "" });
+        setOpenGeneralPopUp(false);
+        if (!errorWithSignInOrSignUp) closeSignInOrSignUpPopUp();
+    }
+
+    function closeSignInOrSignUpPopUp () {
         setSignInOrSignUpInputs();
-        setGeneralPopUp(false);
-        if (!errorWithSignInOrSignUp) onClose();
+        onClose();
     }
 
     const [passwordInputType, setPasswordInputType] = useState("password");

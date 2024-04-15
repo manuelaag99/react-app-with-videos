@@ -61,7 +61,8 @@ module.exports = {
         "sign-in-or-sign-up-title-desktop": "2rem",
         "sign-in-or-sign-up-button-desktop": "1.6rem",
         "sign-in-or-sign-up-labels-desktop": "0.85rem",
-        "inputs-desktop": "0.9rem"
+        "inputs-desktop": "0.9rem",
+        "error-window": "0.75rem"
       },
       backgroundImage: {
         'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',

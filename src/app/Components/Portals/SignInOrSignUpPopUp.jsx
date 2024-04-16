@@ -7,6 +7,7 @@ import VisibilityIcon from '@mui/icons-material/Visibility';
 import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
 import { useAuthContext } from "@/app/utils/AuthContext";
 import { areBothTextsTheSame, isTextAPassword, isTextAnEmail, minLengthText, nonEmptyText } from "@/app/validityCheck";
+import ErrorWindowInInputs from "../ErrorWindowInInputs";
 
 export default function SignInOrSignUpPopUp ({ onClose, open, openSignUp }) {
     const auth = useAuthContext();
@@ -124,23 +125,23 @@ export default function SignInOrSignUpPopUp ({ onClose, open, openSignUp }) {
         }
     }
 
-    const [errorInInputs, setErrorInInputs] = useState({ displayName: "", userName: "", email: "", password: "" })
+    const [errorInInputs, setErrorInInputs] = useState({ displayName: null, userName: null, email: null, password: null })
     function checkUsernameValidity (enteredValue, field) {
         if (field === "userName" || field === "displayName") {
             if (nonEmptyText && minLengthText(enteredValue, 6)) {
-                setErrorInInputs({ ...errorInInputs, [field]: "" });
+                setErrorInInputs({ ...errorInInputs, [field]: null });
             } else {
                 setErrorInInputs({ ...errorInInputs, [field]: "Escribe al menos 6 caracteres." });
             }
         } else if (field === "email") {
             if (nonEmptyText && isTextAnEmail(enteredValue)) {
-                setErrorInInputs({ ...errorInInputs, email: "" })    
+                setErrorInInputs({ ...errorInInputs, email: null });
             } else {
                 setErrorInInputs({ ...errorInInputs, email: "Escribe un e-mail válido." })
             }
         } else if (field === "password") {
             if (nonEmptyText && isTextAPassword(enteredValue, 10)) {
-                setErrorInInputs({ ...errorInInputs, password: "" });
+                setErrorInInputs({ ...errorInInputs, password: null });
             } else {
                 setErrorInInputs({ ...errorInInputs, password: "Escribe una contraseña válida." });
             }
@@ -165,24 +166,22 @@ export default function SignInOrSignUpPopUp ({ onClose, open, openSignUp }) {
                     </p>
                 </div>
                 <div className="flex flex-col justify-center w-95percent mx-auto">
-                    <div className="w-full mb-3">
-                        {isSignUp && <label className="text-sign-in-or-sign-up-labels-desktop" htmlFor="">Nombre de usuario:</label>}
-                        {isSignUp && <input className="w-full rounded-sm bg-gray-200 py-3 px-2 sm:px-4 mx-auto" type="text" placeholder="Escribe tu usuario..." name="userName" onChange={(e) => inputChangeHandle(e)}  />}
-                        <div className="absolute mt-0.5 bg-red-200 border-red-400 border h-fit py-2 px-2 z-90 rounded-sm shadow-2xl text-error-window mx-auto">
-                            <p className="">
-                                Errooooooooooooooooooooooooooooooooor
-                            </p>
-                        </div>
-                    </div>
+                    {isSignUp && <div className="w-full mb-3">
+                        <label className="text-sign-in-or-sign-up-labels-desktop" htmlFor="">Nombre de usuario:</label>
+                        <input className="w-full rounded-sm bg-gray-200 py-3 px-2 sm:px-4 mx-auto" type="text" placeholder="Escribe tu usuario..." name="userName" onChange={(e) => inputChangeHandle(e)}  />
+                        {errorInInputs.userName && <ErrorWindowInInputs textForError="Escribe un nombre de usuario valido" />}
+                    </div>}
                     
-                    <div className="w-full mb-3">
-                        {isSignUp && <label className="text-sign-in-or-sign-up-labels-desktop" htmlFor="">Nombre:</label>}
-                        {isSignUp && <input className="w-full rounded-sm bg-gray-200 py-3 px-2 sm:px-4 mx-auto" type="text" placeholder="Escribe tu nombre..." name="displayName" onChange={(e) => inputChangeHandle(e)} autoCapitalize="on" />}
-                    </div>
+                    {isSignUp && <div className="w-full mb-3">
+                        <label className="text-sign-in-or-sign-up-labels-desktop" htmlFor="">Nombre:</label>
+                        <input className="w-full rounded-sm bg-gray-200 py-3 px-2 sm:px-4 mx-auto" type="text" placeholder="Escribe tu nombre..." name="displayName" onChange={(e) => inputChangeHandle(e)} autoCapitalize="on" />
+                        {errorInInputs.displayName && <ErrorWindowInInputs textForError="Escribe un nombre valido" />}
+                    </div>}
                     
                     <div className="w-full mb-3">
                         <label className="text-sign-in-or-sign-up-labels-desktop" htmlFor="">Correo electrónico:</label>
                         <input className="w-full rounded-sm bg-gray-200 py-3 px-2 sm:px-4 mx-auto" type="text" placeholder="Escribe tu correo electrónico..."  name="email" onChange={(e) => inputChangeHandle(e)} />
+                        {errorInInputs.email && <ErrorWindowInInputs textForError="Escribe un correo electrónico valido" />}
                     </div>
                     
                     <div className="w-full mb-3">
@@ -194,6 +193,7 @@ export default function SignInOrSignUpPopUp ({ onClose, open, openSignUp }) {
                                 {(passwordInputType === "text") && <VisibilityOffIcon className="text-black hover:text-white duration-200 float-right" fontSize="medium" />}
                             </button>
                         </div>
+                        {errorInInputs.password && <ErrorWindowInInputs textForError="Escribe una contraseña valida" />}
                     </div>
                     
                     <button className="bg-var-2 hover:bg-var-2-hovered duration-200 w-full rounded-sm py-3 mx-auto mt-5 mb-3 text-white font-amatic font-bold text-sign-in-or-sign-up-button-desktop" onClick={actionButton}>

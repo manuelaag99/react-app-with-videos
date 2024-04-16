@@ -125,35 +125,46 @@ export default function SignInOrSignUpPopUp ({ onClose, open, openSignUp }) {
         }
     }
 
-    const [errorInInputs, setErrorInInputs] = useState({ displayName: null, userName: null, email: null, password: null })
+    const [errorInInputs, setErrorInInputs] = useState(true);
+    const [errorInSpecificInputs, setErrorInSpecificInputs] = useState({ displayName: null, userName: null, email: null, password: null })
     function checkUsernameValidity (enteredValue, field) {
         if (field === "userName" || field === "displayName") {
             if (nonEmptyText && minLengthText(enteredValue, 6)) {
-                setErrorInInputs({ ...errorInInputs, [field]: null });
+                setErrorInSpecificInputs({ ...errorInSpecificInputs, [field]: null });
             } else {
-                setErrorInInputs({ ...errorInInputs, [field]: "Escribe al menos 6 caracteres." });
+                setErrorInSpecificInputs({ ...errorInSpecificInputs, [field]: "Escribe al menos 6 caracteres." });
             }
         } else if (field === "email") {
             if (nonEmptyText && isTextAnEmail(enteredValue)) {
-                setErrorInInputs({ ...errorInInputs, email: null });
+                setErrorInSpecificInputs({ ...errorInSpecificInputs, email: null });
             } else {
-                setErrorInInputs({ ...errorInInputs, email: "Escribe un e-mail válido." })
+                setErrorInSpecificInputs({ ...errorInSpecificInputs, email: "Escribe un e-mail válido." })
             }
         } else if (field === "password") {
             if (nonEmptyText && isTextAPassword(enteredValue, 10)) {
-                setErrorInInputs({ ...errorInInputs, password: null });
+                setErrorInSpecificInputs({ ...errorInSpecificInputs, password: null });
             } else {
-                setErrorInInputs({ ...errorInInputs, password: "Escribe una contraseña válida." });
+                setErrorInSpecificInputs({ ...errorInSpecificInputs, password: "Escribe una contraseña válida." });
             }
         }
     }
 
     useEffect(() => {
-        if (signInOrSignUpInputs) {
-            checkUsernameValidity();
+        if (isSignUp) {
+            if (errorInSpecificInputs.email || errorInSpecificInputs.password || errorInSpecificInputs.displayName || errorInSpecificInputs.userName) {
+                setErrorInInputs(true);
+            } else {
+                setErrorInInputs(false);
+            }
+        } else {
+            if (errorInSpecificInputs.email || errorInSpecificInputs.password) {
+                setErrorInInputs(true);
+            } else {
+                setErrorInInputs(false);
+            }
         }
-    }, [signInOrSignUpInputs])
-    console.log(errorInInputs)
+    }, [isSignUp, signInOrSignUpInputs])
+    console.log(errorInSpecificInputs)
 
     const signInOrSignUpPopUp = (
         <div className="w-full">
@@ -169,19 +180,19 @@ export default function SignInOrSignUpPopUp ({ onClose, open, openSignUp }) {
                     {isSignUp && <div className="w-full mb-3">
                         <label className="text-sign-in-or-sign-up-labels-desktop" htmlFor="">Nombre de usuario:</label>
                         <input className="w-full rounded-sm bg-gray-200 py-3 px-2 sm:px-4 mx-auto" type="text" placeholder="Escribe tu usuario..." name="userName" onChange={(e) => inputChangeHandle(e)}  />
-                        {errorInInputs.userName && <ErrorWindowInInputs textForError="Escribe un nombre de usuario valido" />}
+                        {errorInSpecificInputs.userName && <ErrorWindowInInputs textForError="Escribe un nombre de usuario valido" />}
                     </div>}
                     
                     {isSignUp && <div className="w-full mb-3">
                         <label className="text-sign-in-or-sign-up-labels-desktop" htmlFor="">Nombre:</label>
                         <input className="w-full rounded-sm bg-gray-200 py-3 px-2 sm:px-4 mx-auto" type="text" placeholder="Escribe tu nombre..." name="displayName" onChange={(e) => inputChangeHandle(e)} autoCapitalize="on" />
-                        {errorInInputs.displayName && <ErrorWindowInInputs textForError="Escribe un nombre valido" />}
+                        {errorInSpecificInputs.displayName && <ErrorWindowInInputs textForError="Escribe un nombre valido" />}
                     </div>}
                     
                     <div className="w-full mb-3">
                         <label className="text-sign-in-or-sign-up-labels-desktop" htmlFor="">Correo electrónico:</label>
                         <input className="w-full rounded-sm bg-gray-200 py-3 px-2 sm:px-4 mx-auto" type="text" placeholder="Escribe tu correo electrónico..."  name="email" onChange={(e) => inputChangeHandle(e)} />
-                        {errorInInputs.email && <ErrorWindowInInputs textForError="Escribe un correo electrónico valido" />}
+                        {errorInSpecificInputs.email && <ErrorWindowInInputs textForError="Escribe un correo electrónico valido" />}
                     </div>
                     
                     <div className="w-full mb-3">
@@ -193,10 +204,10 @@ export default function SignInOrSignUpPopUp ({ onClose, open, openSignUp }) {
                                 {(passwordInputType === "text") && <VisibilityOffIcon className="text-black hover:text-white duration-200 float-right" fontSize="medium" />}
                             </button>
                         </div>
-                        {errorInInputs.password && <ErrorWindowInInputs textForError="Escribe una contraseña valida" />}
+                        {errorInSpecificInputs.password && <ErrorWindowInInputs textForError="Escribe una contraseña valida" />}
                     </div>
                     
-                    <button className="bg-var-2 hover:bg-var-2-hovered duration-200 w-full rounded-sm py-3 mx-auto mt-5 mb-3 text-white font-amatic font-bold text-sign-in-or-sign-up-button-desktop" onClick={actionButton}>
+                    <button disabled={errorInInputs} className="bg-var-2 hover:bg-var-2-hovered disabled:bg-gray-200 duration-200 w-full rounded-sm py-3 mx-auto mt-5 mb-3 text-white font-amatic font-bold text-sign-in-or-sign-up-button-desktop" onClick={actionButton}>
                         {isSignUp && "Registrarse"}
                         {!isSignUp && "Iniciar sesión"}
                     </button>

@@ -151,10 +151,14 @@ export default function SignInOrSignUpPopUp ({ onClose, open, openSignUp }) {
 
     useEffect(() => {
         if (isSignUp) {
-            if (errorInSpecificInputs.email || errorInSpecificInputs.password || errorInSpecificInputs.displayName || errorInSpecificInputs.userName) {
-                setErrorInInputs(true);
-            } else {
-                setErrorInInputs(false);
+            if (signInOrSignUpInputs) {
+                if ((signInOrSignUpInputs.email && errorInSpecificInputs.email) || (signInOrSignUpInputs.password && errorInSpecificInputs.password) || (signInOrSignUpInputs.displayName && errorInSpecificInputs.displayName) || (signInOrSignUpInputs.userName && errorInSpecificInputs.userName)) {
+                    setErrorInInputs(true);
+                } else if (!signInOrSignUpInputs.email || !signInOrSignUpInputs.password || !signInOrSignUpInputs.displayName || !signInOrSignUpInputs.userName) {
+                    setErrorInInputs(true);
+                } else {
+                    setErrorInInputs(false);
+                }
             }
         } else {
             if (errorInSpecificInputs.email || errorInSpecificInputs.password) {

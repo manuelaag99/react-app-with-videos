@@ -25,11 +25,22 @@ export default function SignInOrSignUpPopUp ({ onClose, open, openSignUp }) {
     }, [openSignUp])
 
     const [signInOrSignUpInputs, setSignInOrSignUpInputs] = useState();
+    const [isInputTouched, setIsInputTouched] = useState({ displayName: false, userName: false, email: false, password: false });
+    const [isInputBlurred, setIsInputBlurred] = useState({ displayName: false, userName: false, email: false, password: false });
     function inputChangeHandle (e) {
         let inputField = e.target.name;
         let inputValue = e.target.value;
         setSignInOrSignUpInputs({ ...signInOrSignUpInputs, [inputField]: inputValue });
+        
         checkUsernameValidity(inputValue, inputField);
+    }
+    function inputTouchHandle (e) {
+        let inputField = e.target.name;
+        setIsInputTouched({ ...isInputTouched, [inputField]: true });
+    }
+    function inputBlurHandle (e) {
+        let inputField = e.target.name;
+        setIsInputBlurred({ ...isInputBlurred, [inputField]: true });
     }
 
     const [signUpData, setSignUpData] = useState();
@@ -105,17 +116,6 @@ export default function SignInOrSignUpPopUp ({ onClose, open, openSignUp }) {
         }
     }
 
-    function closeGeneralPopUp () {        
-        setGeneralPopUp({ message: "", textForButtonOne: "", textForButtonTwo: "" });
-        setOpenGeneralPopUp(false);
-        if (!errorWithSignInOrSignUp) closeSignInOrSignUpPopUp();
-    }
-
-    function closeSignInOrSignUpPopUp () {
-        setSignInOrSignUpInputs();
-        onClose();
-    }
-
     const [passwordInputType, setPasswordInputType] = useState("password");
     function togglePasswordVisibility () {
         if (passwordInputType === "password") {
@@ -168,7 +168,23 @@ export default function SignInOrSignUpPopUp ({ onClose, open, openSignUp }) {
             }
         }
     }, [isSignUp, signInOrSignUpInputs])
-    console.log(errorInSpecificInputs)
+
+    
+    function closeGeneralPopUp () {        
+        setGeneralPopUp({ message: "", textForButtonOne: "", textForButtonTwo: "" });
+        setOpenGeneralPopUp(false);
+        if (!errorWithSignInOrSignUp) closeSignInOrSignUpPopUp();
+    }
+
+    function closeSignInOrSignUpPopUp () {
+        setSignInOrSignUpInputs();
+        setErrorInInputs();
+        setErrorInSpecificInputs({ displayName: null, userName: null, email: null, password: null })   
+        setIsInputTouched({ displayName: false, userName: false, email: false, password: false });
+        setIsInputBlurred({ displayName: false, userName: false, email: false, password: false });
+        onClose();
+    }
+    console.log(signInOrSignUpInputs)
 
     const signInOrSignUpPopUp = (
         <div className="w-full">
@@ -183,32 +199,32 @@ export default function SignInOrSignUpPopUp ({ onClose, open, openSignUp }) {
                 <div className="flex flex-col justify-center w-95percent mx-auto">
                     {isSignUp && <div className="w-full mb-3">
                         <label className="text-sign-in-or-sign-up-labels-desktop" htmlFor="">Nombre de usuario:</label>
-                        <input className="w-full rounded-sm bg-gray-200 py-3 px-2 sm:px-4 mx-auto" type="text" placeholder="Escribe tu usuario..." name="userName" onChange={(e) => inputChangeHandle(e)}  />
-                        {errorInSpecificInputs.userName && <ErrorWindowInInputs textForError="Escribe un nombre de usuario valido" />}
+                        <input onBlur={(e) => inputBlurHandle(e)} onFocus={(e) => inputTouchHandle(e)} className="w-full rounded-sm bg-gray-200 py-3 px-2 sm:px-4 mx-auto" type="text" placeholder="Escribe tu usuario..." name="userName" onChange={(e) => inputChangeHandle(e)}  />
+                        {errorInSpecificInputs.userName && isInputTouched.userName && isInputBlurred.userName && <ErrorWindowInInputs textForError="Escribe un nombre de usuario valido" />}
                     </div>}
                     
                     {isSignUp && <div className="w-full mb-3">
                         <label className="text-sign-in-or-sign-up-labels-desktop" htmlFor="">Nombre:</label>
-                        <input className="w-full rounded-sm bg-gray-200 py-3 px-2 sm:px-4 mx-auto" type="text" placeholder="Escribe tu nombre..." name="displayName" onChange={(e) => inputChangeHandle(e)} autoCapitalize="on" />
-                        {errorInSpecificInputs.displayName && <ErrorWindowInInputs textForError="Escribe un nombre valido" />}
+                        <input onBlur={(e) => inputBlurHandle(e)} onFocus={(e) => inputTouchHandle(e)} className="w-full rounded-sm bg-gray-200 py-3 px-2 sm:px-4 mx-auto" type="text" placeholder="Escribe tu nombre..." name="displayName" onChange={(e) => inputChangeHandle(e)} autoCapitalize="on" />
+                        {errorInSpecificInputs.displayName && isInputTouched.displayName && isInputBlurred.displayName && <ErrorWindowInInputs textForError="Escribe un nombre valido" />}
                     </div>}
                     
                     <div className="w-full mb-3">
                         <label className="text-sign-in-or-sign-up-labels-desktop" htmlFor="">Correo electrónico:</label>
-                        <input className="w-full rounded-sm bg-gray-200 py-3 px-2 sm:px-4 mx-auto" type="text" placeholder="Escribe tu correo electrónico..."  name="email" onChange={(e) => inputChangeHandle(e)} />
-                        {errorInSpecificInputs.email && <ErrorWindowInInputs textForError="Escribe un correo electrónico valido" />}
+                        <input onBlur={(e) => inputBlurHandle(e)} onFocus={(e) => inputTouchHandle(e)} className="w-full rounded-sm bg-gray-200 py-3 px-2 sm:px-4 mx-auto" type="text" placeholder="Escribe tu correo electrónico..."  name="email" onChange={(e) => inputChangeHandle(e)} />
+                        {errorInSpecificInputs.email && isInputTouched.email && isInputBlurred.email && <ErrorWindowInInputs textForError="Escribe un correo electrónico valido" />}
                     </div>
                     
                     <div className="w-full mb-3">
                         <label className="text-sign-in-or-sign-up-labels-desktop" htmlFor="">Contraseña:</label>
                         <div className="flex flex-row w-full rounded-sm bg-gray-200 justify-between">
-                            <input className="w-8/10 rounded-sm bg-gray-200 py-3 px-2 sm:px-4 mx-auto float-left" type={passwordInputType} placeholder="Escribe tu contraseña..."  name="password" onChange={(e) => inputChangeHandle(e)} autoComplete="off"  />
+                            <input onBlur={(e) => inputBlurHandle(e)} onFocus={(e) => inputTouchHandle(e)} className="w-8/10 rounded-sm bg-gray-200 py-3 px-2 sm:px-4 mx-auto float-left" type={passwordInputType} placeholder="Escribe tu contraseña..."  name="password" onChange={(e) => inputChangeHandle(e)} autoComplete="off"  />
                             <button className="flex justify-end w-2/10 rounded-sm bg-gray-200 items-center pr-2 sm:pr-4" onClick={togglePasswordVisibility}>
                                 {(passwordInputType === "password") && <VisibilityIcon className="text-black hover:text-white duration-200 float-right" fontSize="medium" />}
                                 {(passwordInputType === "text") && <VisibilityOffIcon className="text-black hover:text-white duration-200 float-right" fontSize="medium" />}
                             </button>
                         </div>
-                        {errorInSpecificInputs.password && <ErrorWindowInInputs textForError="Escribe una contraseña valida" />}
+                        {errorInSpecificInputs.password && isInputTouched.password && isInputBlurred.password && <ErrorWindowInInputs textForError="Escribe una contraseña valida" />}
                     </div>
                     
                     <button disabled={errorInInputs} className="bg-var-2 hover:bg-var-2-hovered disabled:bg-gray-200 duration-200 w-full rounded-sm py-3 mx-auto mt-5 mb-3 text-white font-amatic font-bold text-sign-in-or-sign-up-button-desktop" onClick={actionButton}>

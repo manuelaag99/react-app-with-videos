@@ -25,9 +25,11 @@ export default function PeopleList ({ item, onClose, open }) {
             <div className="flex flex-col justify-center items-center w-9/10 sm:w-6/10 bg-white rounded-md shadow-2xl fixed left-[5%] sm:left-[20%] top-[10%] h-7/10 z-30 p-6">
                 <div className="flex w-9/10 justify-center h-1/10 my-4">
                     <div className="flex w-full justify-center bg-gray-300 rounded-2xl py-4">
-                        <input className="w-9/10 bg-gray-300 outline-none border-none" />
+                        <input className="w-9/10 bg-gray-300 outline-none border-none px-2" />
                         <button>
-                            <SearchIcon />
+                            <p className="text-black hover:text-gray-500 duration-200">
+                                <SearchIcon />
+                            </p>
                         </button>
                     </div>
                 </div>

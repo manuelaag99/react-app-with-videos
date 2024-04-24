@@ -1,8 +1,24 @@
 import { createPortal } from "react-dom"
 import SearchIcon from '@mui/icons-material/Search';
 import ElementForPeopleList from "../ElementForPeopleList";
+import { supabase } from "@/app/supabase/client";
+import { useEffect, useState } from "react";
 
-export default function PeopleList ({ onClose, open }) {
+export default function PeopleList ({ item, onClose, open }) {
+    const [purchasedCourses, setPurchasedCourses] = useState();
+    async function fetchPurchasedCourses () {
+        try {
+            const { data, error } = await supabase.from("cai-purchased-courses").select().eq("course_id", item.course_id);
+            if (error) console.log(error);
+            if (!error) setPurchasedCourses(data);
+        } catch (err) {
+            console.log(err);
+        }
+    }
+    useEffect(() => {
+        fetchPurchasedCourses();
+    }, [])
+
     const peopleList = (
         <>
             <div className="bg-black opacity-50 fixed top-0 bottom-0 w-screen h-screen z-20" onClick={onClose}></div>
@@ -15,12 +31,11 @@ export default function PeopleList ({ onClose, open }) {
                         </button>
                     </div>
                 </div>
-                
-                <div className="flex flex-col w-9/10 justify-start items-center h-9/10 my-4 overflow-y-auto">
-                    
-                    <ElementForPeopleList />
-                    <ElementForPeopleList />
 
+                <div className="flex flex-col w-9/10 justify-start items-center h-9/10 my-4 overflow-y-auto">
+                    {purchasedCourses && (purchasedCourses.length > 0) && purchasedCourses.map((purchase, index) => {
+                        return (<ElementForPeopleList elementInfo={purchase} index={index} key={index} />)
+                    })}
                 </div>
             </div>
         </>

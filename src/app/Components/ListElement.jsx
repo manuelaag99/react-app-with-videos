@@ -32,7 +32,7 @@ export default function ListElement ({ element, elementClassNames, elementType, 
             </div>
 
             <CreateContentPopUp content={elementType} existingElementToEdit={element} isCreate={false} onClose={() => setOpenWindowForEdit(false)} open={openWindowForEdit} />
-            <PeopleList onClose={() => setOpenWindowForPeople(false)} open={openWindowForPeople} />
+            <PeopleList item={element} onClose={() => setOpenWindowForPeople(false)} open={openWindowForPeople} />
         </div>
     )
 }

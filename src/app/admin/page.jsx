@@ -76,9 +76,10 @@ export default function AdminPage () {
         }
     }
 
+
     if (!auth.isLoggedIn) {
         return (<UnavailableContent />)
-    } else {
+    } else if (auth.isLoggedIn && sectionForHomePage) {
         return (
                 <div>
                     <TopNavigationBar />
@@ -103,7 +104,7 @@ export default function AdminPage () {
                                     <div className="flex flex-col sm:flex-row w-full">
                                         <div className="flex w-full sm:w-4/10 sm:pr-6 items-start py-2">
                                             <div>
-                                                <input id="showCourses" name="showCourses" type="checkbox" defaultChecked={sectionForHomePage.showCourses} onClick={(e) => inputsForSectionsChangeHandle(e)} onChange={(e) => inputsForSectionsChangeHandle(e)} />
+                                                <input id="showCourses" name="showCourses" type="checkbox" checked={sectionForHomePage.showCourses} onClick={(e) => inputsForSectionsChangeHandle(e)} onChange={(e) => inputsForSectionsChangeHandle(e)} />
                                                 <label className="text-left pl-1" htmlFor="showCourses">Mostrar apartado de cursos</label>
                                             </div>
                                         </div>
@@ -124,7 +125,7 @@ export default function AdminPage () {
                                     <div className="flex flex-col sm:flex-row w-full">
                                         <div className="flex w-full sm:w-4/10 sm:pr-6 items-start py-2">
                                             <div>
-                                                <input id="showProducts" name="showProducts" type="checkbox" defaultChecked={sectionForHomePage.showProducts} onClick={(e) => inputsForSectionsChangeHandle(e)} onChange={(e) => inputsForSectionsChangeHandle(e)} />
+                                                <input id="showProducts" name="showProducts" type="checkbox" checked={sectionForHomePage.showProducts} onClick={(e) => inputsForSectionsChangeHandle(e)} onChange={(e) => inputsForSectionsChangeHandle(e)} />
                                                 <label className="text-left pl-1" htmlFor="showProducts">Mostrar apartado de productos</label>
                                             </div>
                                         </div>

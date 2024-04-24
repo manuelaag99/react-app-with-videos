@@ -20,14 +20,6 @@ export default function PeopleList ({ onClose, open }) {
                     
                     <ElementForPeopleList />
                     <ElementForPeopleList />
-                    <ElementForPeopleList />
-                    <ElementForPeopleList />
-                    <ElementForPeopleList />
-                    <ElementForPeopleList />
-                    <ElementForPeopleList />
-                    <ElementForPeopleList />
-                    <ElementForPeopleList />
-                    <ElementForPeopleList />
 
                 </div>
             </div>

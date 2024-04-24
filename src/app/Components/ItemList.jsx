@@ -47,7 +47,7 @@ export default function ItemList ({ listCategory, listTitle }) {
                 <div className="flex w-full mt-2 mb-1 justify-center items-center">
                     <p className="text-center font-bold font-rubik">{listTitle}</p>
                 </div>
-                <div className="flex flex-col justify-center items-start w-9/10 overflow-y-scroll my-2 mx-auto font-rubik h-fit">
+                <div className="flex flex-col justify-start items-start w-9/10 overflow-y-auto my-2 mx-auto font-rubik h-fit">
                         
                         {itemsForList && (itemsForList.length > 0) && itemsForList.map((item, index) => {
                             return (
@@ -57,7 +57,7 @@ export default function ItemList ({ listCategory, listTitle }) {
                                         {modules.map((module, index) => {
                                             if (module.course_id === item.id) {
                                                 return (
-                                                    <ListElement element={module} elementClassNames=" pl-6" elementType="modules" elementName="Nombre de artículo" key={index} />
+                                                    <ListElement element={module} elementClassNames=" pl-6" elementType="modules" elementName="Nombre de artículo" key={index} index={index} />
                                                 )
                                             }
                                         })}

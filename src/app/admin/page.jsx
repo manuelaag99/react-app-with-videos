@@ -8,6 +8,7 @@ import { supabase } from "../supabase/client";
 import { useRouter } from "next/navigation";
 import { useAuthContext } from "../utils/AuthContext";
 import UnavailableContent from "../Components/UnavailableContent";
+import GeneralPopUp from "../Components/Portals/GeneralPopUp";
 
 export default function AdminPage () {
     const auth = useAuthContext();
@@ -32,7 +33,6 @@ export default function AdminPage () {
 
     const [sectionForHomePage, setSectionForHomePage] = useState({ showCourses: null, contentCourses: "", showProducts: null, contentProducts: "" });
     function inputsForSectionsChangeHandle (e) {
-        console.log("click")
         let field = e.target.name;
         let newValue = e.target.value;
         if (e.target.type === "checkbox") {
@@ -66,16 +66,31 @@ export default function AdminPage () {
         try {
             if (!homeInfo) {
                 const { error } = await supabase.from("cai-home-info").insert({ id: "1", coursesInfo: sectionForHomePage.contentCourses, showCourses: sectionForHomePage.showCourses, productsInfo: sectionForHomePage.contentProducts, showProducts: sectionForHomePage.showProducts });
-                if (error) console.log (error);
+                if (error) setErrorInAdminPage(error);
             } else {
                 const { error } = await supabase.from("cai-home-info").update({ coursesInfo: sectionForHomePage.contentCourses, showCourses: sectionForHomePage.showCourses, productsInfo: sectionForHomePage.contentProducts, showProducts: sectionForHomePage.showProducts }).eq("id", "1");
-                if (error) console.log (error);
+                if (error) setErrorInAdminPage(error);
             }
         } catch (err) {
-            console.log(err);
+            setErrorInAdminPage(err)
+        }
+        if (!errorInAdminPage) {
+            setGeneralPopUp({ message: "Exitosamente se actualizó la pagina de inicio.", textForButtonOne: "Aceptar", textForButtonTwo: ""});
+            setOpenGeneralPopUp(true);
+        } else {
+            setGeneralPopUp({ message: "Hubo un error: " + errorInAdminPage, textForButtonOne: "Aceptar", textForButtonTwo: ""});
+            setOpenGeneralPopUp(true);
         }
     }
 
+    const [openGeneralPopUp, setOpenGeneralPopUp] = useState(false);
+    const [generalPopUp, setGeneralPopUp] = useState({ message: "", textForButtonOne: "", textForButtonTwo: ""});
+    const [errorInAdminPage, setErrorInAdminPage] = useState();
+
+    function closeGeneralPopUp () {
+        setGeneralPopUp({ message: "", textForButtonOne: "", textForButtonTwo: ""});
+        setOpenGeneralPopUp(false);
+    }
 
     if (!auth.isLoggedIn) {
         return (<UnavailableContent />)
@@ -83,7 +98,7 @@ export default function AdminPage () {
         return (
                 <div>
                     <TopNavigationBar />
-                    <div className="flex flex-col sm:w-85percent w-95percent mx-auto justify-center items-start bg-white rounded-md sm:mt-40 mt-20 mb-28 pb-20 pt-7 px-7 shadow-2xl">
+                    <div className="flex flex-col sm:w-85percent w-95percent mx-auto justify-center items-start bg-white rounded-md sm:mt-40 mt-20 mb-28 pb-14 pt-7 px-7 shadow-2xl">
         
                         <div className="flex flex-col w-full mb-8">
                             <div className="flex w-full justify-center">
@@ -143,7 +158,7 @@ export default function AdminPage () {
                         </div>
                         
                         <div className="flex flex-col sm:flex-row w-full">
-                            <div className="flex flex-col justify-center sm:w-1/2 w-full items-start">
+                            <div className="flex flex-col justify-start sm:w-1/2 w-full items-start">
                                 <div className="flex justify-center w-full mx-auto ">
                                     <p className="text-center text-black font-bold font-amatic text-page-title-desktop">
                                         Cursos
@@ -156,7 +171,7 @@ export default function AdminPage () {
                                 <ItemList listCategory="courses" listTitle="Lista de cursos" />
                             </div>
         
-                            <div className="flex flex-col justify-center sm:w-1/2 w-full items-start">
+                            <div className="flex flex-col justify-start sm:w-1/2 w-full items-start mt-6 sm:mt-0">
                                 <div className="flex justify-center w-full mx-auto ">
                                     <p className="text-center text-black font-bold font-amatic text-page-title-desktop">
                                         Productos
@@ -171,6 +186,7 @@ export default function AdminPage () {
                         
                     </div>
                     <CreateContentPopUp content={contentToCreate} isCreate={true} onClose={() => setOpenCreatePortal(false)} open={openCreatePortal} />
+                    <GeneralPopUp infoForPopUp={generalPopUp} onClose={closeGeneralPopUp} open={openGeneralPopUp} />
                 </div>
         )
     }

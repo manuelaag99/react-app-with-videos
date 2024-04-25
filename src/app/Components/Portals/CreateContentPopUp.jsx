@@ -29,7 +29,7 @@ export default function CreateContentPopUp ({ content, existingElementToEdit, is
         imageId = uuidv4();
         videoId = uuidv4();
         try {
-            const { error } = await supabase.from("cai-courses").insert({ id: newCourseId, title: newContent.title, description: newContent.description, course_image_path: "courseThumbnails/" + imageId, course_video_path: "coursePreviewVideos/" + videoId });
+            const { error } = await supabase.from("cai-courses").insert({ id: newCourseId, title: newContent.title, description: newContent.description, price: newContent.price, course_image_path: "courseThumbnails/" + imageId, course_video_path: "coursePreviewVideos/" + videoId });
             if (error) setErrorWithCreatingContent(error);
         } catch (err) {
             setErrorWithCreatingContent(err);
@@ -149,7 +149,7 @@ export default function CreateContentPopUp ({ content, existingElementToEdit, is
                 setIsButtonDisabled(true);
             }
         } else if (content === "courses") {
-            if ((newContent.title !== '') && (newContent.description !== '') && (newContent.thumbnail !== '') && (newContent.video !== '')) {
+            if ((newContent.title !== '') && (newContent.description !== '') && (newContent.price !== '') && (newContent.thumbnail !== '') && (newContent.video !== '')) {
                 setIsButtonDisabled(false);
             } else {
                 setIsButtonDisabled(true);
@@ -166,7 +166,7 @@ export default function CreateContentPopUp ({ content, existingElementToEdit, is
     useEffect(() => {
         if (existingElementToEdit) {
             if (!isCreate && (content === "courses")) {
-                setNewContent({ title: existingElementToEdit.title, description: existingElementToEdit.description, thumbnail: existingElementToEdit.course_image_path, video: existingElementToEdit.course_video_path });
+                setNewContent({ title: existingElementToEdit.title, description: existingElementToEdit.description, price: existingElementToEdit.price, thumbnail: existingElementToEdit.course_image_path, video: existingElementToEdit.course_video_path });
             } else if (!isCreate && (content === "modules")) {
                 setNewContent({ title: existingElementToEdit.title, description: existingElementToEdit.description, courses: existingElementToEdit.course_id, thumbnail: existingElementToEdit.module_image_path, video: existingElementToEdit.module_video_path });
             } else if (!isCreate && (content === "products")) {

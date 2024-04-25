@@ -1,12 +1,15 @@
 import { createPortal } from "react-dom";
 import Button from "../Button";
 import { supabase } from "@/app/supabase/client";
+import { v4 as uuidv4 } from "uuid";
 
 export default function PurchasePopUp ({ closePurchasePopUp, itemId, open, userId }) {
 
+    let newPurchaseId;
     async function registerPurchaseInDatabase () {
+        newPurchaseId = uuidv4();
         try {
-            const { error } = await supabase.from("cai-purchased-courses").insert({ user_id: userId, course_id: itemId })
+            const { error } = await supabase.from("cai-purchased-courses").insert({ purchase_id: newPurchaseId, user_id: userId, course_id: itemId });
             if (error) console.log(error);
         } catch (err) {
             console.log(err);

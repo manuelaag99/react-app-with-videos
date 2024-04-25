@@ -188,7 +188,7 @@ export default function SignInOrSignUpPopUp ({ onClose, open, openSignUp }) {
 
     const signInOrSignUpPopUp = (
         <div className="w-full">
-            <div className="bg-black opacity-50 fixed top-0 bottom-0 w-screen h-screen z-60" onClick={onClose}></div>
+            <div className="bg-black opacity-50 fixed top-0 bottom-0 w-screen h-screen z-60" onClick={closeSignInOrSignUpPopUp}></div>
             <div className={"flex flex-col justify-center fixed w-9/10 sm:w-6/10 h-fit bg-white rounded-md shadow-2xl left-[5%] sm:left-[20%] z-70 p-4 sm:p-9 " + (isSignUp ? " top-[5%] " : " top-[5%] ")}>
                 <div className="flex justify-center w-95percent mb-3 mx-auto">
                     <p className="text-center text-black font-amatic font-bold text-sign-in-or-sign-up-title-desktop">

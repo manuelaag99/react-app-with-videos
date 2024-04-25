@@ -206,6 +206,8 @@ export default function CreateContentPopUp ({ content, existingElementToEdit, is
                     {(content === "courses") && <input value={newContent.title} className="w-full py-2 px-2 mb-3 bg-gray-200 rounded-sm text-inputs-desktop" name="title" onChange={inputChangeHandle} placeholder={existingElementToEdit ? null : "Nombre del curso..."} type="text" />}
                     {(content === "courses") && <label className="text-sign-in-or-sign-up-labels-desktop font-bold mb-1" htmlFor="">Descripción del curso</label>}
                     {(content === "courses") && <input value={newContent.description} className="w-full py-2 px-2 mb-3 bg-gray-200 rounded-sm text-inputs-desktop" name="description" onChange={inputChangeHandle} placeholder="Descripción del curso..." type="text" />}
+                    {(content === "courses") && <label className="text-sign-in-or-sign-up-labels-desktop font-bold mb-1" htmlFor="">Precio del curso (en MXN)</label>}
+                    {(content === "courses") && <input value={newContent.price} className="w-full py-3 px-2 mb-3 bg-gray-200 rounded-sm" name="price" onChange={inputChangeHandle} placeholder="Precio del curso..." type="number" />}
                     
                                         
                     {(content === "modules") && <label className="text-sign-in-or-sign-up-labels-desktop font-bold mb-1" htmlFor="">Nombre del módulo</label>}
@@ -227,13 +229,13 @@ export default function CreateContentPopUp ({ content, existingElementToEdit, is
                     {(content === "products") && <input value={newContent.description} className="w-full py-2 px-2 mb-3 bg-gray-200 rounded-sm text-inputs-desktop" name="description" onChange={inputChangeHandle} placeholder="Descripción del producto..." type="text" />}
                     {(content === "products") && <label className="text-sign-in-or-sign-up-labels-desktop font-bold mb-1" htmlFor="">Precio del producto</label>}
                     {(content === "products") && <input value={newContent.price} className="w-full py-3 px-2 mb-3 bg-gray-200 rounded-sm" name="price" onChange={inputChangeHandle} placeholder="Precio del producto..." type="number" />}
-
+                    
                 </div>
 
                 <div className="flex flex-col w-95percent mx-auto">
                     {(content === "courses") && <label className="text-sign-in-or-sign-up-labels-desktop font-bold w-full text-left mb-1" htmlFor="">Si vas a crear un curso, se recomienda agregar un video con un pequeño fragmento de algún modulo. Asimismo, para que el curso tenga una miniatura, puedes subir una imagen, de dimensiones 16:9.</label>}
                     {(content === "modules") && <label className="text-sign-in-or-sign-up-labels-desktop font-bold w-full text-left mb-1" htmlFor="">Si vas a crear un módulo, tienes que subir a continuación el video corespondiente, así como una miniatura del mismo, de dimensiones 16:9.</label>}
-                    <div className="flex flex-row justify-between w-full mx-auto h-28 mb-3">
+                    <div className="flex flex-row justify-between w-full mx-auto h-28 my-2">
                         {(content === "courses") && <div className="flex w-46percent h-full">
                             <VideoUpload additionalClassnames=" h-full" existingSource={newContent.thumbnail} instructionForUpload="Miniatura para el curso" sendFile={(file) => setNewContent({...newContent, thumbnail: file})} typeOfFile="image" />
                         </div>}

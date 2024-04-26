@@ -3,7 +3,7 @@ import Button from "../Button";
 import { supabase } from "@/app/supabase/client";
 import { v4 as uuidv4 } from "uuid";
 
-export default function PurchasePopUp ({ closePurchasePopUp, itemId, open, userId }) {
+export default function PurchasePopUp ({ closePurchasePopUp, itemId, open, price, userId }) {
 
     let newPurchaseId;
     async function registerPurchaseInDatabase () {
@@ -22,7 +22,7 @@ export default function PurchasePopUp ({ closePurchasePopUp, itemId, open, userI
             <div className="flex flex-col justify-center w-6/10 h-fit bg-white shadow-2xl fixed rounded-md z-30 mx-auto top-[15%] left-[20%] p-5 ">
                 <div className="flex ">
                     <p className="text-center text-black w-full py-3">
-                        ¿Quieres comprar este curso?
+                        ¿Quieres comprar este curso? Su costo es de {price} MXN.
                     </p>
                 </div>
                 <div className="flex flex-row justify-between px-6 py-3">

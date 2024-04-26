@@ -57,6 +57,10 @@ export default function CoursePage ({ params }) {
                                 {!courseInfo && <div className="rounded-lg bg-gray-400 w-full h-5 mt-3"></div>}
                                 {courseInfo && <p className="font-medium text-left pr-6 text-gray-400 font-rubik">{courseInfo.description}</p>}
                             </div>
+                            <div className="flex w-full mb-6">
+                                {!courseInfo && <div className="rounded-lg bg-gray-400 w-full h-5 mt-3"></div>}
+                                {courseInfo && <p className="font-medium text-left pr-6 text-black font-rubik">Costo: {courseInfo.price} MXN</p>}
+                            </div>
                             <div className="flex w-full justify-start items-start">
                                 <Button additionalClassNamesForButton=" text-center -mt-1.5 -mb-1.5" additionalClassNamesForText=" flex justify-center md:mt-0 mt-3 px-4 py-2 font-amatic text-button-desktop font-bold rounded-md shadow-md bg-var-2 hover:bg-var-2-hovered duration-300 text-white" contentForButton="Comprar curso" isDisabled={false} onClickButtonAction={() => purchaseCourse()} />
                             </div>
@@ -77,7 +81,7 @@ export default function CoursePage ({ params }) {
                     })}
                 </div>}
             </div>
-            <PurchasePopUp closePurchasePopUp={() => setIsPurchasePopUpVisible(false)} courseId={params.courseId} open={isPurchasePopUpVisible} userId={auth.user_Id} />
+            <PurchasePopUp closePurchasePopUp={() => setIsPurchasePopUpVisible(false)} courseId={params.courseId} open={isPurchasePopUpVisible} price={courseInfo.price} userId={auth.user_Id} />
         </div>
     )
 }

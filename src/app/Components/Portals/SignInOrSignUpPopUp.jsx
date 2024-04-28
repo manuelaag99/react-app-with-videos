@@ -184,7 +184,6 @@ export default function SignInOrSignUpPopUp ({ onClose, open, openSignUp }) {
         setIsInputBlurred({ displayName: false, userName: false, email: false, password: false });
         onClose();
     }
-    console.log(signInOrSignUpInputs)
 
     const signInOrSignUpPopUp = (
         <div className="w-full">

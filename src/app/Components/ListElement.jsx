@@ -9,6 +9,7 @@ export default function ListElement ({ element, elementClassNames, elementType, 
     const [openWindowForEdit, setOpenWindowForEdit] = useState(false);
     const [openWindowForPeople, setOpenWindowForPeople] = useState(false);
 
+
     return (
         <div className={"flex flex-col sm:flex-row w-full py-3 px-2 hover:bg-gray-300 duration-200 cursor-pointer h-fit " + elementClassNames} onClick={onClickFunction}>
             <div className="flex justify-center sm:justify-start w-full sm:w-6/10 py-1">

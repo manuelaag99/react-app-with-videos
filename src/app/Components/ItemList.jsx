@@ -39,6 +39,7 @@ export default function ItemList ({ listCategory, listTitle }) {
             setIdOfModulesListToShow();
         }
     }
+
     return (
 
         <div className="flex flex-col w-full mb-4 h-fit">

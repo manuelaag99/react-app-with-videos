@@ -185,7 +185,6 @@ export default function CreateContentPopUp ({ content, existingElementToEdit, is
         if (!errorWithCreatingContent) closeCreateContentPopUp();
     }
 
-    console.log(newContent)
     const createContentPopUp = (
         <div className="h-full">
             <div className="bg-black opacity-50 fixed top-0 bottom-0 w-screen h-screen z-20" onClick={closeCreateContentPopUp}></div>

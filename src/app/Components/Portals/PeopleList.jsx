@@ -38,6 +38,16 @@ export default function PeopleList ({ item, onClose, open }) {
                     {purchasedCourses && (purchasedCourses.length > 0) && purchasedCourses.map((purchase, index) => {
                         return (<ElementForPeopleList elementInfo={purchase} index={index} key={index} />)
                     })}
+                    {purchasedCourses && (purchasedCourses.length < 1) && <div className="flex justify-center w-full">
+                        <p className="text-center text-black">
+                            No hay personas registradas en este curso.
+                        </p>
+                    </div> }
+                    {!purchasedCourses && <div className="flex justify-center w-full">
+                        <p className="text-center text-black">
+                            No se obtuvieron los datos.
+                        </p>
+                    </div> }
                 </div>
             </div>
         </>

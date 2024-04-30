@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { supabase } from "../supabase/client";
 
-export default function ElementForPeopleList ({ elementInfo, index, searchQuery }) {
+export default function ElementForPeopleList ({ courseId, elementInfo, index, searchQuery }) {
     const [userInfo, setUserInfo] = useState();
     async function fetchUserInfo () {
         try {
@@ -15,6 +15,11 @@ export default function ElementForPeopleList ({ elementInfo, index, searchQuery 
     useEffect(() => {
         fetchUserInfo();
     }, [])
+
+    const [doesUserHaveAccessToThisCourse, setDoesUserHaveAccessToThisCourse] = useState(false);
+    function changeAccessToCourse () {
+        setDoesUserHaveAccessToThisCourse((prevValue) => !prevValue)
+    }
 
     if (!userInfo) {
         return null;
@@ -36,7 +41,7 @@ export default function ElementForPeopleList ({ elementInfo, index, searchQuery 
                     </div>
                     <div className="flex flex-col w-6/10 items-center justify-center">
                         <div className="flex flex-row">
-                            <input className="mr-2 cursor-pointer" type="checkbox" />
+                            <input className="mr-2 cursor-pointer" type="checkbox" onChange={changeAccessToCourse} value={doesUserHaveAccessToThisCourse} />
                             <p className="text-black">
                                 dar acceso a este curso
                             </p>

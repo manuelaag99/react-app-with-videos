@@ -55,7 +55,7 @@ export default function PeopleList ({ item, onClose, open }) {
 
                 <div className="flex flex-col w-9/10 justify-start items-center h-9/10 my-4 overflow-y-auto">
                     {purchasedCourses && (purchasedCourses.length > 0) && purchasedCourses.map((purchase, index) => {
-                        return (<ElementForPeopleList elementInfo={purchase} index={index} key={index} searchQuery={searchQuery} />)
+                        return (<ElementForPeopleList courseId={item.id} elementInfo={purchase} index={index} key={index} searchQuery={searchQuery} />)
                     })}
                     {purchasedCourses && (purchasedCourses.length < 1) && <div className="flex justify-center w-full">
                         <p className="text-center text-black">

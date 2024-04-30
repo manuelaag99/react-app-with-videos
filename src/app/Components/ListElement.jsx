@@ -20,14 +20,14 @@ export default function ListElement ({ element, elementClassNames, elementType, 
                     Modulo {index + 1} : {element.title}
                 </p>}
             </div>
-            <div className="flex flex-row w-full sm:w-4/10 my-2 sm:my-0">
-                <button className="w-1/3 justify-center text-center text-black hover:text-white duration-200 cursor-pointer" onClick={() => setOpenWindowForEdit(true)}>
+            <div className={"flex flex-row w-full my-2 sm:my-0" + (elementType === "courses" ? "sm:w-4/10" : "") }>
+                <button className={"w-1/3 justify-center text-center text-black hover:text-white duration-200 cursor-pointer " + (elementType === "courses" ? " sm:w-1/3" : " sm:w-1/2" )} onClick={() => setOpenWindowForEdit(true)}>
                     <EditIcon color="black" fontSize='small' />
                 </button>
-                <button className="w-1/3 justify-center text-center text-black hover:text-white duration-200 cursor-pointer" onClick={() => setOpenWindowForPeople(true)}>
+                <button className={"w-1/3 justify-center text-center text-black hover:text-white duration-200 cursor-pointer " + (elementType === "courses" ? " sm:w-1/3" : " sm:w-1/2" )} onClick={() => setOpenWindowForPeople(true)}>
                     <PeopleAlt color="black" fontSize='small' />
                 </button>
-                <button className="w-1/3 justify-center text-center text-black hover:text-white duration-200 cursor-pointer">
+                <button className={"w-1/3 justify-center text-center text-black hover:text-white duration-200 cursor-pointer " + (elementType === "courses" ? " sm:w-1/3" : " sm:w-1/2" )}>
                     <DeleteIcon color="black" fontSize='small' />
                 </button>
             </div>

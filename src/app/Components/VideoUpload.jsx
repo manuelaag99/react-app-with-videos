@@ -67,7 +67,6 @@ export default function VideoUpload ({ additionalClassnames, existingSource, ins
         }
     }, [existingSource])
 
-    console.log(preview)
 
     return (
         <div className={"flex justify-center w-full " + additionalClassnames}>

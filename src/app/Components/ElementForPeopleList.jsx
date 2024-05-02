@@ -51,7 +51,7 @@ export default function ElementForPeopleList ({ courseId, elementInfo, index, se
     if (!userInfo) {
         return null;
     } else if (userInfo) {
-        if (!searchQuery || (searchQuery && (searchQuery.trim() === "")) || (searchQuery && (userInfo.displayName.includes(searchQuery)))) {
+        if (!searchQuery || (searchQuery && (searchQuery.trim() === "")) || (searchQuery && (userInfo.displayName.toLowerCase().includes(searchQuery.toLowerCase()))) || (searchQuery && (userInfo.username.toLowerCase().includes(searchQuery.toLowerCase())))) {
             return (
                 <div className="flex flex-row w-full px-4 py-3 bg-white hover:bg-gray-300 duration-200 cursor-pointer">
                     <div className="flex flex-col w-4/10">

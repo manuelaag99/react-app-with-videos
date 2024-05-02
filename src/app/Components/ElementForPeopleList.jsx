@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { supabase } from "../supabase/client";
+import { v4 as uuidv4 } from "uuid";
 
 export default function ElementForPeopleList ({ courseId, elementInfo, index, searchQuery }) {
     const [userInfo, setUserInfo] = useState();
@@ -20,6 +21,32 @@ export default function ElementForPeopleList ({ courseId, elementInfo, index, se
     function changeAccessToCourse () {
         setDoesUserHaveAccessToThisCourse((prevValue) => !prevValue)
     }
+
+    let newAccessId;
+    async function giveUserAccess () {
+        newAccessId = uuidv4();
+        try {
+            const { error } = await supabase.from("cai-users-with-access").insert({ id: newAccessId, course_id: courseId, user_id: elementInfo.user_id});
+        } catch (err) {
+            console.log(err);
+        }
+    }
+    async function removeUserAccess () {
+        newAccessId = uuidv4();
+        try {
+            const { error } = await supabase.from("cai-users-with-access").delete().eq("user_id", elementInfo.user_id).eq("course_id", courseId);
+        } catch (err) {
+            console.log(err);
+        }
+    }
+
+    useEffect(() => {
+        if (doesUserHaveAccessToThisCourse === true) {
+            giveUserAccess();
+        } else if (doesUserHaveAccessToThisCourse === false) {
+            removeUserAccess();
+        }
+    }, [doesUserHaveAccessToThisCourse])
 
     if (!userInfo) {
         return null;
